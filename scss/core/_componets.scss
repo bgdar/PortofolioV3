@@ -1,0 +1,20 @@
+//  warna na di tambah manual antik
+
+@mixin box {
+  box-shadow: 0 0 10px ;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+@mixin button {
+  padding: 0.4rem;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

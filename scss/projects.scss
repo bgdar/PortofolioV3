@@ -1,0 +1,130 @@
+@use "core/color" as color;
+@use "core/componets" as components;
+
+.projects {
+  background: color.$gradient-space;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  color: color.$text-primary;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2.5rem;
+      background: color.$gradient-space;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: color.$text-secondary;
+      font-size: 1rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// =============================
+// PROJECT CARD (Instagram Style)
+// =============================
+
+.project-card {
+  position: relative;
+  aspect-ratio: 1 / 1; // membuat kotak seperti Instagram
+  overflow: hidden;
+  border-radius: 12px;
+  background: color.$card-bg;
+  border: 1px solid color.$card-border;
+  box-shadow: 0 10px 30px color.$card-shadow;
+  transition: 0.4s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px color.$hover-glow;
+
+    img {
+      transform: scale(1.1);
+    }
+
+    .project-card__overlay {
+      opacity: 1;
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 6, 24, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    text-align: center;
+    opacity: 0;
+    transition: 0.4s ease;
+
+    h3 {
+      color: color.$accent-cyan;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.btn-primary {
+  background: color.$btn-primary-bg;
+  color: color.$btn-primary-text;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 15px color.$active-glow;
+  }
+}
+
+.btn-secondary {
+  background: color.$btn-secondary-bg;
+  color: color.$btn-secondary-text;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 15px color.$hover-glow;
+  }
+}

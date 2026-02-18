@@ -1,0 +1,56 @@
+
+// daftar color start
+
+$black-space: #0b0618;        // hitam keunguan (background utama)
+$deep-purple: #2a0f45;        // ungu gelap kosmik
+$nebula-purple: #4b2a7a;      // ungu nebula
+$violet-soft: #7a5bcf;        // ungu lembut asteroid
+$blue-mystic: #4f7ddb;        // biru mistik
+$blue-light: #7fb3ff;         // biru terang glow
+$lavender: #a58bff;           // lavender halus
+$gray-shadow: #1a1a2e;        // bayangan gelap
+
+// daftar color end
+
+// accent colors
+
+$accent-orange: #ff8c42;      // aksen kontras (planet / bintang)
+$accent-pink: #ff6fd8;        // neon cosmic
+$accent-cyan: #4deeea;        // sci-fi glow
+
+
+
+$bg-primary: $black-space;
+$text-primary: #ffffff;
+$text-secondary: $lavender; 
+
+
+$card-bg: $deep-purple;
+$card-border: $nebula-purple;
+$card-shadow: rgba(0, 0, 0, 0.6);
+
+
+$btn-primary-bg: $violet-soft;
+$btn-primary-text: #ffffff;
+
+$btn-secondary-bg: $blue-mystic;
+$btn-secondary-text: #ffffff;
+
+
+$hover-glow: $accent-cyan;
+$active-glow: $accent-pink;
+
+
+$gradient-space: linear-gradient(
+  135deg,
+  $black-space,
+  $deep-purple,
+  $nebula-purple
+);
+
+$gradient-planet: radial-gradient(
+  circle,
+  $lavender,
+  $violet-soft,
+  $deep-purple
+);

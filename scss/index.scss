@@ -1,0 +1,96 @@
+@use "core/color" as color;
+@use "core/componets" as components;
+
+body {
+  // cleaning
+  margin: 0;
+  padding: 0;
+
+  background: url("../assets/bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* Membuat gambar tetap diam */
+  background-attachment: fixed;
+  object-fit: cover;
+  opacity: 0.82;
+
+  // agar content utama berbagi 2
+  display: flex;
+  color: color.$text-primary;
+  overflow: hidden;
+}
+
+// kelompokkan dari Bodynya
+section#left {
+  @include components.box();
+  width: 50%;
+  height: 100vh;
+  border: 1px solid;
+  // jangan bagikannbisa di geser
+  overflow-y: hidden;
+
+  // item yang looping di index.js
+  div.item {
+    @include components.box();
+
+    background-color: color.$card-bg;
+    width: 80%;
+    height: 200px;
+    margin: 10px;
+    background-color: color.$card-shadow;
+  }
+}
+section#right {
+  @include components.box();
+  flex: 1;
+
+  height: 100vh;
+  // agar bisa di geser
+  overflow-y: scroll;
+  border: 1px solid;
+
+  div#content {
+    @include components.box();
+    width: 80%;
+    height: 50%;
+    margin-top: 30%;
+    margin-bottom: 50%;
+    background-color: color.$card-bg;
+    border: 1px solid;
+    div.img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: full;
+
+      img {
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+  div#data {
+    height: 2000px;
+    @include components.box();
+  }
+}
+
+nav {
+  @include components.box();
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  bottom: 0px; /*di bawah */
+  width: 80%;
+  height: 60px;
+  background-color: color.$black-space;
+  color: color.$text-primary;
+  padding: 10px;
+}
