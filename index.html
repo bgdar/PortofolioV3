@@ -1,49 +1,132 @@
 <!doctype html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard</title>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    />
+  </head>
 
-<body>
-  <section id="left"></section>
+  <body>
+    <!-- bacground hitam di belakang  -->
+    <div class="overlayBg"></div>
 
-  <section id="right">
-    <div id="content">
-      <div class="img">
-        <img alt="Muhammad Nadhar" />
+    <section id="left">
+      <div class="skill">
+        <h3>Skill</h3>
+        <div class="cnt">
+          <div class="item">
+            <p>Frontend Developer</p>
+          </div>
+
+          <div class="item">
+            <p>Backend Developer</p>
+          </div>
+
+          <div class="item">
+            <i class="zmdi zmdi-coffee"></i>
+            <p>Linux User</p>
+          </div>
+
+          <div class="item">
+            <i class="zmdi zmdi-lock-outline"></i>
+            <p>Api Desain</p>
+          </div>
+        </div>
       </div>
 
-      <h4>Muhammad Nadhar</h4>
-      <p>I'm FullStack Web Dev</p>
-    </div>
+      <div class="institute">
+        <h3>Institution</h3>
+        <div class="cnt">
+          <div class="item">
+            <h5>UIN AR RANIRY</h5>
+            <p>place to pursue Sajana 1</p>
+          </div>
+          <div class="item">
+            <h5>Other</h5>
+            <p>place other</p>
+          </div>
+        </div>
+      </div>
 
-    <div id="data">
-      <p>asasa asa asa asa asa asa</p>
-    </div>
-  </section>
+      <nav>
+        <ul>
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="contact.html">contact</a></li>
+          <li><a href="projects.html">Project</a></li>
+        </ul>
+      </nav>
+    </section>
 
-  <nav>
-    <div id="projects">
-      <a href="/projects.html">
-        <p>Project</p>
-      </a>
-    </div>
-    <div id="contack">
-      <a href="/contact.html">
-        <p>contack</p>
-      </a>
-    </div>
+    <!-- ini tombol garis tengah yang bisa di tarik kiri kanan  -->
+    <button id="btn-center" type="button">I</button>
 
-    <div id="gmail">gmail</div>
-  </nav>
+    <section id="right">
+      <div id="content">
+        <div class="img">
+          <img alt="Muhammad Nadhar" />
+          <h4>Muhammad Nadhar</h4>
+          <p>I'm FullStack Web Dev</p>
+        </div>
+      </div>
 
-  <footer></footer>
+      <div id="data">
+        <div id="forto-info">
+          <div class="web">
+            <p>ini adalah skill utama saya</p>
 
-  <!-- Otomatis  -->
-  <!-- <script defer src="./js/index.js"></script> -->
-</body>
+            <a href="projects.html#web">
+              <button type="button">Terminal</button>
+            </a>
+          </div>
 
+          <div class="bot">
+            selain Web saya juga membangu Bot untuk Media Social
+            <div>
+              <a href="projects.html#bots">
+                <button type="button">Bots</button>
+              </a>
+            </div>
+          </div>
+
+          <div class="termina">
+            <p>
+              saya sering meconba membangun Untuk beberapa tools dan app di
+              terminal
+            </p>
+
+            <a href="projects.html#terminal">
+              <button type="button">Terminal</button>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+          <p>other pelengkap</p>
+        </div>
+      </div>
+    </section>
+
+    <footer></footer>
+
+    <!-- Otomatis  -->
+    <!-- <script defer src="./js/index.js"></script> -->
+  </body>
 </html>

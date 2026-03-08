@@ -1,56 +1,74 @@
+// =============================
+// BASE COLORS (Monochrome)
+// =============================
+// =============================
+// BASE COLORS (Monochrome)
+// =============================
 
-// daftar color start
+$black-space: #0a0a0a; // background utama
+$deep-purple: #141414; // surface layer
+$nebula-purple: #1f1f1f; // border / divider
+$violet-soft: #2b2b2b; // hover surface
+$blue-mystic: #3a3a3a; // secondary surface
+$blue-light: #6b6b6b; // highlight abu
+$lavender: #cfcfcf; // text secondary
+$gray-shadow: #111111; // bayangan gelap
 
-$black-space: #0b0618;        // hitam keunguan (background utama)
-$deep-purple: #2a0f45;        // ungu gelap kosmik
-$nebula-purple: #4b2a7a;      // ungu nebula
-$violet-soft: #7a5bcf;        // ungu lembut asteroid
-$blue-mystic: #4f7ddb;        // biru mistik
-$blue-light: #7fb3ff;         // biru terang glow
-$lavender: #a58bff;           // lavender halus
-$gray-shadow: #1a1a2e;        // bayangan gelap
+// =============================
+// ACCENT COLORS
+// =============================
 
-// daftar color end
+$accent-red: #ff3b3b; // merah utama (alert / highlight)
+$accent-red-soft: #ff6b6b; // merah lembut
 
-// accent colors
+$accent-blue: #3b82f6; // biru utama (interactive)
+$accent-blue-soft: #60a5fa; // biru hover
 
-$accent-orange: #ff8c42;      // aksen kontras (planet / bintang)
-$accent-pink: #ff6fd8;        // neon cosmic
-$accent-cyan: #4deeea;        // sci-fi glow
+$accent-white: #ffffff; // glow terang
 
-
+// =============================
+// GLOBAL UI
+// =============================
 
 $bg-primary: $black-space;
-$text-primary: #ffffff;
-$text-secondary: $lavender; 
 
+$text-primary: #ffffff;
+$text-secondary: $lavender;
+
+// =============================
+// CARD
+// =============================
 
 $card-bg: $deep-purple;
 $card-border: $nebula-purple;
-$card-shadow: rgba(0, 0, 0, 0.6);
+$card-shadow: rgba(0, 0, 0, 0.8);
 
+// =============================
+// BUTTONS
+// =============================
 
-$btn-primary-bg: $violet-soft;
+$btn-primary-bg: $accent-blue;
 $btn-primary-text: #ffffff;
 
-$btn-secondary-bg: $blue-mystic;
+$btn-secondary-bg: $accent-red;
 $btn-secondary-text: #ffffff;
 
+// =============================
+// EFFECTS
+// =============================
 
-$hover-glow: $accent-cyan;
-$active-glow: $accent-pink;
+$hover-glow: rgba(59, 130, 246, 0.6); // blue glow
+$active-glow: rgba(255, 59, 59, 0.7); // red glow
 
+// =============================
+// GRADIENTS
+// =============================
 
-$gradient-space: linear-gradient(
-  135deg,
-  $black-space,
-  $deep-purple,
-  $nebula-purple
-);
+$gradient-space: linear-gradient(135deg, #000000, #111111, #1f1f1f);
 
 $gradient-planet: radial-gradient(
   circle,
-  $lavender,
-  $violet-soft,
-  $deep-purple
+  $accent-blue-soft,
+  $accent-red-soft,
+  #1a1a1a
 );
