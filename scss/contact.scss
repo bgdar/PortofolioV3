@@ -1,3 +1,8 @@
+@use "core/color" as color;
+@use "core/componets" as components;
+
+@import '~remixicon/fonts/remixicon.css';
+
 @font-face {
   font-family: "JetBrains";
   src:
@@ -9,9 +14,28 @@
 
 body {
   font-family: "JetBrains", sans-serif;
+
+  background: url("../assets/bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* Membuat gambar tetap diam */
+  background-attachment: fixed;
+  object-fit: cover;
+  // agar content utama berbagi 2
+  color: color.$text-primary;
+  overflow: hidden;
+
+  // mdeia
+  @media screen and (max-width: 1000px) {
+    overflow: auto;
+    flex-direction: column;
+  }
+
+  @include components.navbar("fixed")
 }
 
-.contact {
+main {
   min-height: 100vh;
   padding: 40px;
   text-align: center;
@@ -19,16 +43,16 @@ body {
   .puzzle {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
     max-width: 900px;
     margin: auto;
+
+
   }
 
   .piece {
-    background: #1e1e2f;
-    color: white;
+    background: color.$black-space;
+    color: color.$text-primary;
     padding: 20px;
-    border-radius: 20px;
     position: relative;
     cursor: pointer;
 
@@ -43,7 +67,7 @@ body {
 
     &:hover {
       transform: translateY(-6px) scale(1.03);
-      background: #6c5cff;
+      background: color.$accent-blue;
     }
 
     /* Bentuk puzzle */
@@ -73,18 +97,23 @@ body {
     &:nth-child(1) {
       animation-delay: 0.1s;
     }
+
     &:nth-child(2) {
       animation-delay: 0.2s;
     }
+
     &:nth-child(3) {
       animation-delay: 0.3s;
     }
+
     &:nth-child(4) {
       animation-delay: 0.4s;
     }
+
     &:nth-child(5) {
       animation-delay: 0.5s;
     }
+
     &:nth-child(6) {
       animation-delay: 0.6s;
     }
@@ -113,6 +142,22 @@ body {
 
   .message {
     grid-column: span 3;
+    display: flex;
+
+    .action {
+      @include components.box();
+      padding: 10px;
+
+      .button {
+        cursor: pointer;
+        border: none;
+        background-color: color.$gray-shadow;
+      }
+    }
+
+    .cnt-message {
+      padding: 10px;
+    }
   }
 }
 
@@ -126,7 +171,7 @@ body {
 div.overlayBg {
   position: absolute;
   inset: 0; // cocok untuk absolute , tampa right  , buttom , top , left Membuat elemen menempel ke seluruh sisi kontainer
-  background: rgba(11, 6, 24, 0.7);
+  background: color.$deep-purple;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,6 +193,7 @@ div.detail-img {
     }
   }
 }
+
 div.detail-img.show {
   visibility: visible;
 }

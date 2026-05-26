@@ -1,7 +1,9 @@
+@use "color" as color;
+
 //  warna na di tambah manual antik
 
 @mixin box {
-  box-shadow: 0 0 10px ;
+  box-shadow: 0 0 10px;
   padding: 10px;
   width: 100%;
   height: 100%;
@@ -16,5 +18,81 @@
 
   &:hover {
     transform: scale(1.1);
+  }
+}
+
+
+// display tampilanya 
+@mixin navbar($display : "absolute") {
+  nav {
+
+    @if $display =="fixed" {
+      position: fixed;
+      width: 80%;
+      z-index: 99;
+  left: 50%;
+  transform: translateX( -50%);
+    }
+
+    @else if $display =="absolute" {
+      position: absolute;
+      width: 100%;
+
+
+    }
+
+    ;
+    bottom: 0;
+    border: 1px solid;
+    padding: 1rem 0;
+    backdrop-filter: blur(10px);
+
+    ul {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1.2rem;
+
+      flex-wrap: wrap;
+      // @media screen and (max-width: 200px) {
+      //   flex-direction: column;
+      // }
+
+      li {
+        list-style: none;
+
+        a {
+          @include box();
+
+          display: block;
+          padding: 0.7rem 1.2rem;
+          border-radius: 10px;
+
+          text-decoration: none;
+          color: color.$text-secondary;
+          background: color.$card-bg;
+          border: 1px solid color.$card-border;
+
+          font-size: 0.9rem;
+          letter-spacing: 0.5px;
+
+          transition: all 0.25s ease;
+
+          &:hover {
+            color: color.$text-primary;
+            background: color.$nebula-purple;
+            border-color: color.$hover-glow;
+            box-shadow: 0 0 10px color.$hover-glow;
+            transform: translateY(-2px);
+          }
+
+          &:active {
+            box-shadow: 0 0 12px color.$active-glow;
+          }
+        }
+      }
+    }
   }
 }

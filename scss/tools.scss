@@ -1,0 +1,166 @@
+@use "core/color" as color;
+@use "core/componets" as components;
+
+.skills-section {
+  background-color: color.$black-space;
+  background-image: color.$gradient-space; // Efek depth ruang angkasa
+  color: color.$text-primary;
+  padding: 80px 20px;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.skills-container {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+// HEADER
+.skills-header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: color.$accent-white;
+
+    span {
+      // Efek teks menyala / gradient planet pada kata kunci
+      background: linear-gradient(90deg, color.$accent-blue-soft, color.$accent-red-soft);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: color.$text-secondary; // Menggunakan warna lavender
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+// CATEGORY
+.skills-category {
+  margin-bottom: 48px;
+
+  .category-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: color.$blue-light; // Highlight abu-abu
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-left: 3px solid color.$nebula-purple;
+    padding-left: 12px;
+  }
+}
+
+// TOOLS GRID
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+// TOOL CARD (Default: Blue Theme)
+.tool-card {
+  background-color: color.$card-bg; // deep-purple
+  border: 1px solid color.$card-border; // nebula-purple
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px color.$card-shadow;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .tool-icon {
+    width: 48px;
+    height: 48px;
+    background-color: color.$violet-soft;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: color.$accent-blue-soft;
+    transition: all 0.3s ease;
+  }
+
+  .tool-info {
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      color: color.$accent-white;
+    }
+    p {
+      font-size: 0.85rem;
+      margin: 0;
+      color: color.$text-secondary;
+    }
+  }
+
+  // Badge status di dalam card
+  .badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+
+    &.tech-blue {
+      background-color: rgba(59, 130, 246, 0.1);
+      color: color.$accent-blue-soft;
+    }
+    &.tech-red {
+      background-color: rgba(255, 59, 59, 0.1);
+      color: color.$accent-red-soft;
+    }
+  }
+
+  // HOVER EFFECT (Default Blue Glow)
+  &:hover {
+    transform: translateY(-4px);
+    background-color: color.$violet-soft;
+    border-color: color.$accent-blue;
+    box-shadow: 0 0 20px color.$hover-glow;
+
+    .tool-icon {
+      background-color: color.$accent-blue;
+      color: color.$accent-white;
+      transform: scale(1.05);
+    }
+  }
+
+  // MODIFIER: Hover khusus untuk tools bertema merah (Figma / Git)
+  &.accent-red-hover:hover {
+    border-color: color.$accent-red;
+    box-shadow: 0 0 20px color.$active-glow; // Menggunakan active-glow merah
+
+    .tool-icon {
+      background-color: color.$accent-red;
+      color: color.$accent-white;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-header {
+    .title { font-size: 2rem; }
+  }
+  .tools-grid {
+    grid-template-columns: 1fr; // Satu kolom penuh saat di HP
+  }
+}

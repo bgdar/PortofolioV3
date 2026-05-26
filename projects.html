@@ -7,25 +7,43 @@
   </head>
 
   <body>
-    <h1>My Projects</h1>
-    <section class="web">
-      <div class="projects__header">
-        <h2>Web Backend Or Frontend or Both</h2>
-        <p>Exploring the universe of code ✨</p>
-      </div>
+    <h1>Projects</h1>
 
-      <div class="projects__grid">
-        <!-- include di JS  -->
-      </div>
-    </section>
+    <nav>
+      <ul>
+        <li>
+          <a href="index.html" aria-label="Dashboard">
+            <i class="ri-home-line"></i>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" aria-label="Contact">
+            <i class="ri-mail-line"></i>
+          </a>
+        </li>
 
-    <h1>Other Projects</h1>
+        <li class="theme">
+          <p>theme</p>
+        </li>
+      </ul>
+    </nav>
 
     <main>
-      <section class="bots" id="bots">
+      <section class="web" id="web">
         <div class="projects__header">
-          <h2>Bot App , Bot Sosmed</h2>
-          <p>Exploring the universe of code ✨</p>
+          <h2>Web Aplication</h2>
+          <p>Exploring the universe of code</p>
+        </div>
+
+        <div class="projects__grid">
+          <!-- include di JS  -->
+        </div>
+      </section>
+
+      <section class="gui" id="gui">
+        <div class="projects__header">
+          <h2>GUI aplication And Tools</h2>
+          <p>Exploring the universe of code</p>
         </div>
 
         <div class="projects__grid">
@@ -36,7 +54,18 @@
       <section class="terminal" id="terminal">
         <div class="projects__header">
           <h2>TUI aplication And Tools</h2>
-          <p>Exploring the universe of code ✨</p>
+          <p>Exploring the universe of code</p>
+        </div>
+
+        <div class="projects__grid">
+          <!-- include di JS  -->
+        </div>
+      </section>
+
+      <section class="bot" id="bot">
+        <div class="projects__header">
+          <h2>GUI aplication And Tools</h2>
+          <p>Exploring the universe of code</p>
         </div>
 
         <div class="projects__grid">
@@ -47,7 +76,7 @@
       <section class="game" id="game">
         <div class="projects__header">
           <h2>Happy Gamers</h2>
-          <p>Exploring the universe of code ✨</p>
+          <p>Exploring the universe of code</p>
         </div>
 
         <div class="projects__grid">
@@ -58,6 +87,16 @@
 
     <!-- card  yang akan tampil ketika pada tombol details di click  -->
     <div class="overlayBg"></div>
-    <div class="detail-img">di isi di js</div>
+    <div class="detail-project">
+      <h3></h3>
+      <img src="" alt="" />
+      <div class="tumnel">
+        <p id="description"></p>
+      </div>
+
+      <div class="action">
+        <button type="button" class="close">close</button>
+      </div>
+    </div>
   </body>
 </html>

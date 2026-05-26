@@ -7,6 +7,7 @@ module.exports = {
     index: "./js/index.js",
     contact: "./js/contact.js",
     projects: "./js/projects.js",
+    tools: "./js/tools.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -60,6 +61,12 @@ module.exports = {
       template: "./projects.html",
       filename: "projects.html",
       chunks: ["projects"],
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "./tools.html",
+      filename: "tools.html",
+      chunks: ["tools"],
     }),
   ],
 };

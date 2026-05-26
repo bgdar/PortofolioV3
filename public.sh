@@ -1,6 +1,8 @@
 
 #!/bin/bash
 
+# Hati hati saat di jalakan akan membersihka branch default bgdar 
+
 set -e  # berhenti jika ada error
 
 echo "🏗 Build project"
