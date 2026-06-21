@@ -1,6 +1,39 @@
 @use "core/color" as color;
 @use "core/componets" as components;
 
+@import '~remixicon/fonts/remixicon.css';
+
+@font-face {
+  font-family: "JetBrains";
+  src:
+    url("../assets/JetBrainsMono-Bold.woff2") format("woff2"),
+    url("../assets/JetBrainsMono-Bold.woff2") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+
+  font-family: "JetBrains", sans-serif;
+
+  @include components.navbar("fixed")
+}
+
+
+
+
+// -------- Daftar class color yang di panggil di tools.js nantik 
+.merah {}
+
+.biru {}
+
+.kuning {}
+
+
+
+
+
+
 .skills-section {
   background-color: color.$black-space;
   background-image: color.$gradient-space; // Efek depth ruang angkasa
@@ -44,7 +77,6 @@
   }
 }
 
-// CATEGORY
 .skills-category {
   margin-bottom: 48px;
 
@@ -101,6 +133,7 @@
       margin: 0 0 4px 0;
       color: color.$accent-white;
     }
+
     p {
       font-size: 0.85rem;
       margin: 0;
@@ -124,6 +157,7 @@
       background-color: rgba(59, 130, 246, 0.1);
       color: color.$accent-blue-soft;
     }
+
     &.tech-red {
       background-color: rgba(255, 59, 59, 0.1);
       color: color.$accent-red-soft;
@@ -158,8 +192,11 @@
 
 @media (max-width: 640px) {
   .skills-header {
-    .title { font-size: 2rem; }
+    .title {
+      font-size: 2rem;
+    }
   }
+
   .tools-grid {
     grid-template-columns: 1fr; // Satu kolom penuh saat di HP
   }

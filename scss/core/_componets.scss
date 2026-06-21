@@ -28,7 +28,7 @@
 
     @if $display =="fixed" {
       position: fixed;
-      width: 80%;
+      width: 100vw;
       z-index: 99;
   left: 50%;
   transform: translateX( -50%);
@@ -43,9 +43,19 @@
 
     ;
     bottom: 0;
-    border: 1px solid;
-    padding: 1rem 0;
-    backdrop-filter: blur(10px);
+ background: color.$card-bg;
+      border: 1px solid color.$card-border;
+      box-shadow: 0 8px 25px color.$card-shadow;
+      color: color.$text-primary;
+
+
+
+ backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    padding: 0.8rem 1.5rem;
+    
+    // Shadow pendaran lembut warna Cyan di bawah navbar
 
     ul {
       padding: 0;

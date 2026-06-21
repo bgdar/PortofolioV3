@@ -130,6 +130,53 @@ main {
 
   .github {
     grid-column: span 1;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #1f2937; // Warna gelap ala GitHub
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    #gh-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #3b82f6;
+    }
+
+    .gh-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #9ca3af;
+      }
+
+      #gh-link {
+        margin-top: 5px;
+        color: #3b82f6;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   .whatsapp {

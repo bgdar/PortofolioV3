@@ -1,9 +1,30 @@
 @use "core/color" as color;
 @use "core/componets" as components;
 
-@import '~remixicon/fonts/remixicon.css';
+@use "sass:map"; // Mengaktifkan fungsi map modern
+@import "~remixicon/fonts/remixicon.css";
 
 $shollerHeigth: 90px;
+
+// Mixin untuk teks judul kecil di dalam kartu
+@mixin text-heading($font-size, $color-text, $weight: 600) {
+  font-size: $font-size;
+  color: $color-text;
+  font-weight: $weight;
+  margin-bottom: 6px;
+}
+
+// Placeholder untuk efek transisi seragam (Inheritance menggunakan % atau @extend)
+%smooth-transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+// Placeholder untuk penataan titik lingkaran tengah
+%center-dot-base {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
 
 @font-face {
   font-family: "JetBrains";
@@ -43,6 +64,13 @@ body {
     flex-direction: column;
   }
 
+  h4 {
+    text-align: center;
+    letter-spacing: 1px;
+    color: color.$text-primary;
+    text-shadow: 0 0 10px color.$text-primary;
+  }
+
   // bg yang belakang
   .overlayBg {
     width: 100vw;
@@ -57,11 +85,16 @@ body {
   section#left {
     width: 50%;
     padding: 0;
-
+    text-align: center;
     height: 100vh;
     position: relative;
     // jangan bagikannbisa di geser
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     @media screen and (max-width: 1000px) {
       overflow: auto;
@@ -167,6 +200,14 @@ body {
         }
       }
     }
+
+    #visual {
+      margin: 10px;
+      padding: 0.5rem;
+      display: block;
+      width: 80%;
+      height: 35%;
+    }
   }
 
   @include components.navbar("absolute");
@@ -185,25 +226,20 @@ body {
 
   section#right {
     @include components.box();
-    flex: 1;
     height: 100vh;
     overflow-y: auto;
     border: 1px solid;
-    text-align: center;
 
-    width: 60%;
     padding: 0;
     scroll-behavior: smooth;
 
     #content-static {
-      @include components.box();
-
       margin-left: auto;
       margin-right: auto;
       display: flex;
       justify-content: center;
       width: 60%;
-      overflow-y : hidden; 
+      overflow-y: hidden;
       height: 50%;
       overflow-x: hidden;
       transition: all 0.35s ease;
@@ -303,76 +339,180 @@ body {
 
       #forto-info {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
-        padding: 2rem;
+        padding: 2.5rem 2rem;
+        width: 100%;
+        max-width: 1100px; // Membatasi lebar agar tetap proporsional di layar lebar
 
-        .bot,
-        .termina {
-          background: color.$card-bg;
-          border: 1px solid color.$card-border;
-          border-radius: 14px;
-          padding: 1.5rem;
+        // Judul section "Project preview" dibuat melintang penuh di atas kartu
+        h4 {
+          grid-column: 1 / -1;
+          font-size: 1.6rem;
           color: color.$text-primary;
+          letter-spacing: 1px;
+          margin-bottom: -0.5rem;
           position: relative;
+          padding-left: 15px;
 
-          box-shadow: 0 10px 25px color.$card-shadow;
-          transition: all 0.3s ease;
-
-          &:hover {
-            transform: translateY(-6px);
-            border-color: color.$hover-glow;
-            box-shadow: 0 0 20px color.$hover-glow;
-          }
-
-          p {
-            color: color.$text-secondary;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-          }
-
-          button {
-            padding: 0.6rem 1.4rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.25s ease;
+          // Aksen garis dekoratif vertikal di sebelah judul
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 15%;
+            height: 70%;
+            width: 4px;
+            background-color: color.$accent-blue;
+            border-radius: 2px;
+            box-shadow: 0 0 8px color.$hover-glow;
           }
         }
 
-        .bot {
-          background: color.$gradient-space;
+        // Aturan dasar dan layout seragam untuk semua jenis kartu (.web, .bot, .terminal)
+        .web,
+        .bot,
+        .terminal {
+          background-color: color.$card-bg;
+          border: 1px solid color.$card-border;
+          border-radius: 16px;
+          padding: 2rem;
+          color: color.$text-primary;
+          box-shadow: 0 10px 30px color.$card-shadow;
+
+          // Flexbox untuk memaksa konten teks di atas dan tombol selalu presisi di dasar kartu
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+          min-height: 220px;
+          position: relative;
+          overflow: hidden;
+          transition:
+            transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+            border-color 0.4s ease,
+            box-shadow 0.4s ease;
+
+          // Struktur konten teks di dalam kartu
+          p,
+          & {
+            font-size: 1rem;
+            color: color.$text-secondary;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+          }
+
+          // Pembungkus link tombol agar memenuhi alignment flexbox
+          a {
+            width: 100%;
+            text-decoration: none;
+            margin-top: auto; // Memaksa elemen a turun ke bagian paling bawah kartu
+          }
+
+          // Desain dasar tombol bergaya komponen UI modern
+          button {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          }
+        }
+
+        // ==========================================
+        // VARIASI GAYA SPESIFIK TIAP KARTU
+        // ==========================================
+
+        // 1. Kartu Web (Desain Minimalis Elegan dengan Aksen Biru)
+        .web {
+          &:hover {
+            transform: translateY(-6px);
+            border-color: color.$accent-blue-soft;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15);
+          }
 
           button {
-            background: color.$btn-primary-bg;
-            color: color.$btn-primary-text;
+            background-color: color.$violet-soft;
+            color: color.$text-primary;
+            border-color: color.$nebula-purple;
 
             &:hover {
-              box-shadow: 0 0 10px color.$hover-glow;
-              transform: scale(1.05);
+              background-color: color.$blue-mystic;
+              border-color: color.$blue-light;
+              box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+            }
+          }
+        }
+
+        // 2. Kartu Bot (Desain Bertema Gradien Luar Angkasa Deep)
+        .bot {
+          background: color.$gradient-space;
+          border-color: color.$nebula-purple;
+
+          &:hover {
+            transform: translateY(-6px);
+            border-color: color.$accent-blue;
+            box-shadow:
+              0 15px 35px color.$card-shadow,
+              0 0 20px rgba(59, 130, 246, 0.25);
+          }
+
+          button {
+            background-color: color.$btn-primary-bg;
+            color: color.$btn-primary-text;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+
+            &:hover {
+              background-color: color.$accent-blue-soft;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 20px color.$hover-glow;
             }
 
             &:active {
+              transform: translateY(0);
               box-shadow: 0 0 12px color.$active-glow;
             }
           }
         }
 
+        // 3. Kartu Terminal (Desain Bertema Gradien Planet Sci-Fi)
         .terminal {
           background: color.$gradient-planet;
+          border-color: rgba(
+            255,
+            107,
+            107,
+            0.2
+          ); // Sentuhan border merah transparan tipis
+
+          &:hover {
+            transform: translateY(-6px);
+            border-color: color.$accent-red;
+            box-shadow:
+              0 15px 35px color.$card-shadow,
+              0 0 20px rgba(255, 59, 59, 0.25);
+          }
 
           button {
-            background: color.$btn-secondary-bg;
+            background-color: color.$btn-secondary-bg;
             color: color.$btn-secondary-text;
+            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
 
             &:hover {
-              box-shadow: 0 0 10px color.$hover-glow;
-              transform: scale(1.05);
+              background-color: color.$accent-red-soft;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 20px color.$active-glow;
             }
 
             &:active {
+              transform: translateY(0);
               box-shadow: 0 0 12px color.$active-glow;
             }
           }
@@ -486,137 +626,447 @@ body {
           transform: rotate(360deg);
         }
       }
-    }
-.info-container {
-  max-width: 680px;           // Membatasi lebar teks agar nyaman dibaca (golden ratio)
-  margin: 40px auto;
-  padding: 0 20px;
+      .info-container {
+        max-width: 680px;
+        margin: 40px auto;
+        padding: 0 20px;
 
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;                  // Jarak antar paragraf yang lega ala minimalis
-  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif; // Font modern & clean
+        .info {
+          display: flex;
+          flex-direction: column;
+          font-family:
+            "Inter", "Plus Jakarta Sans", sans-serif; // Font modern & clean
 
-  p {
-    font-size: 1.05rem;
-    line-height: 1.8;        
-    color: color.$blue-mystic;
-    letter-spacing: -0.01em;    
-    margin: 0;
-    font-weight: 400;
-    transition: color 0.3s ease;
+          p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: color.$blue-mystic;
+            letter-spacing: -0.01em;
+            margin: 0;
+            font-weight: 400;
+            transition: color 0.3s ease;
 
-    // Karakter Paragraf Pertama: Dibuat lebih menonjol (Lead Paragraph)
-    &.highlight {
-      font-size: 1.25rem;
-      color: color.$text-primary;
-      line-height: 1.7;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      position: relative;
-      padding-left: 20px;
+            // Karakter Paragraf Pertama: Dibuat lebih menonjol (Lead Paragraph)
+            &.highlight {
+              font-size: 1.25rem;
+              color: color.$text-primary;
+              line-height: 1.7;
+              font-weight: 500;
+              letter-spacing: -0.02em;
+              position: relative;
+              padding-left: 20px;
 
-      // Garis vertikal minimalis di sebelah kiri paragraf pertama
-      ::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 8px;
-        bottom: 8px;
-        width: 3px;
-        background:  color.$gradient-jpg;
-        border-radius: 2px;
+              ::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 8px;
+                bottom: 8px;
+                width: 3px;
+                background: color.$gradient-jpg;
+                border-radius: 2px;
+              }
+            }
+
+            &.cta {
+              font-size: 1.1rem;
+              color: color.$text-primary;
+              border-top: 1px solid rgba(255, 255, 255, 0.08); // Garis pembatas tipis di atasnya
+              padding-top: 24px;
+              margin-top: 12px;
+
+              span {
+                display: block; // Membuat "Mari terhubung!" berdiri sendiri di atas
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: -0.03em;
+                background: color.$gradient-jpg;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 4px;
+              }
+            }
+          }
+        }
+      }
+
+      div#pejalanan {
+        // background: color.$gradient-space;
+        color: color.$text-primary;
+        padding: 60px 20px;
+        font-family: "Segoe UI", Roboto, sans-serif;
+        min-height: 100vh;
+
+        .timeline-section {
+          max-width: 850px;
+          margin: 0 auto;
+
+          .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: color.$text-primary;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px color.$hover-glow;
+          }
+        }
+
+        .timeline-container {
+          position: relative;
+          padding: 40px 0;
+          max-width: 800px;
+          margin: 0 auto;
+
+          // Garis Vertikal Tengah Bergradasi
+          &::after {
+            content: "";
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(
+              to bottom,
+              color.$accent-blue,
+              color.$accent-red,
+              transparent
+            );
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+            z-index: 1;
+          }
+        }
+
+        .timeline-item {
+          position: relative;
+          width: 50%;
+          margin-bottom: 40px;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          z-index: 2;
+
+          &:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+            text-align: right;
+
+            .timeline-dot {
+              right: -8px;
+            }
+          }
+
+          &:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+            text-align: left;
+
+            .timeline-dot {
+              left: -8px;
+            }
+          }
+
+          .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background-color: color.$accent-white;
+            border: 3px solid color.$accent-blue;
+            position: absolute;
+            border-radius: 50%;
+            top: 25px;
+            box-shadow: 0 0 10px color.$hover-glow;
+            transition: all 0.3s ease;
+          }
+
+          .timeline-date {
+            font-weight: 700;
+            color: color.$accent-blue-soft;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            display: block;
+          }
+
+          .timeline-content {
+            padding: 24px;
+            background-color: color.$card-bg;
+            border: 1px solid color.$card-border;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px color.$card-shadow;
+            text-align: left; // Menjaga teks di dalam kartu tetap rata kiri
+            transition: all 0.3s ease;
+
+            h3 {
+              font-size: 1.25rem;
+              color: color.$text-primary;
+              margin-bottom: 6px;
+              font-weight: 600;
+            }
+
+            .company {
+              font-size: 0.95rem;
+              color: color.$text-secondary;
+              font-weight: 500;
+              margin-bottom: 12px;
+            }
+
+            p {
+              font-size: 0.9rem;
+              line-height: 1.6;
+              color: color.$blue-light;
+            }
+          }
+
+          // 7. Efek Interaksi Hover (Satu Kesatuan)
+          &:hover {
+            .timeline-dot {
+              background-color: color.$accent-red;
+              border-color: color.$accent-red-soft;
+              transform: scale(1.3);
+              box-shadow: 0 0 15px color.$active-glow;
+            }
+
+            .timeline-content {
+              transform: translateY(-4px);
+              border-color: color.$blue-mystic;
+              background-color: color.$violet-soft;
+              box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            }
+          }
+        }
+
+        // 8. Tampilan Responsif (Layar HP)
+        @media screen and (max-width: 768px) {
+          .timeline-container {
+            &::after {
+              left: 20px;
+            }
+          }
+
+          .timeline-item {
+            width: 100%;
+            margin-bottom: 30px;
+
+            &:nth-child(odd),
+            &:nth-child(even) {
+              left: 0;
+              padding-left: 50px;
+              padding-right: 0;
+              text-align: left;
+
+              .timeline-dot {
+                left: 12px;
+              }
+            }
+          }
+        }
+      }
+
+      footer {
+        width: 100%;
+        background-color: color.$deep-purple;
+        position: relative;
+        padding-top: 100px; // Memberi ruang bagi SVG melengkung di atasnya
+        box-shadow: 0 -15px 35px color.$card-shadow;
+
+        // 1. Desain Komponen Garis Melengkung (Wave Divider)
+        .footer-wave {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          overflow: hidden;
+          line-height: 0;
+          transform: rotate(
+            180deg
+          ); // Membalikkan kurva agar menghadap ke bawah
+
+          svg {
+            position: relative;
+            display: block;
+            width: calc(1200px + 100%);
+            height: 70px;
+          }
+
+          .shape-fill {
+            fill: color.$black-space; // Warna lengkungan mengikuti background di atas footer
+          }
+        }
+
+        .footer-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          display: grid;
+          grid-template-columns: 1.5fr 1fr; // Sisi kiri menu lebih lebar, sisi kanan form langganan
+          gap: 3rem;
+          align-items: start;
+        }
+
+        .footer-links-grid {
+          display: grid;
+          grid-template-columns: repeat(
+            3,
+            1fr
+          ); // Membagi rata menjadi 3 kolom sejajar
+          gap: 2rem;
+
+          .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+
+            h5 {
+              color: color.$text-primary;
+              font-size: 1rem;
+              font-weight: 600;
+              margin-bottom: 0.5rem;
+              letter-spacing: 0.5px;
+            }
+
+            a {
+              color: color.$lavender;
+              font-size: 0.9rem;
+              text-decoration: none;
+              transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+              display: inline-block;
+              width: fit-content;
+
+              &:hover {
+                color: color.$accent-blue-soft;
+                transform: translateX(
+                  4px
+                ); // Efek geser kanan tipis saat di-hover
+              }
+            }
+          }
+        }
+
+        // 4. Panel Aksi Kanan (Newsletter & Sosial Media)
+        // .footer-action-panel {
+        //   display: flex;
+        //   flex-direction: column;
+        //   gap: 2rem;
+        //   align-items: flex-end; // Menggeser konten ke sudut kanan sesuai contoh gambar
+
+        //   .newsletter-box {
+        //     width: 100%;
+        //     max-width: 420px;
+
+        //     label {
+        //       display: block;
+        //       color: color.$text-primary;
+        //       font-size: 0.9rem;
+        //       margin-bottom: 0.8rem;
+        //       text-align: right;
+        //       font-weight: 500;
+        //     }
+
+        //     // Input Group Sejajar
+        //     .input-group {
+        //       display: flex;
+        //       background-color: color.$black-space;
+        //       border: 1px solid color.$nebula-purple;
+        //       border-radius: 50px; // Membuat ujungnya membulat elips (pill shape)
+        //       padding: 4px;
+        //       transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+        //       &:focus-within {
+        //         border-color: color.$accent-blue;
+        //         box-shadow: 0 0 10px color.$hover-glow;
+        //       }
+
+        //       input {
+        //         flex: 1;
+        //         background: transparent;
+        //         border: none;
+        //         outline: none;
+        //         padding: 0.6rem 1.2rem;
+        //         color: color.$text-primary;
+        //         font-size: 0.9rem;
+
+        //         &::placeholder {
+        //           color: color.$blue-light;
+        //         }
+        //       }
+
+        //       button {
+        //         background-color: #f1c40f; // Warna kuning amber hangat kontras profesional
+        //         color: #0a0a0a;
+        //         border: none;
+        //         outline: none;
+        //         padding: 0.6rem 1.5rem;
+        //         border-radius: 50px;
+        //         font-size: 0.9rem;
+        //         font-weight: 600;
+        //         cursor: pointer;
+        //         transition: background-color 0.25s ease, transform 0.25s ease;
+
+        //         &:hover {
+        //           background-color: #f39c12;
+        //           transform: scale(1.02);
+        //         }
+        //       }
+        //     }
+        //   }
+
+        //   // Penataan Ikon Media Sosial Remixicon
+        //   .social-icons {
+        //     display: flex;
+        //     gap: 1.2rem;
+
+        //     a {
+        //       color: color.$text-primary;
+        //       font-size: 1.4rem; // Memperbesar ukuran ikon agar terbaca jelas
+        //       text-decoration: none;
+        //       transition: color 0.25s ease, transform 0.25s ease;
+
+        //       &:hover {
+        //         color: color.$accent-blue-soft;
+        //         transform: translateY(-3px);
+        //       }
+        //     }
+        //   }
+        // }
+
+        .footer-bottom {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 1.5rem 2rem;
+          border-top: 1px solid color.$nebula-purple;
+          display: flex;
+          justify-content: flex-start;
+
+          p {
+            color: color.$blue-light;
+            font-size: 0.8rem;
+            margin: 0;
+          }
+        }
+
+        @media screen and (max-width: 868px) {
+          .footer-container {
+            grid-template-columns: 1fr; // Menumpuk kiri dan kanan menjadi 1 kolom tunggal
+            gap: 2.5rem;
+          }
+
+          .footer-action-panel {
+            align-items: flex-start; // Di HP, posisi form rata kiri agar natural
+
+            .newsletter-box label {
+              text-align: left;
+            }
+          }
+        }
+
+        @media screen and (max-width: 540px) {
+          .footer-links-grid {
+            grid-template-columns: repeat(
+              2,
+              1fr
+            ); // Menjadi 2 kolom di layar sangat kecil
+          }
+        }
       }
     }
-
-    // Karakter Paragraf Terakhir / CTA
-    &.cta {
-      font-size: 1.1rem;
-      color:color.$text-primary;
-      border-top: 1px solid rgba(255, 255, 255, 0.08); // Garis pembatas tipis di atasnya
-      padding-top: 24px;
-      margin-top: 12px;
-
-      span {
-        display: block; // Membuat "Mari terhubung!" berdiri sendiri di atas
-        font-size: 1.4rem;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        background: color.$gradient-jpg;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 4px;
-      }
-    }
-  }
-}
-}
-
-
-.media-sosial {
-
-
-#github {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background-color: #1f2937; // Warna gelap ala GitHub
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 400px;
-  margin: 20px auto;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-
-  #gh-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid #3b82f6;
-  }
-
-  .gh-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-    h3 {
-      margin: 0;
-      font-size: 1.2rem;
-    }
-
-    p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-
-    #gh-link {
-      margin-top: 5px;
-      color: #3b82f6;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: bold;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-
-
-
-footer {
-
-  display : flex; 
-}
-
-
-
-   
-}
   }
 }

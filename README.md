@@ -40,7 +40,8 @@
 - `html-webpack-plugin` : untuk load content html ,
 - `webpack-dev-server` : untuk menjalanakan webpack dalam mode development ,
 
-- `remixicon` :
+- `remixicon` : icon yang di gunakan di project ini
+  <https://remixicon.com/>
 
 ### App Color
 

@@ -1,5 +1,17 @@
 import "../scss/projects.scss";
 
+const projectFavorit = [
+  {
+    name: "rant dashboard",
+    repo: "https://github.com/bgdar/rant",
+    img: "",
+    tech: ["typerscript", "nest.js", "ejs", "webscoket", "rabbitMq"],
+    tech_icon: [""],
+    lang: "php",
+    des: "Aplikasi Rant ytakni web dashboard utama",
+  },
+];
+
 // pisahkan berdasarkan katagory
 // teh dan tech_icon harus selaras, agar icon nya terlihat
 const projectWebs = [
@@ -39,6 +51,18 @@ const projectWebs = [
 
 const projectGame = [];
 
+const projectDraws = [
+  {
+    name: "doople virsualizer",
+    repo: "https://github.com/bgdar/draws/tree/rust-doppler-visualize",
+    img: "",
+    tech: ["egui", "eframe"],
+    tech_icon: ["ri-brush-line", "ri-window-line"],
+    lang: "rust",
+    des: "Visulasis gelombang dengan gelombang ",
+  },
+];
+
 const projectGui = [
   {
     name: "paint",
@@ -60,6 +84,15 @@ const projectTerminal = [
     tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
     lang: "rust",
     des: "shell app like bash or zsh",
+  },
+  {
+    name: "astfetch",
+    repo: "https://github.com/bgdar/astfetch",
+    img: "https://github.com/bgdar/astfetch/blob/main/img/astfetch.png",
+    tech: ["golang"],
+    tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
+    lang: "golang",
+    des: "tools information system dengan golang murni",
   },
 ];
 
@@ -85,6 +118,27 @@ const projectBot = [
   },
 ];
 
+const ProjectEngine = [
+  {
+    name: "Http server",
+    repo: "https://github.com/bgdar/Http-server", // Ganti dengan URL repo telegram Anda jika ada
+    img: "",
+    tech: ["zig"],
+    tech_icon: ["ri-global-line"], // Ikon resmi Telegram
+    lang: "zig",
+    des: "Engine untuk Http ",
+  },
+  {
+    name: "Qrcode",
+    repo: "https://github.com/bgdar/web-QrCode/tree/master/qrcode", // Ganti dengan URL repo telegram Anda jika ada
+    img: "",
+    tech: ["rust"],
+    tech_icon: ["ri-settings-5-line"], // Ikon resmi Telegram
+    lang: "rust",
+    des: "Qrcode generator ",
+  },
+];
+
 // global Variable
 const speedRotation = 5;
 
@@ -106,22 +160,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const main = document.querySelector("main");
   const overlay = document.querySelector("div.overlayBg");
 
+  // favorite project
+  const gridFavorite = document.querySelector("div#project-favorite");
+
   const web = main.querySelector("#web");
   const bots = main.querySelector("#bot");
   const terminal = main.querySelector("#terminal");
+  const engine = main.querySelector("#engine");
   const game = main.querySelector("#game");
   const gui = main.querySelector("#gui");
 
   const gridWeb = web.querySelector(".projects__grid");
   const gridBot = bots.querySelector(".projects__grid");
   const gridTerminal = terminal.querySelector(".projects__grid");
+  const gridEngine = engine.querySelector(".projects__grid");
   const gridGame = game.querySelector(".projects__grid");
   const gridGui = gui.querySelector(".projects__grid");
+
+  addProject(projectFavorit, gridFavorite);
 
   addProject(projectGame, gridGame);
   addProject(projectWebs, gridWeb);
   addProject(projectBot, gridBot);
   addProject(projectTerminal, gridTerminal);
+  addProject(ProjectEngine, gridEngine);
   addProject(projectGui, gridGui);
 
   // section project detail
@@ -136,38 +198,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cardprojects = main.querySelectorAll("div.project-card");
 
-// Event untuk membuka card (Looping hanya untuk trigger buka)
-cardprojects.forEach((card) => {
-  card.addEventListener("click", () => {
-    detailProject.classList.add("active");
-    overlay.classList.add("active");
+  // Event untuk membuka card (Looping hanya untuk trigger buka)
+  cardprojects.forEach((card) => {
+    card.addEventListener("click", () => {
+      detailProject.classList.add("active");
+      overlay.classList.add("active");
 
-    const projectName = card.querySelector("p.project-card__name");
-    const projectCard = card.querySelector("div.project-card__tech");
+      const projectName = card.querySelector("p.project-card__name");
+      const projectCard = card.querySelector("div.project-card__tech");
 
-    heading.textContent = projectName ? projectName.textContent : ""; 
-    img.src = projectCard ? (projectCard.getAttribute("img-path") ?? "") : "";
-    description.textContent = projectCard ? (projectCard.getAttribute("data-des") ?? "") : "";
+      heading.textContent = projectName ? projectName.textContent : "";
+      img.src = projectCard ? (projectCard.getAttribute("img-path") ?? "") : "";
+      description.textContent = projectCard
+        ? (projectCard.getAttribute("data-des") ?? "")
+        : "";
+    });
   });
-});
 
-//Event untuk menutup card (Ditaruh di LUAR loop agar lebih bersih dan hemat memori)
-const closeCard = () => {
-  detailProject.classList.remove("active");
-  overlay.classList.remove("active");
+  //Event untuk menutup card (Ditaruh di LUAR loop agar lebih bersih dan hemat memori)
+  const closeCard = () => {
+    detailProject.classList.remove("active");
+    overlay.classList.remove("active");
 
-  // Opsional: hapus konten setelah transisi selesai agar tidak terlihat patah
-  setTimeout(() => {
-    heading.textContent = "";
-    img.src = "";
-    description.textContent = "";
-  }, 300); 
-};
+    // Opsional: hapus konten setelah transisi selesai agar tidak terlihat patah
+    setTimeout(() => {
+      heading.textContent = "";
+      img.src = "";
+      description.textContent = "";
+    }, 300);
+  };
 
-closeBtn.addEventListener("click", closeCard);
-overlay.addEventListener("click", closeCard); // K
-
-
+  closeBtn.addEventListener("click", closeCard);
+  overlay.addEventListener("click", closeCard); // K
 });
 
 /**

@@ -34,154 +34,138 @@
 }
 
 //function urnuk 
-@mixin projects_grid($card-bg , $border-color , $accent-color, $text-muted) {
+
+@mixin projects_grid($card-bg, $border-color, $accent-color, $text-muted) {
 
   .project-card {
-    // background: $card-bg;
-    border: 1px solid $border-color;
-    border-radius: 12px;
-    backdrop-filter: blur(8px);
+    border: 1px solid rgba($border-color, 0.3); // Dibuat agak transparan agar elegan
+    border-radius: 16px; // Lebih melengkung modern
+    backdrop-filter: blur(12px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+    background: rgba($card-bg, 0.6); // Memberi dasar warna gelap agar teks terbaca
+    overflow: hidden;
 
-    // max-width: 50%;
-    // max-height: 50%;
-    //
     &:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
       border-color: $accent-color;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(88, 166, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba($accent-color, 0.2);
+
+      // Menghentikan/memperlambat putaran orbit saat di-hover agar mudah dibaca
+      .__tech {
+        animation-play-state: paused;
+      }
     }
 
     &__content {
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       position: relative;
-      min-height: 150px;
-      /* Memberi ruang agar elemen orbit tidak keluar dari kartu */
+      min-height: 280px; // Beri ruang vertikal yang cukup
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* Membuat semua konten otomatis di tengah */
       justify-content: center;
     }
 
     &__name {
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.35rem;
+      font-weight: 700;
       color: #fff;
       margin-bottom: 1.5rem;
       text-align: center;
+      letter-spacing: 0.5px;
     }
 
     &__des {
-      font-size: 0.95rem;
-      color: $text-muted;
+      font-size: 0.85rem; // Sedikit diperkecil agar muat teks deskripsi
+      color: #e0e0e0;
       line-height: 1.4;
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       cursor: pointer;
-
-      background: rgba(255, 255, 255, 0.05);
-      /* : beri background agar bentuk lingkaran terlihat */
-      border: 1px dashed rgba($text-muted, 0.3);
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px dashed rgba($accent-color, 0.4);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 10px;
+      padding: 15px;
       box-sizing: border-box;
       z-index: 2;
-
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
 
       &:hover {
-        border-color: color.$hover-glow;
-        box-shadow: 0 0 12px color.$hover-glow;
-        transform: translateY(-2px);
+        border-color: #fff;
+        border-style: solid;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
       }
-
-      &:active {
-
-        box-shadow: 0 0 12px color.$active-glow;
-      }
-
-      /* Menjaga agar berada di depan badge tech */
     }
 
-    //  Tombol dipindah keluar dari __des
     &__actions {
       z-index: 3;
+      margin-top: 1rem;
+      display: flex;
+      gap: 12px; // Ruang untuk 2 tombol (GitHub & Live Link)
 
-      .btn-repo {
+      .btn-repo,
+      .btn-live {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0.6rem 1rem;
-        background: transparent;
-        border: 1px solid $border-color;
+        width: 42px;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba($border-color, 0.5);
         border-radius: 50%;
         color: #fff;
-        font-size: 0.9rem;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.25s ease;
 
         &:hover {
           background: $accent-color;
           border-color: $accent-color;
-          color: #fff;
+          color: #000; // Kontras jika warna aksen terang
+          transform: scale(1.1);
         }
       }
     }
 
-    // 4. KONTEN TECH BERTINDAK SEBAGAI TITIK KOORDINAT NOL (0,0) DI TENGAH LINGKARAN PUSAT
     &__tech {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      /* Mengunci titik nol tepat di tengah-tengah __content */
       width: 0;
       height: 0;
-      z-index: 30;
+      z-index: 1; // Di belakang tombol aksi agar tombol tetap bisa diklik
 
       .tech-badge {
-        font-size: 0.75rem;
-        font-family: monospace;
-        background: rgba(48, 54, 61, 0.9);
-        /* Dibuat lebih tebal agar teks terbaca */
-        color: $accent-color;
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        border: 1px solid rgba(88, 166, 255, 0.15);
+        font-size: 0.7rem;
+        font-family: 'Courier New', monospace;
+        background: #161b22; // Warna background solid gelap agar teks terbaca telak
+        color: #fff;
+        padding: 0.3rem 0.8rem;
+        border-radius: 6px; // Kotak sedikit tumpul terlihat lebih profesional dibanding pill
+        border: 1px solid rgba($accent-color, 0.3);
         white-space: nowrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       }
 
-      // Element lencana teknologi yang mengelilingi
       p.elm {
         margin: 0;
         position: absolute;
-        width: auto;
-        /* Biarkan lebar mengikuti panjang teks badge */
-        height: auto;
-
         top: 50%;
         left: 50%;
-
-
-        // elment akaan berputar berdasrakan properti --scrol-rot
-        transform: translate(-50%, -50%) rotate(calc((var(--i) * (360deg / var(--total))) + var(--scroll-rot, 0deg))) translate(110px) rotate(calc((var(--i) * (-360deg / var(--total))) - var(--scroll-rot, 0deg)));
+        // Jarak orbit diperlebar sedikit (120px) agar tidak menabrak lingkaran utama yang berukuran 160px
+        transform: translate(-50%, -50%) rotate(calc((var(--i) * (360deg / var(--total))) + var(--scroll-rot, 0deg))) translate(120px) rotate(calc((var(--i) * (-360deg / var(--total))) - var(--scroll-rot, 0deg)));
       }
     }
   }
 }
-
 
 
 @font-face {
@@ -226,6 +210,20 @@ body {
   }
 
 
+  div#project-favorite {
+    @include components.box();
+    @include header_project(color.$violet-soft, color.$text-primary);
+    @include projects_grid(color.$card-bg, color.$lavender, color.$black-space, color.$blue-light);
+
+    min-height: 100px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+
   main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -237,6 +235,23 @@ body {
       /* Berubah menjadi 1 kolom saat layar <= 768px */
     }
 
+    section.engine {
+      @include components.box();
+      @include header_project(color.$violet-soft, color.$text-primary);
+      @include projects_grid(color.$card-bg, color.$lavender, color.$black-space, color.$blue-light);
+
+      .projects__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 2rem;
+        gap: 1rem;
+        /* Jarak antar kartu proyek */
+        // width: 100%; agar lebar dan tingginya sesui 
+        margin-top: 2rem;
+      }
+
+    }
+
     section.bot {
       @include components.box();
       @include header_project(color.$violet-soft, color.$text-primary);
@@ -245,6 +260,7 @@ body {
       .projects__grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 2rem;
         gap: 1rem;
         /* Jarak antar kartu proyek */
         // width: 100%; agar lebar dan tingginya sesui 
@@ -269,6 +285,7 @@ body {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
         justify-content: center;
+        padding: 2rem;
         /* Jarak antar kartu proyek */
         // width: 100%; agar lebar dan tingginya sesui 
         margin-top: 2rem;
@@ -282,6 +299,7 @@ body {
 
       .projects__grid {
         display: grid;
+        padding: 2rem;
         /* 
        auto-fit: Mengisi ruang kosong dengan kolom baru jika layar lebar.
        minmax(280px, 1fr): Di mobile minimal lebar kartu 280px (pas untuk layar kecil).
@@ -304,6 +322,7 @@ body {
 
       .projects__grid {
         display: grid;
+        padding: 2rem;
         /* 
        auto-fit: Mengisi ruang kosong dengan kolom baru jika layar lebar.
        minmax(280px, 1fr): Di mobile minimal lebar kartu 280px (pas untuk layar kecil).
@@ -328,6 +347,7 @@ body {
       .projects__grid {
 
         display: grid;
+        padding: 2rem;
         /* 
        auto-fit: Mengisi ruang kosong dengan kolom baru jika layar lebar.
        minmax(280px, 1fr): Di mobile minimal lebar kartu 280px (pas untuk layar kecil).
@@ -343,101 +363,131 @@ body {
   }
 
 
-div.overlayBg {
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  background-color: color.$deep-purple;
-  opacity: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  transition: opacity 0.3s ease;
+  div.overlayBg {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 16, 0.6); // Mengganti warna solid menjadi transparan gelap
+    backdrop-filter: blur(8px); // Memberikan efek blur premium di latar belakang
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: opacity 0.3s ease;
 
-  &.active {
-    display: block;
-    opacity: 0.7;
-  }
-}
-
-// Bagian detail-project menempel di bawah
-div.detail-project {
-  @include components.box();
-  background-color: color.$blue-light;
-  
-  // Lebar penuh di mobile, tapi proporsional di desktop
-  width: 100vw;
-  max-width: 600px; 
-  
-  // Membuat sudut tumpul hanya di bagian atas (karena bawahnya menempel di layar)
-  border-radius: 20px 20px 0 0; 
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.25);
-  padding: 24px;
-  box-sizing: border-box;
-
-  // POSISI: Menempel di bottom 0, horizontal di tengah
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  
-  // SEMBUNYI: Didorong ke bawah layar (110% dari tinggi card itu sendiri)
-  transform: translateX(-50%) translateY(110%);
-  z-index: 1000;
-  
-  // Transisi slide yang mulus
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-
-  // MUNCUL: Kembali ke posisi asli (menempel di bawah)
-  &.active {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  // --- STYLING KONTEN DI DALAM CARD ---
-  h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    color: #fff;
-    font-weight: 600;
-  }
-
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 16px;
-  }
-
-  div.tumnel {
-    margin-bottom: 20px;
-    max-height: 120px; // Membatasi tinggi teks agar tidak kepanjangan
-    overflow-y: auto;  // Jika teks deskripsi panjang, bisa di-scroll
-    
-    p#description {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.85);
+    &.active {
+      display: block;
+      opacity: 1;
     }
   }
 
-  div.action {
-    display: flex;
-    justify-content: flex-end;
+  div.detail-project {
+    @include components.box();
+    background-color: #161b22; // Warna latar belakang gelap solid standar industri (ala GitHub)
+    border: 1px solid rgba(255, 255, 255, 0.1); // Border tipis elegan
 
-    button.close {
-      padding: 10px 24px;
-      border: none;
-      border-radius: 30px; // Tombol capsul biar lebih modern
-      background-color: #ef4444;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease;
+    // Membuat ukuran responsif dan melayang di tengah layar (bukan menempel di bawah)
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
+    border-radius: 16px; // Sudut tumpul merata di semua sisi agar berbentuk card sempurna
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    box-sizing: border-box;
 
-      &:hover {
-        background-color: #dc2626;
+    // POSISI: Melayang tepat di tengah-tengah layar browser
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    // ANIMASI: Muncul dari bawah dengan efek skala membesar (scale up) yang halus
+    transform: translate(-50%, -30%) scale(0.95);
+    opacity: 0;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+
+    // MUNCUL: Kembali ke posisi tengah sempurna saat aktif
+    &.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    // --- STYLING KONTEN DI DALAM CARD ---
+
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 0;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      text-transform: capitalize;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover; // Gambar terpotong rapi tanpa merusak aspek rasio
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    div.tumnel {
+      margin-bottom: 24px;
+      max-height: 150px;
+      overflow-y: auto;
+      padding-right: 4px;
+
+      // Kustomisasi scrollbar agar minimalis dan serasi
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+      }
+
+      p#description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #cbd5e1; // Warna teks abu-abu terang agar nyaman dibaca
+        margin: 0;
+      }
+    }
+
+    div.action {
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 16px;
+
+      button.close {
+        padding: 10px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px; // Kotak tumpul modern, serasi dengan kartu utama
+        background-color: transparent; // Mengubah warna merah mencolok menjadi transparan elegan
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
       }
     }
   }
-}}
+}

@@ -1,6 +1,8 @@
 import "../scss/index.scss";
 import imgDar from "../assets/fr-dar.jpg";
 
+const pejalanan_kari = [];
+
 let btnIsDragging = false;
 let startx = 0;
 let starty = 0;
@@ -17,6 +19,27 @@ let heigthDefault = 0;
 // const isDesktop = windowsWidth >= 768;
 // const ISDESKTOP = window.matchMedia("(min-width: 1000px)").matches;
 let IsDesktop = window.matchMedia("(min-width: 1000px)").matches;
+
+// left canvas
+const canvas = document.getElementById("visual");
+const ctx = canvas.getContext("2d");
+// Konfigurasi Gelombang (Bisa Anda ubah nilainya sesuai selera)
+const waveRight = {
+  y: canvas.height / 2, // Posisi vertikal tengah gelombang
+  length: 0.01, // Jarak antar lekukan gelombang (semakin kecil semakin lebar)
+  amplitude: 80, // Tinggi gelombang
+  frequency: 0.03, // Kecepatan gerak/looping gelombang
+};
+
+// ------------ Funtion Inisialiasi Property  start --------
+// function resizeCanvas(winHeigth, winWidth) {
+//   canvas.width = winHeigth;
+//   canvas.height = winWidth;
+//   wave.y = canvas.height / 2; // Perbarui titik tengah saat layar berubah ukuran
+// }
+// ------------ Funtion Inisialiasi Property  End -------
+
+// ------------ Funtion Inisialiasi Web start --------
 
 function cv(perent) {
   const button = perent.getElementById("downloadBtn");
@@ -52,30 +75,58 @@ function cv(perent) {
   });
 }
 
-async function getGitHubProfile() {
-  try {
-    const username = "bgdar"
-    const response = await fetch(`https://api.github.com/users/${username}`);
-    const data = await response.json();
+// funciton untuk menggambar gelombang di canvas
+function waveDraw() {
+  // Variabel untuk menggerakkan waktu/animasi
+  let increment = waveRight.frequency;
 
-    const cardGithub = document.querySelector("div#github")
-    console.info("ard",cardGithub);
+  // Fungsi untuk menyesuaikan ukuran canvas dengan layar monitor secara otomatis
 
-    if (response.ok) {
-      cardGithub.querySelector("#gh-avatar").src = data.avatar_url;
-      cardGithub.querySelector("#gh-name").textContent = data.name || data.login;
-      cardGithub.querySelector("#gh-bio").textContent = data.bio || "Tidak ada bio.";
-      cardGithub.querySelector("#gh-link").href = data.html_url;
-    } else {
-      cardGithub.querySelector("#gh-name").textContent = "User tidak ditemukan";
+  // Fungsi Utama untuk Menggambar Animasi (Looping)
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Bersihkan canvas pada setiap frame agar tidak menumpuk
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Membuat warna gradasi linear (Cyan ke Ungu Neon) untuk garis gelombang
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0, "#141414");
+    gradient.addColorStop(0.5, "#3b82f6");
+    gradient.addColorStop(1, "#cfcfcf");
+
+    // Mulai menggambar jalur garis gelombang
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height / 2);
+
+    // Looping koordinat X dari ujung kiri ke ujung kanan layar
+    for (let i = 0; i < canvas.width; i++) {
+      // Rumus Matematika Gelombang Sinus
+      const yCoord =
+        waveRight.y +
+        Math.sin(i * waveRight.length + increment) * waveRight.amplitude;
+      ctx.lineTo(i, yCoord * 4);
     }
-  } catch (error) {
-    console.error("Gagal mengambil data GitHub:", error);
+
+    // Pengaturan gaya garis
+    ctx.strokeStyle = gradient; // Menerapkan warna gradasi
+    ctx.lineWidth = 4; // Ketebalan garis gelombang
+    ctx.lineCap = "round"; // Ujung garis membulat halus
+    ctx.stroke(); // Gambar garis ke layar
+
+    // Geser posisi gelombang secara terus menerus untuk efek animasi berjalan
+    increment += waveRight.frequency;
   }
+
+  // Mulai jalankan animasi
+  animate();
 }
 
+// ------------ Funtion Inisialiasi Web end --------
+
+function paralaxBg() {}
+
 // Jalankan fungsi saat halaman dimuat
-document.addEventListener("DOMContentLoaded", getGitHubProfile);
 document.addEventListener("DOMContentLoaded", () => {
   const sectionRight = document.querySelector("section#right");
   const contentRightStatic = sectionRight.querySelector("#content-static");
@@ -114,11 +165,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // cv download
   const cvPerent = dataRight.querySelector("#cv");
   // cv(cvPerent);
-  // getGitHubProfile()
 
-  // handle sroll cotainer
+  // handle perubahan windows
   window.addEventListener("resize", () => {
     const windowsWidth = window.innerWidth;
+
     // IsDesktop = windowsWidth > 963 ? true : false;
     if (windowsWidth >= 963) {
       IsDesktop = true;
@@ -126,10 +177,21 @@ document.addEventListener("DOMContentLoaded", () => {
       sectionLeft.style.top = 0;
       sectionRight.style.top = 0;
     } else {
-      false;
+      IsDesktop = false;
     }
     console.info(windowsWidth, IsDesktop);
+
+    // inisilasi resize jika ada perubahan windows
+    canvas.width = sectionRight.offsetWidth;
+    canvas.height = sectionRight.offsetHeight;
+    waveRight.y = canvas.height / 2; // Perbarui titik tengah saat layar berubah ukuran
   });
+
+  // Menentukan ukuran awal canvas sebelum animasi pertama kali berjalan
+  canvas.width = sectionRight.offsetWidth;
+  canvas.height = sectionRight.offsetHeight;
+
+  // perubahan pada section kanan
 
   // mulai drag
   btnCenter.addEventListener("pointerdown", (e) => {
@@ -180,12 +242,11 @@ document.addEventListener("DOMContentLoaded", () => {
       sectionRight.style.width = newRight + "px";
 
       //samain ukuran right section
-      contentRightTop.style.width = newRight  + "px";
+      contentRightTop.style.width = newRight + "px";
     }
     if (newTop > minHeigth && newDown > minHeigth && !IsDesktop) {
       sectionLeft.style.height = newTop + "px";
       sectionRight.style.height = newDown + "px";
-
     }
   });
 
@@ -197,4 +258,23 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     btnIsDragging = false;
   });
+
+  // gelombang assigment
+  waveDraw();
 });
+
+function addTimeKarir(timelineContainer, data) {
+  data.forEach((value) => {
+    const tmpl = `<div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024 - Sekarang</div>
+                <div class="timeline-content">
+                    <h3>Senior Web Developer</h3>
+                    <h4 class="company">PT Teknologi Maju</h4>
+                    <p>Memimpin tim pengembang untuk membangun aplikasi web berskala besar menggunakan teknologi modern.</p>
+                </div>
+            </div>`;
+
+    timelineContainer.innerHTML += tmpl;
+  });
+}
