@@ -7,10 +7,37 @@
   </head>
 
   <body>
+    <!-- bacground hitam di belakang  -->
+    <div class="overlayBg"></div>
+
     <h1>Projects</h1>
 
-    <div id="project-favorite">
-      <!-- include di JS  -->
+    <div class="project-favorite-cnt">
+      <div id="project-favorite">
+        <!-- include di JS  -->
+      </div>
+      <div class="card project-card">
+        <h2>Best</h2>
+        <div class="project-image">
+          <img id="projectImage" src="" alt="" />
+        </div>
+
+        <div class="project-content">
+          <span class="project-tag">
+            <i class="ri-star-smile-line"></i> Favorite Project
+          </span>
+          <h2 id="projectName"></h2>
+          <p id="projectDescription"></p>
+          <div class="project-language">
+            <span>Language</span>
+            <strong id="projectLanguage"></strong>
+          </div>
+          <div id="projectTech" class="project-tech"></div>
+          <a id="projectRepo" class="project-btn" target="_blank">
+            View Repository
+          </a>
+        </div>
+      </div>
     </div>
 
     <main>
@@ -112,10 +139,14 @@
           </a>
         </li>
 
-        <li class="theme">
-          <p>theme</p>
+        <li id="theme">
+          <button type="button">theme</button>
         </li>
       </ul>
     </nav>
+
+    overlay untuk popup
+
+    <div class="overlayBgPopup"></div>
   </body>
 </html>

@@ -1,143 +1,20 @@
 import "../scss/projects.scss";
-
-const projectFavorit = [
-  {
-    name: "rant dashboard",
-    repo: "https://github.com/bgdar/rant",
-    img: "",
-    tech: ["typerscript", "nest.js", "ejs", "webscoket", "rabbitMq"],
-    tech_icon: [""],
-    lang: "php",
-    des: "Aplikasi Rant ytakni web dashboard utama",
-  },
-];
-
-// pisahkan berdasarkan katagory
-// teh dan tech_icon harus selaras, agar icon nya terlihat
-const projectWebs = [
-  {
-    name: "my-bakery",
-    repo: "https://github.com/bgdar/myBakery",
-    img: "",
-    tech: ["Goravel"],
-    tech_icon: ["ri-instance-line"], // Gunakan class Remix Icon yang sesuai
-    lang: "golang",
-    des: "aplikasi perlaporan sampah",
-  },
-  {
-    name: "sibersih",
-    repo: "",
-    img: "",
-    tech: ["Laravel", "php"],
-    tech_icon: ["ri-laravel-fill"],
-    lang: "php",
-    des: "aplikasi perlaporan sampah",
-  },
-  {
-    name: "E-Learning",
-    repo: "https://github.com/bgdar/E-Learning",
-    img: "",
-    tech: ["nest.js", "mustache", "typeorm", "argon2"],
-    tech_icon: [
-      "ri-node-js",
-      "ri-code-s-slash-line",
-      "ri-database-2-line",
-      "ri-lock-password-line",
-    ],
-    lang: "Typescript",
-    des: "aplikasi Pembelajaran Online",
-  },
-];
-
-const projectGame = [];
-
-const projectDraws = [
-  {
-    name: "doople virsualizer",
-    repo: "https://github.com/bgdar/draws/tree/rust-doppler-visualize",
-    img: "",
-    tech: ["egui", "eframe"],
-    tech_icon: ["ri-brush-line", "ri-window-line"],
-    lang: "rust",
-    des: "Visulasis gelombang dengan gelombang ",
-  },
-];
-
-const projectGui = [
-  {
-    name: "paint",
-    repo: "https://github.com/bgdar/paint",
-    img: "",
-    tech: ["egui", "eframe"],
-    tech_icon: ["ri-brush-line", "ri-window-line"],
-    lang: "rust",
-    des: "Aplikasi Menggambar ",
-  },
-];
-
-const projectTerminal = [
-  {
-    name: "m-shell",
-    repo: "https://github.com/bgdar/m-shell",
-    img: "",
-    tech: ["rust"],
-    tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
-    lang: "rust",
-    des: "shell app like bash or zsh",
-  },
-  {
-    name: "astfetch",
-    repo: "https://github.com/bgdar/astfetch",
-    img: "https://github.com/bgdar/astfetch/blob/main/img/astfetch.png",
-    tech: ["golang"],
-    tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
-    lang: "golang",
-    des: "tools information system dengan golang murni",
-  },
-];
-
-const projectBot = [
-  {
-    name: "rant",
-    repo: "https://github.com/bgdar/bot-discord/tree/rant",
-    img: "",
-    tech: ["pycord"],
-    tech_icon: ["ri-discord-line"], // Ikon resmi Discord
-    lang: "python",
-    des: "Bot discord untuk deteksi kata kata kasar (my tugas akhir )",
-  },
-
-  {
-    name: "rant",
-    repo: "https://github.com", // Ganti dengan URL repo telegram Anda jika ada
-    img: "",
-    tech: ["python-telegram-bot"],
-    tech_icon: ["ri-telegram-2-line"], // Ikon resmi Telegram
-    lang: "python",
-    des: "Bot telegram untuk deteksi kata kata kasar",
-  },
-];
-
-const ProjectEngine = [
-  {
-    name: "Http server",
-    repo: "https://github.com/bgdar/Http-server", // Ganti dengan URL repo telegram Anda jika ada
-    img: "",
-    tech: ["zig"],
-    tech_icon: ["ri-global-line"], // Ikon resmi Telegram
-    lang: "zig",
-    des: "Engine untuk Http ",
-  },
-  {
-    name: "Qrcode",
-    repo: "https://github.com/bgdar/web-QrCode/tree/master/qrcode", // Ganti dengan URL repo telegram Anda jika ada
-    img: "",
-    tech: ["rust"],
-    tech_icon: ["ri-settings-5-line"], // Ikon resmi Telegram
-    lang: "rust",
-    des: "Qrcode generator ",
-  },
-];
+import { chageBg, databg } from "./core/components.js";
+import {
+  addProject,
+  addProjects,
+  cardProjectFavorit,
+} from "./function/project.js";
+import {
+  projectFavorit,
+  projectBot,
+  projectGui,
+  projectGame,
+  projectWebs,
+  projectDraws,
+  projectTerminal,
+  ProjectEngine,
+} from "./data/project.js";
 
 // global Variable
 const speedRotation = 5;
@@ -158,7 +35,7 @@ window.addEventListener("scroll", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.querySelector("main");
-  const overlay = document.querySelector("div.overlayBg");
+  const overlay = document.querySelector("div.overlayBgPopup");
 
   // favorite project
   const gridFavorite = document.querySelector("div#project-favorite");
@@ -177,14 +54,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const gridGame = game.querySelector(".projects__grid");
   const gridGui = gui.querySelector(".projects__grid");
 
+  const navbar = document.querySelector("nav");
+  const navThemeBtn = navbar.querySelector("li#theme button");
+
   addProject(projectFavorit, gridFavorite);
 
-  addProject(projectGame, gridGame);
-  addProject(projectWebs, gridWeb);
-  addProject(projectBot, gridBot);
-  addProject(projectTerminal, gridTerminal);
-  addProject(ProjectEngine, gridEngine);
-  addProject(projectGui, gridGui);
+  addProjects(projectGame, gridGame);
+  addProjects(projectWebs, gridWeb);
+  addProjects(projectBot, gridBot);
+  addProjects(projectTerminal, gridTerminal);
+  addProjects(ProjectEngine, gridEngine);
+  addProjects(projectGui, gridGui);
+
+  navThemeBtn.addEventListener("click", () => {
+    chageBg(databg);
+  });
 
   // section project detail
   const detailProject = document.body.querySelector("div.detail-project");
@@ -197,6 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
   console.info("detailt project : ", detailProject);
 
   const cardprojects = main.querySelectorAll("div.project-card");
+
+  // terkhsusu projeck favorit
+  const projeckfavoritCnt = document.querySelector("div.project-favorite-cnt");
+  const projeckfavoritCard = projeckfavoritCnt.querySelector("div.card");
+  cardProjectFavorit(projeckfavoritCard, projectFavorit);
 
   // Event untuk membuka card (Looping hanya untuk trigger buka)
   cardprojects.forEach((card) => {
@@ -231,49 +120,3 @@ document.addEventListener("DOMContentLoaded", () => {
   closeBtn.addEventListener("click", closeCard);
   overlay.addEventListener("click", closeCard); // K
 });
-
-/**
- * tambah project berdasarkan data
- * projectName : array yang akan di berikan
- * projectGrid : grid container yang menampungnnya
- */
-function addProject(projectName, projectGrid) {
-  projectName.forEach((v) => {
-    // buat `tech` mengelilingi element
-    //
-
-    const tmpl = `<div class="project-card">
-  <div class="project-card__content">
-    
-    <div class="project-card__des">
-    <p class="project-card__name">${v.name}</p>
-      <div class="project-card__actions">
-        <a href="${v.repo}" target="_blank" class="btn-repo">
-          <i class="ri-github-line"></i>
-        </a>
-      </div>
-    </div>
-
-    <!--  INISIALISASI  Tambahkan --scroll-rot: 0deg; dan dll -->
-    <div class="project-card__tech" data-des="${v.des}" img-path="${v.img}" data-total="${v.tech.length}" style="--total: ${v.tech.length}; --scroll-rot: 0deg;">
-      ${v.tech
-        .map(
-          (t, i) => `
-        <p class="elm"  data-original-index="${i}" style="--i: ${i + 1};">
-
-          <span class="tech-badge">
-        <i class="${v.tech_icon[i]}" || "ri-code-line ></i> 
-          ${t}</span>
-          
-        </p>
-      `,
-        )
-        .join("")}
-    </div>
-  </div>
-</div>`;
-
-    // style nya di tambhaakn berdasarkan nilai i untuk menentukan di mana letaknya
-    projectGrid.innerHTML += tmpl;
-  });
-}

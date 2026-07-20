@@ -14,14 +14,6 @@
 
 body {
   font-family: "JetBrains", sans-serif;
-
-  background: url("../assets/bg.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  /* Membuat gambar tetap diam */
-  background-attachment: fixed;
-  object-fit: cover;
   // agar content utama berbagi 2
   color: color.$text-primary;
   overflow: hidden;
@@ -32,94 +24,133 @@ body {
     flex-direction: column;
   }
 
+  margin: 0;
+  padding: 0;
+
   @include components.navbar("fixed")
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 main {
-  min-height: 100vh;
-  padding: 40px;
+  width: 100vw;
+  height: 95vh; // agar navbar terlihat 
+  background: color.$black-space;
+  background-image: linear-gradient(135deg, #000000, #111111, #1f1f1f);
+  padding: 60px 20px 160px 20px;
   text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  h2 {
+    color: color.$accent-white;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
 
   .puzzle {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
-    margin: auto;
-
-
+    gap: 20px;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 5;
   }
 
   .piece {
-    background: color.$black-space;
-    color: color.$text-primary;
-    padding: 20px;
+    background: color.$deep-purple;
+    border: 1px solid color.$nebula-purple;
+    color: color.$lavender;
+    padding: 30px 25px;
     position: relative;
     cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px color.$gray-shadow;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 12px;
 
-    transition: 0.35s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
     transform: translateY(30px);
     animation: puzzleFade 0.6s ease forwards;
 
-    &:hover {
-      transform: translateY(-6px) scale(1.03);
-      background: color.$accent-blue;
+    h3 {
+      color: color.$accent-white;
+      margin: 0;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Bentuk puzzle */
+    p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    &:hover {
+      transform: translateY(-8px);
+      background: color.$violet-soft;
+      border-color: color.$accent-blue;
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25);
+
+      h3 {
+        color: color.$accent-blue-soft;
+      }
+    }
+
+    /* Efek Tonjolan Puzzle Estetik Sisi Atas/Bawah */
     &::before,
     &::after {
       content: "";
       position: absolute;
       background: inherit;
+      border: 1px solid transparent;
       border-radius: 50%;
+      z-index: 2;
+      transition: background 0.4s;
     }
 
     &::before {
-      width: 25px;
-      height: 25px;
-      top: -12px;
-      left: 40%;
+      width: 28px;
+      height: 28px;
+      top: -14px;
+      left: 45%;
     }
 
     &::after {
-      width: 25px;
-      height: 25px;
-      bottom: -12px;
-      right: 40%;
+      width: 28px;
+      height: 28px;
+      bottom: -14px;
+      right: 45%;
     }
 
-    /* Delay animasi */
-    &:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-
-    &:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    &:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    &:nth-child(4) {
-      animation-delay: 0.4s;
-    }
-
-    &:nth-child(5) {
-      animation-delay: 0.5s;
-    }
-
-    &:nth-child(6) {
-      animation-delay: 0.6s;
+    // Loop otomatis untuk delay fade-in animasi item puzzle
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
     }
   }
 
-  /* Layout khusus puzzle */
+  /* Susunan Grid Puzzle Sesuai Kebutuhan */
   .profile {
     grid-column: span 1;
   }
@@ -129,52 +160,71 @@ main {
   }
 
   .github {
-    grid-column: span 1;
-
-    display: flex;
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
     align-items: center;
-    gap: 20px;
-    background-color: #1f2937; // Warna gelap ala GitHub
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
-    #gh-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px solid #3b82f6;
+    #github {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      #gh-avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 2px solid color.$accent-blue;
+        object-fit: cover;
+      }
+
+      .gh-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        h3 {
+          justify-content: flex-start;
+        }
+
+        p {
+          color: color.$blue-light;
+          font-size: 0.9rem;
+        }
+
+        #gh-link {
+          color: color.$accent-blue-soft;
+          text-decoration: none;
+          font-size: 0.85rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
 
-    .gh-info {
+    button {
+      background: color.$accent-blue;
+      border: none;
+      color: color.$accent-white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
 
-      h3 {
-        margin: 0;
-        font-size: 1.2rem;
-      }
-
-      p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #9ca3af;
-      }
-
-      #gh-link {
-        margin-top: 5px;
-        color: #3b82f6;
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: bold;
-
-        &:hover {
-          text-decoration: underline;
-        }
+      &:hover {
+        background: color.$accent-blue-soft;
       }
     }
   }
@@ -188,26 +238,64 @@ main {
   }
 
   .message {
-    grid-column: span 3;
-    display: flex;
-
-    .action {
-      @include components.box();
-      padding: 10px;
-
-      .button {
-        cursor: pointer;
-        border: none;
-        background-color: color.$gray-shadow;
-      }
-    }
+    grid-column: span 2;
+    text-align: left;
+    align-items: stretch;
 
     .cnt-message {
-      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      h3 {
+        justify-content: flex-start;
+      }
+
+      input,
+      textarea {
+        background: color.$blue-mystic;
+        border: 1px solid color.$nebula-purple;
+        color: color.$accent-white;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: color.$accent-blue-soft;
+        }
+      }
+
+      textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      .btn-send {
+        background: color.$accent-blue;
+        color: color.$accent-white;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.3s;
+
+        &:hover {
+          background: color.$accent-blue-soft;
+          box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+      }
     }
   }
 }
 
+/* Animasi Masuk Puzzle */
 @keyframes puzzleFade {
   to {
     opacity: 1;
@@ -215,32 +303,59 @@ main {
   }
 }
 
-div.overlayBg {
+/* --- SEKSI SVG CONTAINER & ANIMASI PERFRAME OMBAK --- */
+.wave-container {
   position: absolute;
-  inset: 0; // cocok untuk absolute , tampa right  , buttom , top , left Membuat elemen menempel ke seluruh sisi kontainer
-  background: color.$deep-purple;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+  pointer-events: none; // Supaya klik mouse tembus tidak menghalangi elemen di atasnya
 
-div.detail-img {
-  position: absolute;
-  inset: 0; // cocok untuk absolute , tampa right  , buttom , top , left Membuat elemen menempel ke seluruh sisi kontainer
+  svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 180px; // Menyesuaikan tinggi ombak grafik
+  }
 
-  z-index: 10;
-  visibility: hidden;
+  // Animasi Jalur Ombak Depan
+  .wave-front {
+    animation: waveMotionFront 8s ease-in-out infinite alternate;
+  }
 
-  img {
-    &:hover {
-      transform: scale(1.1);
-      transition: 0.4s ease-in-out;
-      cursor: pointer;
-    }
+  // Animasi Jalur Ombak Belakang
+  .wave-back {
+    animation: waveMotionBack 10s ease-in-out infinite alternate;
   }
 }
 
-div.detail-img.show {
-  visibility: visible;
+// Perubahan per-frame koordinat kurva SVG untuk efek acak natural
+@keyframes waveMotionFront {
+  0% {
+    d: path("M0,180 C240,120 480,280 720,200 C960,120 1200,280 1440,160");
+  }
+
+  50% {
+    d: path("M0,210 C300,260 540,130 800,180 C1060,230 1200,110 1440,190");
+  }
+
+  100% {
+    d: path("M0,170 C200,250 450,160 700,220 C950,280 1250,140 1440,150");
+  }
+}
+
+@keyframes waveMotionBack {
+  0% {
+    d: path("M0,160 C320,300 420,100 720,200 C1020,300 1120,100 1440,180");
+  }
+
+  50% {
+    d: path("M0,140 C280,110 500,240 750,160 C1000,80 1180,260 1440,130");
+  }
+
+  100% {
+    d: path("M0,190 C350,210 490,140 710,240 C930,340 1150,110 1440,210");
+  }
 }

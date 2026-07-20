@@ -1,89 +1,43 @@
 import "../scss/tools.scss";
+import {languageData , libraryData  , desainData , workflowData , visulasilasiData } from "./data/tools.js"
+import {addCard , addProject} from "./function/tools.js"
+import { chageBg, databg } from "./core/components.js";
 
-// --- SEMAU DATA
-// tech_icon : default bisa undifine
-// badge : default bisa null
 
-const languageData = [
-  {
-
-    tech_icon: '<i class="ri-javascript-fill"></i>',
-    des: "bahasa pembrograma pertama sekaligus favorite",
-    badge: null,
-    hov_color_class: "kuning",
-  },
-];
-
-const desainAppData = [
-  {
-    name: "Github",
-    tech_icon: '<i class="ri-github-fill"></i>',
-    des: "Platfrom terpusat untuk git",
-    badge: "intermedet",
-    hov_color_class: "hitam",
-  },
-];
-
-const workflowData = [
-  {
-    name: "git",
-    tech_icon: '<i class="ri-github-fill"></i>',
-    des: "Platfrom terpusat untuk git",
-    badge: "intermedet",
-    hov_color_class: "merah",
-  },
-
-  {
-    name: "Canvas",
-    tech_icon: '<i class="ri-painting-fill"></i>',
-    des: "Tools desain online",
-    badge: "intermedet",
-    hov_color_class: "biru",
-  },
-];
-
-const Virsulasilasi = [
- {
-    name: "docker",
-    tech_icon: '<i class="ri-painting-fill"></i>',
-    des: "Tools desain online",
-    badge: "intermedet",
-   profile : "https://hub.docker.com/u/bgdar",
-    hov_color_class: "biru",
-  },
-]
 
 document.addEventListener("DOMContentLoaded", function () {
-  const toolsLanguageContainer = document.querySelector(
-    "div.container-language",
-  ); 
-  const toolsWorkflowContainer = document.querySelector(
-    "div.container-workflow",
-  );
+  const languageContainer = document.querySelector("div.container-language");
+  const workflowContainer = document.querySelector("div.container-workflow");
+  const visualisasiContainer = document.querySelector(".container-visualisasi");
+  const desainContainer = document.querySelector("div.container-desain");
 
-  const toolsLanguageGrid =
-    toolsLanguageContainer.querySelector("div.tools-grid");
-  const toolsWorkflowGrid =
-    toolsWorkflowContainer.querySelector("div.tools-grid");
+  const languageGrid = languageContainer.querySelector("div.tools-grid");
+  const workflowGrid = workflowContainer.querySelector("div.tools-grid");
+  const desainGrid = desainContainer.querySelector("div.tools-grid");
+  const visualisasiGrid = visualisasiContainer.querySelector("div.tools-grid");
 
-  addCard(toolsLanguageGrid, languageData);
-  addCard(toolsWorkflowGrid, workflowData);
+
+ const navbar = document.querySelector("nav"); 
+  const navThemeBtn = navbar.querySelector("li#theme button");
+
+
+  addCard(languageGrid, languageData);
+  addCard(workflowGrid, workflowData);
+  addCard(desainGrid, desainData);
+  addCard(visualisasiGrid, visulasilasiData);
+
+
+
+
+
+
+
+
+  //  NAVBAR SECTION
+ navThemeBtn.addEventListener("click", () => {
+    console.info("bgchage has click");
+    chageBg(databg);
+  });
 });
 
-function addCard(toolsGrid, tools) {
-  tools.forEach((t) => {
-    const tmpl = `
-          <div class="tool-card">
-              <div class="tool-icon">
-              ${t.tech_icon ? t.tech_icon : '<i class="ri-projector-2-line"></i>'}
-              </div>
-              <div class="tool-info">
-                <h4>${t.name}</h4>
-                <p>${t.des}</p>
-              </div>
-             ${t.badge ? `<span class='badge tech-blue'> ${t.badge}</span>` : ""}
-            </div>
-    `;
-     toolsGrid.innerHTML += tmpl; 
-  });
-}
+

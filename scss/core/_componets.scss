@@ -2,6 +2,21 @@
 
 //  warna na di tambah manual antik
 
+@mixin bgOverlay {
+
+  // bg yang belakang
+  .overlayBg {
+    width: 100vw;
+    height: 100vh;
+    background-color: color.$bg-primary;
+    opacity: 0.8;
+    position: fixed;
+    z-index: -10;
+  }
+
+}
+
+
 @mixin box {
   box-shadow: 0 0 10px;
   padding: 10px;
@@ -30,8 +45,8 @@
       position: fixed;
       width: 100vw;
       z-index: 99;
-  left: 50%;
-  transform: translateX( -50%);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     @else if $display =="absolute" {
@@ -43,18 +58,17 @@
 
     ;
     bottom: 0;
- background: color.$card-bg;
-      border: 1px solid color.$card-border;
-      box-shadow: 0 8px 25px color.$card-shadow;
-      color: color.$text-primary;
+    background: color.$card-bg;
+    border: 1px solid color.$card-border;
+    box-shadow: 0 8px 25px color.$card-shadow;
+    color: color.$text-primary;
 
 
 
- backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
     padding: 0.8rem 1.5rem;
-    
     // Shadow pendaran lembut warna Cyan di bawah navbar
 
     ul {
@@ -103,6 +117,20 @@
           }
         }
       }
+
+      // untuk tombol theme 
+      li#theme {
+        cursor: pointer;
+        border: 1px solid;
+        padding: 0.4rem;
+        border-radius: 16px;
+
+        &:hover {
+          background-color: color.$blue-light;
+
+        }
+      }
+
     }
   }
 }

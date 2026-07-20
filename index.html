@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard</title>
+    <title>Dashboard | Portofolio</title>
 
     <!--   <link -->
     <!--     rel="stylesheet" -->
@@ -74,6 +74,10 @@
             <a href="tools.html" aria-label="Project">
               <i class="ri-tools-fill"></i>
             </a>
+          </li>
+
+          <li id="theme">
+            <button type="button">theme</button>
           </li>
         </ul>
       </nav>
@@ -150,27 +154,22 @@
         <div class="info-container">
           <h4>Word</h4>
 
-          <div class="info">
-            <p class="highlight">
-              Perjalanan saya di dunia web development dimulai dari rasa
-              penasaran bagaimana sebuah baris kode dapat menciptakan interaksi
-              visual yang memukau di layar.
-            </p>
-            <p>
-              Melalui pendidikan formal dan berbagai proyek independen, saya
-              mengasah kemampuan dalam menyusun struktur web yang solid dan
-              estetika visual yang modern.
-            </p>
-            <p>
-              Bagi saya, menulis kode bukan sekadar pekerjaan, melainkan seni
-              memecahkan masalah untuk mempermudah kehidupan pengguna lewat
-              teknologi digital.
-            </p>
-            <p class="cta">
-              <span>Mari terhubung!</span> Saya selalu bersemangat untuk
-              mendiskusikan teknologi web terbaru atau peluang kolaborasi proyek
-              menarik.
-            </p>
+          <div class="info-card">
+            <!-- Bagian Teks Motivasi (Quotes) -->
+            <div class="motivation-slider">
+              <p class="quote-item highlight-1">
+                Mending Terlambat Dari Pada Tidak Sama Sekali
+              </p>
+              <p class="quote-item highlight-2">
+                Mending Jalan Kaki Dari Pada Jalan Di Tempat
+              </p>
+              <div class="quote-sub-group">
+                <p class="quote-sub">Gak Masalah Jika Belum Pasti</p>
+                <p class="quote-sub focus">
+                  Karena Pasti Ada Hasil Yang bisa Di Dapat
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -180,32 +179,6 @@
 
             <div class="timeline-container">
               <!-- NAntik Update di Js aja-->
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2024 - Sekarang</div>
-                <div class="timeline-content">
-                  <h3>Senior Web Developer</h3>
-                  <h4 class="company">PT Teknologi Maju</h4>
-                  <p>
-                    Memimpin tim pengembang untuk membangun aplikasi web
-                    berskala besar menggunakan teknologi modern.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Item 2 -->
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2021 - 2024</div>
-                <div class="timeline-content">
-                  <h3>Full Stack Developer</h3>
-                  <h4 class="company">Digital Solusi Mandiri</h4>
-                  <p>
-                    Mengembangkan dan memelihara sistem API internal serta
-                    mengoptimalkan performa basis data perusahaan.
-                  </p>
-                </div>
-              </div>
             </div>
           </section>
         </div>
@@ -308,7 +281,10 @@
           </div>
 
           <div class="footer-bottom">
-            <p>&copy; 2026 Bgdar. All Rights Reserved.</p>
+            <p>
+              &copy;
+              <span> <!-- di isi di js ini  --> </span>. All Rights Reserved.
+            </p>
           </div>
         </footer>
       </div>

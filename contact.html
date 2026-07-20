@@ -3,65 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contack</title>
+    <title>Contack | Portofolio</title>
   </head>
 
   <body>
-    <main>
-      <h2>Contact Me</h2>
 
-      <div class="puzzle">
-        <div class="piece profile">
-          <h3>Profile</h3>
-          <p>Muhammad Nadhar</p>
-        </div>
 
-        <div class="piece email">
-          <h3>Email</h3>
-          <p>akunzero975@gmail.com</p>
-        </div>
+<!-- bacground hitam di belakang  -->
+  <div class="overlayBg"></div>
 
-        <div class="piece github">
-          <h3>GitHub</h3>
 
-          <div id="github">
-            <img id="gh-avatar" src="" alt="Avatar" />
-            <div class="gh-info">
-              <h3 id="gh-name">Loading...</h3>
-              <p id="gh-bio"></p>
-              <a id="gh-link" href="#" target="_blank">Kunjungi Profil</a>
-            </div>
-          </div>
+  <main>
+  <h2><i class="ri-contacts-book-line"></i> Contact Me</h2>
 
-          <a href="https://github.com/bgdar">
-            <button>
-              <i class="ri-github-line"></i>
-            </button>
-          </a>
-        </div>
+  <div class="puzzle">
+    <div class="piece profile">
+      <h3><i class="ri-user-3-line"></i> Profile</h3>
+      <p>Muhammad Nadhar</p>
+    </div>
 
-        <div class="piece whatsapp">
-          <h3>WhatsApp</h3>
-          <p>+62 895 2313 5244</p>
-        </div>
+    <div class="piece email">
+      <h3><i class="ri-mail-send-line"></i> Email</h3>
+      <p>akunzero975@gmail.com</p>
+    </div>
 
-        <div class="piece instagram">
-          <h3>Instagram</h3>
-          <p>@username</p>
-        </div>
-
-        <div class="piece message">
-          <div class="cnt-message">
-            <h3>Send Message</h3>
-            <input type="text" placeholder="Your name" />
-            <textarea placeholder="Message"></textarea>
-            <button>Send</button>
-          </div>
+    <div class="piece github">
+      <h3><i class="ri-github-line"></i> GitHub</h3>
+      <div id="github">
+        <img id="gh-avatar" src="https://via.placeholder.com/80" alt="Avatar" />
+        <div class="gh-info">
+          <h3 id="gh-name">Loading...</h3>
+          <p id="gh-bio">Web Developer & Designer</p>
+          <a id="gh-link" href="https://github.com/bgdar" target="_blank">Kunjungi Profil <i class="ri-arrow-right-up-line"></i></a>
         </div>
       </div>
-    </main>
+    </div>
 
-    <nav>
+    <div class="piece whatsapp">
+      <h3><i class="ri-whatsapp-line"></i> WhatsApp</h3>
+      <p>+62 895 2313 5244</p>
+    </div>
+
+    <div class="piece instagram">
+      <h3><i class="ri-instagram-line"></i> Instagram</h3>
+      <p>@username</p>
+    </div>
+
+    <div class="piece message">
+      <div class="cnt-message">
+        <h3><i class="ri-chat-smile-3-line"></i> Send Message</h3>
+        <input type="text" placeholder="Your name" />
+        <textarea placeholder="Message"></textarea>
+        <button class="btn-send">
+          Send <i class="ri-send-plane-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave-container">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-back" fill="none" stroke="#2b2b2b" stroke-width="2" opacity="0.5" d="M0,160 C320,300 420,100 720,200 C1020,300 1120,100 1440,180" />
+      <path class="wave-front" fill="none" stroke="#6b6b6b" stroke-width="3" d="M0,180 C240,120 480,280 720,200 C960,120 1200,280 1440,160" />
+    </svg>
+  </div>
+</main>    <nav>
       <ul>
         <li>
           <a href="index.html" aria-label="Dashboard">
@@ -78,6 +84,11 @@
             <i class="ri-folder-open-line"></i>
           </a>
         </li>
+        <!-- gak perlu di Contack -->
+        <!-- <li id="theme"> -->
+        <!--   <button type="button">theme</button> -->
+        <!-- </li> -->
+
       </ul>
     </nav>
   </body>

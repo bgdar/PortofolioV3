@@ -32,6 +32,21 @@
   </a>
 </p>
 
+
+### teknik 
+##### cara menampilkan gambar dari link url share di google drive 
+pastikan folder yang menampung img tersebut sudah open url ke siapapun
+reference : <https://stackoverflow.com/questions/15557392/how-do-i-display-images-from-google-drive-on-a-website>
+
+```bash 
+# misalnya url share di dapat adalah 
+https://drive.google.com/file/d/1pW2ZZZYTRJGsvOiPfTEU5mmOQx00X2JW/view?usp=sharing
+# maka pindahkan id nya
+https://drive.google.com/thumbnail?id=1pW2ZZZYTRJGsvOiPfTEU5mmOQx00X2JW
+
+```
+
+
 ### Web Pack Package
 
 - `css-loader` : untuk load content css ,

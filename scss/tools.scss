@@ -14,9 +14,22 @@
 
 body {
 
-  font-family: "JetBrains", sans-serif;
+  padding: 0;
+  margin: 0;
 
-  @include components.navbar("fixed")
+  font-family: "JetBrains", sans-serif;
+  background: url("../assets/bg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* Membuat gambar tetap diam */
+  background-attachment: fixed;
+  object-fit: cover;
+  @include components.navbar("fixed");
+
+
+  // bg yang belakang
+  @include components.bgOverlay;
 }
 
 
@@ -35,8 +48,9 @@ body {
 
 
 .skills-section {
-  background-color: color.$black-space;
-  background-image: color.$gradient-space; // Efek depth ruang angkasa
+  // ganti ke walpeper
+  // background-color: color.$black-space;
+  // background-image: color.$gradient-space; // Efek depth ruang angkasa
   color: color.$text-primary;
   padding: 80px 20px;
   min-height: 100vh;
