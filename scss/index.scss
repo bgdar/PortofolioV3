@@ -46,7 +46,7 @@ body {
 
   font-family: "JetBrains", "sans-serif";
 
-  background: url("../assets/bg1.jpg");
+  background: url("https://i.ibb.co.com/1JqK6qHH/bg1.webp"); // from imgbb
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -344,185 +344,6 @@ body {
       align-items: center;
       flex-wrap: wrap;
 
-      #forto-info {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        padding: 2.5rem 2rem;
-        width: 100%;
-        max-width: 1100px; // Membatasi lebar agar tetap proporsional di layar lebar
-
-        // Judul section "Project preview" dibuat melintang penuh di atas kartu
-        h4 {
-          grid-column: 1 / -1;
-          font-size: 1.6rem;
-          color: color.$text-primary;
-          letter-spacing: 1px;
-          margin-bottom: -0.5rem;
-          position: relative;
-          padding-left: 15px;
-
-          // Aksen garis dekoratif vertikal di sebelah judul
-          &::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 15%;
-            height: 70%;
-            width: 4px;
-            background-color: color.$accent-blue;
-            border-radius: 2px;
-            box-shadow: 0 0 8px color.$hover-glow;
-          }
-        }
-
-        // Aturan dasar dan layout seragam untuk semua jenis kartu (.web, .bot, .terminal)
-        .web,
-        .bot,
-        .terminal {
-          background-color: color.$card-bg;
-          border: 1px solid color.$card-border;
-          border-radius: 16px;
-          padding: 2rem;
-          color: color.$text-primary;
-          box-shadow: 0 10px 30px color.$card-shadow;
-
-          // Flexbox untuk memaksa konten teks di atas dan tombol selalu presisi di dasar kartu
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: flex-start;
-          min-height: 220px;
-          position: relative;
-          overflow: hidden;
-          transition:
-            transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-            border-color 0.4s ease,
-            box-shadow 0.4s ease;
-
-          // Struktur konten teks di dalam kartu
-          p,
-          & {
-            font-size: 1rem;
-            color: color.$text-secondary;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-          }
-
-          // Pembungkus link tombol agar memenuhi alignment flexbox
-          a {
-            width: 100%;
-            text-decoration: none;
-            margin-top: auto; // Memaksa elemen a turun ke bagian paling bawah kartu
-          }
-
-          // Desain dasar tombol bergaya komponen UI modern
-          button {
-            width: 100%;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid transparent;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-          }
-        }
-
-        // ==========================================
-        // VARIASI GAYA SPESIFIK TIAP KARTU
-        // ==========================================
-
-        // 1. Kartu Web (Desain Minimalis Elegan dengan Aksen Biru)
-        .web {
-          &:hover {
-            transform: translateY(-6px);
-            border-color: color.$accent-blue-soft;
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15);
-          }
-
-          button {
-            background-color: color.$violet-soft;
-            color: color.$text-primary;
-            border-color: color.$nebula-purple;
-
-            &:hover {
-              background-color: color.$blue-mystic;
-              border-color: color.$blue-light;
-              box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
-            }
-          }
-        }
-
-        // 2. Kartu Bot (Desain Bertema Gradien Luar Angkasa Deep)
-        .bot {
-          background: color.$gradient-space;
-          border-color: color.$nebula-purple;
-
-          &:hover {
-            transform: translateY(-6px);
-            border-color: color.$accent-blue;
-            box-shadow:
-              0 15px 35px color.$card-shadow,
-              0 0 20px rgba(59, 130, 246, 0.25);
-          }
-
-          button {
-            background-color: color.$btn-primary-bg;
-            color: color.$btn-primary-text;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-
-            &:hover {
-              background-color: color.$accent-blue-soft;
-              transform: translateY(-2px);
-              box-shadow: 0 6px 20px color.$hover-glow;
-            }
-
-            &:active {
-              transform: translateY(0);
-              box-shadow: 0 0 12px color.$active-glow;
-            }
-          }
-        }
-
-        // 3. Kartu Terminal (Desain Bertema Gradien Planet Sci-Fi)
-        .terminal {
-          background: color.$gradient-planet;
-          border-color: rgba(255,
-              107,
-              107,
-              0.2); // Sentuhan border merah transparan tipis
-
-          &:hover {
-            transform: translateY(-6px);
-            border-color: color.$accent-red;
-            box-shadow:
-              0 15px 35px color.$card-shadow,
-              0 0 20px rgba(255, 59, 59, 0.25);
-          }
-
-          button {
-            background-color: color.$btn-secondary-bg;
-            color: color.$btn-secondary-text;
-            box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
-
-            &:hover {
-              background-color: color.$accent-red-soft;
-              transform: translateY(-2px);
-              box-shadow: 0 6px 20px color.$active-glow;
-            }
-
-            &:active {
-              transform: translateY(0);
-              box-shadow: 0 0 12px color.$active-glow;
-            }
-          }
-        }
-      }
 
       .moto {
         background-color: color.$gray-shadow;
@@ -644,7 +465,7 @@ body {
         .motivation-slider {
           display: flex;
           flex-direction: column;
-          gap: 18px;
+          gap: 6px;
 
           .quote-item,
           .quote-sub {
@@ -652,7 +473,7 @@ body {
 
             padding: 18px 22px;
 
-            border: 2px solid rgba(255, 255, 255, .08);
+            border: 2px solid color.$card-border;
             border-radius: 18px;
 
             background: rgba(255, 255, 255, .05);
@@ -698,14 +519,11 @@ body {
             // Ikon Quote
             &::after {
               content: "❝";
-
               position: absolute;
 
               right: 18px;
               top: 10px;
-
               font-size: 2rem;
-
               color: rgba(255, 255, 255, .08);
             }
 
@@ -713,16 +531,12 @@ body {
             &:focus,
             &:active {
               transform-origin: center;
-
               transform:
                 perspective(800px) rotateX(2deg) rotateY(-2deg) translate(-10px, -10px) scale(1.03);
 
+              border-color: color.$nebula-purple;
 
-
-              border-color: #5fc7ff;
-
-              background: rgba(255, 255, 255, .08);
-
+              background: color.$hover-glow;
               box-shadow:
                 0 20px 35px rgba(0, 0, 0, .28),
                 0 0 18px rgba(95, 199, 255, .25);
@@ -732,11 +546,11 @@ body {
           }
 
           .highlight-1 {
-            border-left: 6px solid #6C63FF;
+            border-left: 6px solid color.$text-secondary;
           }
 
           .highlight-2 {
-            border-left: 6px solid #FF7A59;
+            border-left: 6px solid color.$accent-red;
           }
 
           .quote-sub-group {
@@ -751,11 +565,9 @@ body {
           }
 
           .focus {
-            border-left: 6px solid #00D084;
-
+            border-left: 6px solid color.$blue-light;
             font-weight: 700;
-
-            color: #ffffff;
+            color: color.$text-primary;
           }
         }
       }

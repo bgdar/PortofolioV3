@@ -16,7 +16,6 @@ body {
   font-family: "JetBrains", sans-serif;
   // agar content utama berbagi 2
   color: color.$text-primary;
-  overflow: hidden;
 
   // mdeia
   @media screen and (max-width: 1000px) {
@@ -36,9 +35,17 @@ body {
   box-sizing: border-box;
 }
 
+/* Animasi Masuk Puzzle */
+@keyframes puzzleFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 main {
   width: 100vw;
-  height: 95vh; // agar navbar terlihat 
   background: color.$black-space;
   background-image: linear-gradient(135deg, #000000, #111111, #1f1f1f);
   padding: 60px 20px 160px 20px;
@@ -48,7 +55,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 
   h2 {
     color: color.$accent-white;
@@ -63,111 +69,139 @@ main {
   .puzzle {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 960px;
+    gap: 10px;
     width: 100%;
     margin: 0 auto;
     z-index: 5;
-  }
 
-  .piece {
-    background: color.$deep-purple;
-    border: 1px solid color.$nebula-purple;
-    color: color.$lavender;
-    padding: 30px 25px;
-    position: relative;
-    cursor: pointer;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px color.$gray-shadow;
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+      // Paksa semua item puzzle agar memenuhi 1 kolom penuh
+      .pi,
+      .profile,
+      .email,
+      .github,
+      .whatsApp,
+      .instagram,
+      .message {
+        grid-column: span 1 !important;
+      }
 
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 0;
-    transform: translateY(30px);
-    animation: puzzleFade 0.6s ease forwards;
+      // Atur ulang layout kustom kartu GitHub agar pas di layar kecil
 
-    h3 {
-      color: color.$accent-white;
-      margin: 0;
-      font-size: 1.25rem;
+
+      #github {
+        flex-direction: column;
+        text-align: center;
+
+        .gh-info {
+          align-items: center;
+
+          h3 {
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    .piece {
+      background: color.$deep-purple;
+      border: 1px solid color.$nebula-purple;
+      color: color.$lavender;
+      padding: 30px 25px;
+      position: relative;
+      cursor: pointer;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px color.$gray-shadow;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
-    }
-
-    p {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    &:hover {
-      transform: translateY(-8px);
-      background: color.$violet-soft;
-      border-color: color.$accent-blue;
-      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25);
+      gap: 12px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: puzzleFade 0.6s ease forwards;
 
       h3 {
-        color: color.$accent-blue-soft;
+        color: color.$accent-white;
+        margin: 0;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      &:hover {
+        transform: translateY(-8px);
+        background: color.$violet-soft;
+        border-color: color.$accent-blue;
+        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25);
+
+        h3 {
+          color: color.$accent-blue-soft;
+        }
+      }
+
+      /* Efek Tonjolan Puzzle Estetik Sisi Atas/Bawah */
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        background: inherit;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        z-index: 2;
+        transition: background 0.4s;
+      }
+
+      &::before {
+        width: 28px;
+        height: 28px;
+        top: -14px;
+        left: 45%;
+      }
+
+      &::after {
+        width: 28px;
+        height: 28px;
+        bottom: -14px;
+        right: 45%;
+      }
+
+      // Loop otomatis untuk delay fade-in animasi item puzzle
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.1}s;
+        }
       }
     }
 
-    /* Efek Tonjolan Puzzle Estetik Sisi Atas/Bawah */
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      background: inherit;
-      border: 1px solid transparent;
-      border-radius: 50%;
-      z-index: 2;
-      transition: background 0.4s;
+    /* Susunan Grid Elemen Anak (Wajib di dalam kelas .puzzle) */
+    .pi,
+    .profile {
+      grid-column: span 1;
     }
 
-    &::before {
-      width: 28px;
-      height: 28px;
-      top: -14px;
-      left: 45%;
+    .email {
+      grid-column: span 2;
     }
 
-    &::after {
-      width: 28px;
-      height: 28px;
-      bottom: -14px;
-      right: 45%;
-    }
 
-    // Loop otomatis untuk delay fade-in animasi item puzzle
-    @for $i from 1 through 6 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-      }
-    }
-  }
-
-  /* Susunan Grid Puzzle Sesuai Kebutuhan */
-  .profile {
-    grid-column: span 1;
-  }
-
-  .email {
-    grid-column: span 2;
-  }
-
-  .github {
-    grid-column: span 2;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    align-items: center;
 
     #github {
+      grid-column: span 2;
       display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
       align-items: center;
       gap: 20px;
 
@@ -186,11 +220,13 @@ main {
 
         h3 {
           justify-content: flex-start;
+          margin: 0;
         }
 
         p {
           color: color.$blue-light;
           font-size: 0.9rem;
+          margin: 0;
         }
 
         #gh-link {
@@ -207,106 +243,106 @@ main {
           }
         }
       }
-    }
 
-    button {
-      background: color.$accent-blue;
-      border: none;
-      color: color.$accent-white;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
 
-      &:hover {
-        background: color.$accent-blue-soft;
-      }
-    }
-  }
-
-  .whatsapp {
-    grid-column: span 1;
-  }
-
-  .instagram {
-    grid-column: span 1;
-  }
-
-  .message {
-    grid-column: span 2;
-    text-align: left;
-    align-items: stretch;
-
-    .cnt-message {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      h3 {
-        justify-content: flex-start;
-      }
-
-      input,
-      textarea {
-        background: color.$blue-mystic;
-        border: 1px solid color.$nebula-purple;
-        color: color.$accent-white;
-        padding: 12px;
-        border-radius: 6px;
-        font-family: inherit;
-        outline: none;
-        transition: border-color 0.3s;
-
-        &:focus {
-          border-color: color.$accent-blue-soft;
-        }
-      }
-
-      textarea {
-        min-height: 80px;
-        resize: vertical;
-      }
-
-      .btn-send {
+      button {
         background: color.$accent-blue;
-        color: color.$accent-white;
         border: none;
-        padding: 12px;
-        border-radius: 6px;
-        font-weight: 600;
+        color: color.$accent-white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.3rem;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        transition: all 0.3s;
+        transition: background 0.3s;
 
         &:hover {
           background: color.$accent-blue-soft;
-          box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        }
+      }
+    }
+
+    .whatsApp {
+      grid-column: span 1;
+    }
+
+    .instagram {
+      grid-column: span 1;
+    }
+
+    .message {
+      grid-column: span 2;
+      text-align: left;
+      align-items: stretch;
+
+      .cnt-message {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        h3 {
+          justify-content: flex-start;
+        }
+
+        input,
+        textarea {
+          background: color.$blue-mystic;
+          border: 1px solid color.$nebula-purple;
+          color: color.$accent-white;
+          padding: 12px;
+          border-radius: 6px;
+          font-family: inherit;
+          outline: none;
+          transition: border-color 0.3s;
+
+          &:focus {
+            border-color: color.$accent-blue-soft;
+          }
+        }
+
+        textarea {
+          min-height: 80px;
+          resize: vertical;
+        }
+
+        .btn-send {
+          background: color.$accent-blue;
+          color: color.$accent-white;
+          border: none;
+          padding: 12px;
+          border-radius: 6px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: all 0.3s;
+
+          &:hover {
+            background: color.$accent-blue-soft;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+          }
         }
       }
     }
   }
+
+  // Batas Penutup .puzzle
 }
 
-/* Animasi Masuk Puzzle */
-@keyframes puzzleFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+// Batas Penutup main
+
+
+
 
 /* --- SEKSI SVG CONTAINER & ANIMASI PERFRAME OMBAK --- */
 .wave-container {
   position: absolute;
-  bottom: 0;
+  bottom: 1.5rem;
   left: 0;
   width: 100%;
   line-height: 0;

@@ -1,5 +1,5 @@
 import "../scss/projects.scss";
-import { chageBg, databg } from "./core/components.js";
+import { chageBg } from "./core/components.js";
 import {
   addProject,
   addProjects,
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addProjects(projectGui, gridGui);
 
   navThemeBtn.addEventListener("click", () => {
-    chageBg(databg);
+    chageBg();
   });
 
   // section project detail

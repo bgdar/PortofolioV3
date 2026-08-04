@@ -1,8 +1,10 @@
 import "../scss/index.scss";
-import imgDar from "../assets/fr-dar.jpg";
-import { chageBg  , databg } from "./core/components.js";
-import {  KarirData, daftarBulan, daftarHari  } from "./data/index.js";
-import { waveDraw, cv, addTimeKarir   } from "./function/index.js";
+
+import { chageBg } from "./core/components.js";
+import { KarirData, daftarBulan, daftarHari } from "./data/index.js";
+import { waveDraw, cv, addTimeKarir } from "./function/index.js";
+
+import imgDar from "../assets/fr-dar.jpg"; // local , foto i'm lebih enak jika di deploy di satu tempat aja
 
 let btnIsDragging = false;
 let startx = 0;
@@ -32,7 +34,6 @@ const waveRight = {
   frequency: 0.03, // Kecepatan gerak/looping gelombang
 };
 
-
 // Jalankan fungsi saat halaman dimuat
 document.addEventListener("DOMContentLoaded", () => {
   const sectionRight = document.querySelector("section#right");
@@ -52,8 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const footer = document.querySelector("footer");
   const footerContainer = footer.querySelector("div.footer-container");
   const footerButtom = footer.querySelector("div.footer-bottom");
-
-  console.info(footerButtom);
 
   // img di sebelah kanan
   imgStaticRight.src = imgDar;
@@ -176,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // gelombang assigment
-  waveDraw(waveRight,ctx,canvas);
+  waveDraw(waveRight, ctx, canvas);
 
   // -------------- PERJALAN KARIR SECTION --------------
   const perjalanKarirContn = dataRight.querySelector(
@@ -186,8 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //  NAVBAR SECTION
   navThemeBtn.addEventListener("click", () => {
-    console.info("bgchage has click");
-    chageBg(databg);
+    chageBg();
   });
 
   // FOOTER SECTION

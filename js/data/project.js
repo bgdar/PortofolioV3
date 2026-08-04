@@ -1,15 +1,21 @@
-export const projectFavorit = [
+export const projectFavorit =
   // best projeck hanya boleh 1
   {
     name: "rant dashboard",
     repo: "https://github.com/bgdar/rant",
     img: "",
-    tech: ["typerscript", "nest.js", "ejs", "webscoket", "rabbitMq"],
+    tech: [
+      "typerscript",
+      "nest.js",
+      "alpine.js",
+      "ejs",
+      "webscoket",
+      "rabbitMq",
+    ],
     tech_icon: [""],
-    lang: "php",
+    lang: "Typescript",
     des: "Aplikasi Rant yakni web dashboard utama",
-  },
-];
+  };
 
 // pisahkan berdasarkan katagory
 // teh dan tech_icon harus selaras, agar icon nya terlihat
@@ -17,7 +23,7 @@ export const projectWebs = [
   {
     name: "Daros",
     repo: "https://github.com/bgdar/daros",
-    img: "",
+    img: "https://i.ibb.co.com/pjzm33pk/daros-webp-projeck.webp",
     tech: ["Next.js"],
     tech_icon: ["ri-javascript-fill"], // Gunakan class Remix Icon yang sesuai
     lang: "Typescript",
@@ -39,7 +45,7 @@ export const projectWebs = [
     tech: ["Goravel"],
     tech_icon: ["ri-instance-line"],
     lang: "golang",
-    des: "aplikasi perlaporan sampah",
+    des: "aplikasi penjualan UMKM ke arah makanna \n ada system client ( pembeli ) admin (penjual ) ",
   },
   {
     name: "package-manages",
@@ -78,18 +84,9 @@ export const projectWebs = [
     des: "aplikasi perlaporan sampah",
   },
   {
-    name: "Car Movement",
-    repo: "https://github.com/bgdar/web-investasi",
-    img: "",
-    tech: ["Typescript", "canvas"],
-    tech_icon: ["ri-javascript-fill", "ri-html5-fill"],
-    lang: "Typescript",
-    des: "Game 2D top down tentang mobil untuk mendapatkan achifment",
-  },
-  {
     name: "Web investais",
     repo: "https://github.com/bgdar/web-investasi",
-    img: "",
+    img: "https://i.ibb.co.com/mFvghmVh/web-investasi-webp-projeck.webp",
     tech: ["Golang", "Gin Gonic", "PogressSql", "Html", "Javascript"],
     tech_icon: ["ri-laravel-fill"],
     lang: "php",
@@ -115,11 +112,30 @@ export const projectGame = [
   {
     name: "Flying Bird",
     repo: "https://github.com/bgdar/flying-bird",
-    img: "https://drive.google.com/file/d/1nJiVe84luYwn8dBj-VkNKR2zZlhwhpDI/view?usp=sharing",
+    img: "https://i.ibb.co.com/SXyBsJVL/fly-bird-webp-projeck.webp",
     tech: ["python", "pygame"],
     tech_icon: ["ri-brush-line", "ri-window-line"],
     lang: "python",
     des: " game 2D yang di buat dengan bahasa pembrograman python",
+  },
+  {
+    name: "Car Movement",
+    repo: "https://github.com/bgdar/web-investasi",
+    img: "",
+    tech: ["Typescript", "canvas"],
+    tech_icon: ["ri-javascript-fill", "ri-html5-fill"],
+    lang: "Typescript",
+    des: "Game 2D top down tentang mobil untuk mendapatkan achifment",
+  },
+
+  {
+    name: "moster plant ",
+    repo: "https://i.ibb.co.com/MyhzsgYw/monster-plant-webp-projeck.webp",
+    img: "https://ibb.co.com/KcGtX5M4",
+    tech: ["Godot"],
+    tech_icon: ["ri-brush-line"],
+    lang: "godot",
+    des: "mainkan mosternya dan makan semua yang menghalang Game 2D top-down dengan gaya pixel art",
   },
   {
     name: "Zoombie Slayer",
@@ -130,10 +146,11 @@ export const projectGame = [
     lang: "rust",
     des: "Game 3D firs person zombie slayer adaah jenis game bertema seperti minecraft yang di bangun dengan Godot engine",
   },
+
   {
     name: "Text-Base RPG Game",
     repo: "https://bitbucket.org/bgdar/text-base-rpg-game/src/main/",
-    img: "",
+    img: "https://i.ibb.co.com/r2xnY34H/text-base-rpg-game-webp-projeck.webp",
     tech: ["Golang"],
     tech_icon: ["ri-instance-line"], // Ikon terminal/shell
     lang: "golang",
@@ -145,7 +162,7 @@ export const projectDraws = [
   {
     name: "doople virsualizer",
     repo: "https://github.com/bgdar/draws/tree/rust-doppler-visualize",
-    img: "https://drive.google.com/file/d/1mGD6-Efxap8GXn7ScyWinmCCDlGWAfHU/view?usp=sharing",
+    img: "https://i.ibb.co.com/whqhWXKf/rust-doggle-visualization-projeck.png",
     tech: ["egui", "eframe"],
     tech_icon: ["ri-brush-line", "ri-window-line"],
     lang: "rust",
@@ -157,16 +174,17 @@ export const projectGui = [
   {
     name: "P Share",
     repo: "https://github.com/bgdar/P-share",
-    img: "",
+    img: "https://i.ibb.co.com/ZzRFWzkv/p-share-webp-projeck.webp",
     tech: ["python", "kivy", "TinyDb"],
     tech_icon: ["", "ri-window-line", "ri-database-2-fill"],
     lang: "python",
     des: "Aplikasi berbagi file lokal yang berjalan melalui koneksi TCP. Saat client membuka aplikasi, IP akan otomatis disimpan,dan proses transfer dapat dimulai setelah client menambahkan alamat IP server",
   },
+
   {
     name: "paint",
     repo: "https://github.com/bgdar/paint",
-    img: "https://drive.google.com/file/d/1JNABPj-MobxVcxq876OKOI_sEUylVRmU/view?usp=sharing",
+    img: "https://i.ibb.co.com/Zz7LknBN/rust-paint-projeck.png",
     tech: ["egui", "eframe"],
     tech_icon: ["ri-brush-line", "ri-window-line"],
     lang: "rust",
@@ -196,7 +214,7 @@ export const projectTerminal = [
   {
     name: "astfetch",
     repo: "https://github.com/bgdar/astfetch",
-    img: "https://drive.google.com/file/d/1pW2ZZZYTRJGsvOiPfTEU5mmOQx00X2JW/view?usp=sharing",
+    img: "https://i.ibb.co.com/ksh6gy6x/astfetch-png-projeck.png",
     tech: ["golang"],
     tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
     lang: "golang",
@@ -205,7 +223,7 @@ export const projectTerminal = [
   {
     name: "CLI Tools",
     repo: "https://github.com/bgdar/cli-tools",
-    img: "https://drive.google.com/file/d/1zjVCPCdIv4JDRM1h8BoNspHyxeYNgQ05/view?usp=sharing",
+    img: "https://u514893.imgbb.com/",
     tech: ["golang"],
     tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
     lang: "golang",

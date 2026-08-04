@@ -1,9 +1,7 @@
 
 
-- menambah tools pages dan update data 
-- memisahkan logic ke file tersendiri di folder JS
-- ada folder function untuk daftar function yang akan di panggil berdasrakan halaman tersendiri 
-- ada folder data ini berisi data data yang akan di gunakan di pages sendiri atau pages lain
-- semua punya tombol untuk mengati theme , dan base theme utama ada dark mode
-- menambah theme button untuk mengubah bacground
-- update projek favorit tahap 1
+add ( commit 7 )
+-  tambhana beberapa bg walpeper ( sepertinya lebih baik di local web karena langsung di loads)
+- add new page sertifikat tahap 1 ( data stil template ) 
+- delete img and cv from local to cloud ( img pindah ke plafrom  ImgBB)
+

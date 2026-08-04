@@ -1,12 +1,11 @@
 // --- SEMAU DATA
 // tech_icon : default bisa undifine
 // badge : default bisa null
-
 export const languageData = [
   {
-    name: "Javascript",
+    name: "JavaScript",
     tech_icon: '<i class="ri-javascript-fill"></i>',
-    des: "bahasa pembrograma pertama sekaligus favorite",
+    des: "Bahasa pemrograman utama sekaligus favorit.",
     badge: null,
     hov_color_class: "kuning",
   },
@@ -27,7 +26,7 @@ export const languageData = [
   {
     name: "Python",
     tech_icon: '<i class="ri-python-fill"></i>',
-    des: "Bahasa serbaguna yang kuat untuk data science, otomatisasi, dan kecerdasan buatan.",
+    des: "Bahasa serbaguna yang kuat untuk data science, otomatisasi, dan AI.",
     badge: null,
     hov_color_class: "biru-muda",
   },
@@ -55,7 +54,7 @@ export const languageData = [
   {
     name: "C++",
     tech_icon: '<i class="ri-code-box-fill"></i>',
-    des: "Kombinasi efisiency tingkat rendah dan pemrograman berorientasi objek yang tangguh.",
+    des: "Kombinasi efisiensi tingkat rendah dan OOP yang tangguh.",
     badge: null,
     hov_color_class: "biru-tua",
   },
@@ -68,83 +67,77 @@ export const languageData = [
   },
 ];
 
-export const frameworkData = [];
-
-export const libraryData = [];
-
 export const webData = [
   {
     name: "HTML5",
     tech_icon: '<i class="ri-html5-fill"></i>',
-    des: "Arsitektur utama untuk membangun struktur web yang semantik, aksesibel, dan ramah SEO.",
+    des: "Arsitektur utama untuk membangun struktur web yang semantik dan ramah SEO.",
     badge: null,
     hov_color_class: "oranye",
   },
   {
     name: "CSS3",
     tech_icon: '<i class="ri-css3-fill"></i>',
-    des: "Seni menghidupkan halaman web melalui tata letak responsif, animasi halus, dan visual estetik.",
+    des: "Seni menghidupkan halaman web melalui tata letak responsif dan visual estetik.",
     badge: null,
     hov_color_class: "biru",
   },
   {
     name: "Tailwind CSS",
     tech_icon: '<i class="ri-tailwind-css-fill"></i>',
-    des: "Framework utilitas modern untuk mempercepat slicing desain langsung di dalam kode HTML.",
+    des: "Framework utilitas modern untuk mempercepat slicing desain.",
     badge: "Favorite",
     hov_color_class: "sian",
   },
   {
     name: "Sass / SCSS",
     tech_icon: '<i class="ri-palette-fill"></i>',
-    des: "Preprosesor CSS tangguh dengan fitur variabel, nesting, dan mixin untuk kode gaya yang scalable.",
+    des: "Preprosesor CSS tangguh dengan fitur variabel dan nesting.",
     badge: null,
     hov_color_class: "merah-muda",
   },
   {
     name: "Bootstrap",
     tech_icon: '<i class="ri-bootstrap-fill"></i>',
-    des: "Framework legendaris untuk mempercepat pembuatan komponen antarmuka web yang responsif.",
+    des: "Framework legendaris untuk mempercepat pembuatan komponen antarmuka web.",
     badge: null,
     hov_color_class: "ungu",
   },
 ];
 
-export const textEditorData = [];
-
 export const desainData = [
   {
-    name: "Canvas",
-    tech_icon: '<i class="ri-painting-fill"></i>',
-    des: "Tools desain online",
-    badge: "intermedet",
-    hov_color_class: "biru",
+    name: "Canva",
+    tech_icon: '<i class="ri-palette-line"></i>', // Disesuaikan dari ri-painting-fill
+    des: "Tools desain grafis berbasis online.",
+    badge: "Intermediate",
+    hov_color_class: "sian",
   },
 ];
 
 export const workflowData = [
   {
-    name: "Github",
+    name: "GitHub",
     tech_icon: '<i class="ri-github-fill"></i>',
-    des: "Platfrom terpusat untuk git",
-    badge: "intermedet",
+    des: "Platform terpusat untuk kolaborasi kode dan Git repository.",
+    badge: "Intermediate",
     hov_color_class: "hitam",
   },
   {
-    name: "git",
-    tech_icon: '<i class="ri-github-fill"></i>',
-    des: "Platfrom terpusat untuk git",
-    badge: "intermedet",
-    hov_color_class: "merah",
+    name: "Git",
+    tech_icon: '<i class="ri-git-branch-fill"></i>', // Disesuaikan dari ri-github-fill
+    des: "Distributed version control system untuk melacak perubahan kode.",
+    badge: "Intermediate",
+    hov_color_class: "oranye-merah",
   },
 ];
 
-export const visulasilasiData = [
+export const visualisasiData = [
   {
-    name: "docker",
-    tech_icon: '<i class="ri-painting-fill"></i>',
-    des: "Tools desain online",
-    badge: "intermedet",
+    name: "Docker",
+    tech_icon: '<i class="ri-instance-fill"></i>', // Disesuaikan dari ri-painting-fill
+    des: "Platform kontainerisasi untuk isolasi dan deployment aplikasi.",
+    badge: "Intermediate",
     profile: "https://hub.docker.com/u/bgdar",
     hov_color_class: "biru",
   },

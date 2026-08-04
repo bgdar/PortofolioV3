@@ -1,9 +1,13 @@
 import "../scss/tools.scss";
-import {languageData , libraryData  , desainData , workflowData , visulasilasiData } from "./data/tools.js"
-import {addCard , addProject} from "./function/tools.js"
-import { chageBg, databg } from "./core/components.js";
-
-
+import {
+  languageData,
+  libraryData,
+  desainData,
+  workflowData,
+  visualisasiData,
+} from "./data/tools.js";
+import { addCard } from "./function/tools.js";
+import { chageBg } from "./core/components.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const languageContainer = document.querySelector("div.container-language");
@@ -16,28 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const desainGrid = desainContainer.querySelector("div.tools-grid");
   const visualisasiGrid = visualisasiContainer.querySelector("div.tools-grid");
 
-
- const navbar = document.querySelector("nav"); 
+  const navbar = document.querySelector("nav");
   const navThemeBtn = navbar.querySelector("li#theme button");
-
 
   addCard(languageGrid, languageData);
   addCard(workflowGrid, workflowData);
   addCard(desainGrid, desainData);
-  addCard(visualisasiGrid, visulasilasiData);
-
-
-
-
-
-
-
+  addCard(visualisasiGrid, visualisasiData);
 
   //  NAVBAR SECTION
- navThemeBtn.addEventListener("click", () => {
+  navThemeBtn.addEventListener("click", () => {
     console.info("bgchage has click");
-    chageBg(databg);
+    chageBg();
   });
 });
-
-

@@ -104,18 +104,42 @@
 
           transition: all 0.25s ease;
 
-          &:hover {
+          &:hover,
+          span#info {
             color: color.$text-primary;
             background: color.$nebula-purple;
             border-color: color.$hover-glow;
             box-shadow: 0 0 10px color.$hover-glow;
             transform: translateY(-2px);
+            transition: all 0.5s ease-out;
+            // span info aktifkan
+            visibility: visible;
+            opacity: 0.90;
           }
 
           &:active {
             box-shadow: 0 0 12px color.$active-glow;
           }
         }
+
+        & span#info {
+          visibility: hidden;
+          opacity: 0;
+          width: 160px;
+          background-color: color.$nebula-purple;
+          color: color.$text-primary;
+          text-align: center;
+          padding: 6px 8px;
+          border-radius: 4px;
+          position: absolute;
+          bottom: 125%;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: opacity 0.3s;
+          font-size: 12px;
+          z-index: 10;
+        }
+
       }
 
       // untuk tombol theme 
@@ -123,7 +147,8 @@
         cursor: pointer;
         border: 1px solid;
         padding: 0.4rem;
-        border-radius: 16px;
+        border-radius: 8px;
+        background-color: color.$lavender;
 
         &:hover {
           background-color: color.$blue-light;

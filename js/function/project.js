@@ -9,8 +9,7 @@ export function addProjects(projectName, projectGrid) {
   projectName.forEach((v) => {
     // buat `tech` mengelilingi element
     //
-    const cleanImgUrl = getDirectDriveImg(v.img);
-    console.info("clena img : ", cleanImgUrl);
+    // const cleanImgUrl = getDirectDriveImg(v.img); // sudah migrasi ke imgBB
 
     const tmpl = `<div class="project-card">
   <div class="project-card__content">
@@ -25,7 +24,7 @@ export function addProjects(projectName, projectGrid) {
     </div>
 
     <!--  INISIALISASI  Tambahkan --scroll-rot: 0deg; dan dll -->
-    <div class="project-card__tech" data-des="${v.des}" img-path="${cleanImgUrl}" data-total="${v.tech.length}" style="--total: ${v.tech.length}; --scroll-rot: 0deg;">
+    <div class="project-card__tech" data-des="${v.des}" img-path="${v.img}" data-total="${v.tech.length}" style="--total: ${v.tech.length}; --scroll-rot: 0deg;">
       ${v.tech
         .map(
           (t, i) => `

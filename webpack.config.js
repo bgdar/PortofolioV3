@@ -8,6 +8,7 @@ module.exports = {
     contact: "./js/contact.js",
     projects: "./js/projects.js",
     tools: "./js/tools.js",
+    sertifikat: "./js/sertifikat.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -67,6 +68,12 @@ module.exports = {
       template: "./tools.html",
       filename: "tools.html",
       chunks: ["tools"],
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "./sertifikat.html",
+      filename: "sertifikat.html",
+      chunks: ["sertifikat"],
     }),
   ],
 };

@@ -3,8 +3,6 @@
 
 @import '~remixicon/fonts/remixicon.css';
 
-
-
 // function for projects__header 
 @mixin header_project($text-muted, $accent-color) {
 
@@ -183,7 +181,8 @@ body {
   margin: 0;
   padding: 0;
 
-  background: url("../assets/bg1.jpg");
+  background: url("https://i.ibb.co.com/NdpgpXCZ/bg5.webp"); // from imgbb
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

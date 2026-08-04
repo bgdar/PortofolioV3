@@ -3,6 +3,27 @@
 
 @import '~remixicon/fonts/remixicon.css';
 
+:root {
+  --color-kuning: #f7df1e;
+  --color-biru: #3178c6;
+  --color-sian: #00d8ff;
+  --color-biru-muda: #3776ab;
+  --color-oranye: #cea47e;
+  --color-kuning-tua: #f6a510;
+  --color-abu-abu: #a8b9cc;
+  --color-biru-tua: #00599c;
+  --color-hijau: #4eaa25;
+  --color-merah-muda: #cc6699;
+  --color-ungu: #7952b3;
+  --color-hitam: #f0f6fc;
+  --color-oranye-merah: #f05032;
+  --bg-card: #1e1e2e;
+  --bg-card-border: #2e2e3e;
+  --text-main: #cdd6f4;
+  --text-muted: #a6adc8;
+}
+
+
 @font-face {
   font-family: "JetBrains";
   src:
@@ -18,7 +39,7 @@ body {
   margin: 0;
 
   font-family: "JetBrains", sans-serif;
-  background: url("../assets/bg1.jpg");
+  background: url("https://i.ibb.co.com/LhPt0K42/bg8.webp"); // from imgbb
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -31,19 +52,6 @@ body {
   // bg yang belakang
   @include components.bgOverlay;
 }
-
-
-
-
-// -------- Daftar class color yang di panggil di tools.js nantik 
-.merah {}
-
-.biru {}
-
-.kuning {}
-
-
-
 
 
 
@@ -127,6 +135,12 @@ body {
   box-shadow: 0 10px 20px color.$card-shadow;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+
   .tool-icon {
     width: 48px;
     height: 48px;
@@ -138,6 +152,11 @@ body {
     font-size: 1.5rem;
     color: color.$accent-blue-soft;
     transition: all 0.3s ease;
+
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .tool-info {
@@ -203,6 +222,155 @@ body {
     }
   }
 }
+
+
+// -------- Daftar class color yang di panggil di tools.js nantik 
+/* Generic Hover Motion */
+
+/* Kuning */
+.tool-card.kuning:hover {
+  border-color: var(--color-kuning);
+  box-shadow: 0 4px 20px rgba(247, 223, 30, 0.25);
+}
+
+.tool-card.kuning .tool-icon,
+.badge.kuning {
+  color: var(--color-kuning);
+}
+
+/* Biru */
+.tool-card.biru:hover {
+  border-color: var(--color-biru);
+  box-shadow: 0 4px 20px rgba(49, 120, 198, 0.25);
+}
+
+.tool-card.biru .tool-icon,
+.badge.biru {
+  color: var(--color-biru);
+}
+
+/* Sian */
+.tool-card.sian:hover {
+  border-color: var(--color-sian);
+  box-shadow: 0 4px 20px rgba(0, 216, 255, 0.25);
+}
+
+.tool-card.sian .tool-icon,
+.badge.sian {
+  color: var(--color-sian);
+}
+
+/* Biru Muda */
+.tool-card.biru-muda:hover {
+  border-color: var(--color-biru-muda);
+  box-shadow: 0 4px 20px rgba(55, 118, 171, 0.25);
+}
+
+.tool-card.biru-muda .tool-icon,
+.badge.biru-muda {
+  color: var(--color-biru-muda);
+}
+
+/* Oranye */
+.tool-card.oranye:hover {
+  border-color: var(--color-oranye);
+  box-shadow: 0 4px 20px rgba(206, 164, 126, 0.25);
+}
+
+.tool-card.oranye .tool-icon,
+.badge.oranye {
+  color: var(--color-oranye);
+}
+
+/* Kuning Tua */
+.tool-card.kuning-tua:hover {
+  border-color: var(--color-kuning-tua);
+  box-shadow: 0 4px 20px rgba(246, 165, 16, 0.25);
+}
+
+.tool-card.kuning-tua .tool-icon,
+.badge.kuning-tua {
+  color: var(--color-kuning-tua);
+}
+
+/* Abu-Abu */
+.tool-card.abu-abu:hover {
+  border-color: var(--color-abu-abu);
+  box-shadow: 0 4px 20px rgba(168, 185, 204, 0.25);
+}
+
+.tool-card.abu-abu .tool-icon,
+.badge.abu-abu {
+  color: var(--color-abu-abu);
+}
+
+/* Biru Tua */
+.tool-card.biru-tua:hover {
+  border-color: var(--color-biru-tua);
+  box-shadow: 0 4px 20px rgba(0, 89, 156, 0.25);
+}
+
+.tool-card.biru-tua .tool-icon,
+.badge.biru-tua {
+  color: var(--color-biru-tua);
+}
+
+/* Hijau */
+.tool-card.hijau:hover {
+  border-color: var(--color-hijau);
+  box-shadow: 0 4px 20px rgba(78, 170, 37, 0.25);
+}
+
+.tool-card.hijau .tool-icon,
+.badge.hijau {
+  color: var(--color-hijau);
+}
+
+/* Merah Muda */
+.tool-card.merah-muda:hover {
+  border-color: var(--color-merah-muda);
+  box-shadow: 0 4px 20px rgba(204, 102, 153, 0.25);
+}
+
+.tool-card.merah-muda .tool-icon,
+.badge.merah-muda {
+  color: var(--color-merah-muda);
+}
+
+/* Ungu */
+.tool-card.ungu:hover {
+  border-color: var(--color-ungu);
+  box-shadow: 0 4px 20px rgba(121, 82, 179, 0.25);
+}
+
+.tool-card.ungu .tool-icon,
+.badge.ungu {
+  color: var(--color-ungu);
+}
+
+/* Hitam / Dark-mode glow */
+.tool-card.hitam:hover {
+  border-color: var(--color-hitam);
+  box-shadow: 0 4px 20px rgba(240, 246, 252, 0.2);
+}
+
+.tool-card.hitam .tool-icon,
+.badge.hitam {
+  color: var(--color-hitam);
+}
+
+/* Oranye Merah (Git) */
+.tool-card.oranye-merah:hover {
+  border-color: var(--color-oranye-merah);
+  box-shadow: 0 4px 20px rgba(240, 80, 50, 0.25);
+}
+
+.tool-card.oranye-merah .tool-icon,
+.badge.oranye-merah {
+  color: var(--color-oranye-merah);
+}
+
+
 
 @media (max-width: 640px) {
   .skills-header {

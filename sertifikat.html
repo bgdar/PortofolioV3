@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri Sertifikat</title>
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- LEFT SIDE: Main List & Categories -->
+      <main class="main-content">
+        <header class="content-header">
+          <h1>Sertifikat & Lisensi</h1>
+          <p>
+            Pilih sertifikat untuk melihat detail spesifik dan kredensial
+            lengkap.
+          </p>
+        </header>
+
+        <!-- Kategori / Container Horizontal Sertifikat -->
+        <section class="certificates-wrapper">
+          <!-- baris 1 -->
+          <div class="category-group">
+            <h2 class="category-title">
+              <i class="ri-code-s-slash-line"></i> Web Development
+            </h2>
+            <div class="certificate-track">
+              <div class="cert-card active" data-id="1">
+                <div class="cert-card__badge">2026</div>
+                <h3 class="cert-card__title">Full-Stack Web Developer</h3>
+                <p class="cert-card__issuer">Dicoding Academy</p>
+              </div>
+
+              <div class="cert-card" data-id="2">
+                <div class="cert-card__badge">2025</div>
+                <h3 class="cert-card__title">React Native Specialist</h3>
+                <p class="cert-card__issuer">Coursera</p>
+              </div>
+
+              <div class="cert-card" data-id="3">
+                <div class="cert-card__badge">2025</div>
+                <h3 class="cert-card__title">UI/UX Design Masterclass</h3>
+                <p class="cert-card__issuer">Udemy</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ini jadi baris 2  -->
+          <!-- <div class="category-group">
+            <h2 class="category-title">
+              <i class="ri-code-s-slash-line"></i> Web Development
+            </h2>
+            <div class="certificate-track">
+              <div class="cert-card active" data-id="1">
+                <div class="cert-card__badge">2026</div>
+                <h3 class="cert-card__title">Full-Stack Web Developer</h3>
+                <p class="cert-card__issuer">Dicoding Academy</p>
+              </div>
+
+              <div class="cert-card" data-id="2">
+                <div class="cert-card__badge">2025</div>
+                <h3 class="cert-card__title">React Native Specialist</h3>
+                <p class="cert-card__issuer">Coursera</p>
+              </div>
+
+              <div class="cert-card" data-id="3">
+                <div class="cert-card__badge">2025</div>
+                <h3 class="cert-card__title">UI/UX Design Masterclass</h3>
+                <p class="cert-card__issuer">Udemy</p>
+              </div>
+            </div>
+          </div> -->
+        </section>
+      </main>
+
+      <!-- ini adalah gelombang di sebelah kiri  -->
+      <div class="wave-container">
+        <svg
+          xmlns="http://w3.org"
+          viewBox="0 0 1000 800"
+          preserveAspectRatio="none"
+        >
+          <!-- Lapisan 1: Gelombang Belakang (Abu-abu Gelap Transparan) -->
+          <path
+            class="wave-back"
+            d="M 0 800 
+             C 100 600, 300 650, 500 550 
+             C 700 450, 750 250, 850 150 
+             C 900 80, 950 50, 1000 50 
+             L 1000 800 Z"
+            fill="#334155"
+            opacity="0.3"
+          />
+
+          <!-- Lapisan 2: Gelombang Depan (Sedikit Menumpuk Berbeda Aliran) -->
+          <path
+            class="wave-front"
+            d="M 0 800 
+             C 150 650, 250 550, 450 580 
+             C 650 600, 800 350, 820 200 
+             C 830 100, 920 30, 1000 0 
+             L 1000 800 Z"
+            fill="#475569"
+            opacity="0.25"
+          />
+        </svg>
+      </div>
+      <!-- RIGHT SIDE: Sidebar Detail Sertifikat -->
+      <aside class="detail-sidebar" id="detailSidebar">
+        <button class="close-btn" id="closeSidebarBtn">
+          <i class="ri-close-line"></i>
+        </button>
+
+        <div class="detail-content">
+          <div class="detail-preview">
+            <img
+              id="detailImg"
+              src="https://via.placeholder.com/600x400/1f1f1f/ffffff?text=Preview+Sertifikat"
+              alt="Preview Sertifikat"
+            />
+          </div>
+
+          <div class="detail-info">
+            <span class="detail-tag" id="detailCategory">Web Development</span>
+            <h2 class="detail-title" id="detailTitle">
+              Full-Stack Web Developer
+            </h2>
+
+            <div class="detail-meta">
+              <div>
+                <span class="label">Penerbit:</span>
+                <p id="detailIssuer">Dicoding Academy</p>
+              </div>
+              <div>
+                <span class="label">Tanggal Terbit:</span>
+                <p id="detailDate">15 Januari 2026</p>
+              </div>
+              <div>
+                <span class="label">ID Kredensial:</span>
+                <p id="detailCredential">CRED-88992026-X</p>
+              </div>
+            </div>
+
+            <div class="detail-description">
+              <span class="label">Spesifikasi & Skill Terkait:</span>
+              <p id="detailDesc">
+                Sertifikasi ini membuktikan penguasaan dalam pembuatan aplikasi
+                web modern berskala besar menggunakan Node.js, React, Sass, dan
+                arsitektur Microservices.
+              </p>
+            </div>
+
+            <div class="detail-actions">
+              <a
+                href="#"
+                class="btn btn-primary"
+                id="detailVerifyLink"
+                target="_blank"
+              >
+                <i class="ri-checkbox-circle-line"></i> Verifikasi Kredensial
+              </a>
+              <a
+                href="#"
+                class="btn btn-secondary"
+                id="detailDownloadLink"
+                download
+              >
+                <i class="ri-download-2-line"></i> Unduh PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="index.html" aria-label="Dashboard">
+            <i class="ri-home-line"></i>
+          </a>
+        </li>
+        <li>
+          <a href="tools.html" aria-label="Project">
+            <i class="ri-tools-fill"></i>
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" aria-label="Project">
+            <i class="ri-folder-open-line"></i>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" aria-label="Contact">
+            <i class="ri-mail-line"></i>
+          </a>
+        </li>
+
+        
+      </ul>
+    </nav>
+
+    <!-- otomatis di js  -->
+    <!-- <script src="sertifikat.js"></script> -->
+  </body>
+</html>
