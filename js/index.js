@@ -2,7 +2,7 @@ import "../scss/index.scss";
 
 import { chageBg } from "./core/components.js";
 import { KarirData, daftarBulan, daftarHari } from "./data/index.js";
-import { waveDraw, cv, addTimeKarir } from "./function/index.js";
+import { waveDraw, cv, addTimeKarir, footer } from "./function/index.js";
 
 import imgDar from "../assets/fr-dar.jpg"; // local , foto i'm lebih enak jika di deploy di satu tempat aja
 
@@ -20,7 +20,6 @@ let heigthDefault = 0;
 // let windowsWidth = 0;
 
 // const isDesktop = windowsWidth >= 768;
-// const ISDESKTOP = window.matchMedia("(min-width: 1000px)").matches;
 let IsDesktop = window.matchMedia("(min-width: 1000px)").matches;
 
 // left canvas
@@ -49,10 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navbar = document.querySelector("nav");
   const navThemeBtn = navbar.querySelector("li button");
-
-  const footer = document.querySelector("footer");
-  const footerContainer = footer.querySelector("div.footer-container");
-  const footerButtom = footer.querySelector("div.footer-bottom");
 
   // img di sebelah kanan
   imgStaticRight.src = imgDar;
@@ -188,15 +183,18 @@ document.addEventListener("DOMContentLoaded", () => {
     chageBg();
   });
 
-  // FOOTER SECTION
-  const timeNow = new Date();
-
-  const year = timeNow.getFullYear();
-  const day = timeNow.getDay();
-  const month = timeNow.getMonth();
-  const hour = timeNow.getHours();
-  const date = timeNow.getDate();
-
-  footerButtom.querySelector("span").textContent =
-    `Bgdar ${daftarHari[day]}, ${date} ${daftarBulan[month]} ${year} - Jam ${hour} `;
+  // FOOTER section
+  if (IsDesktop) {
+    const lastFooter = sectionLeft.querySelector("footer");
+    if (lastFooter) {
+      lastFooter.remove();
+    }
+    sectionRight.appendChild(footer());
+  } else {
+    const lastFooter = sectionRight.querySelector("footer");
+    if (lastFooter) {
+      lastFooter.remove();
+    }
+    sectionLeft.appendChild(footer());
+  }
 });

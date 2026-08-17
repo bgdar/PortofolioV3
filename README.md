@@ -32,6 +32,8 @@
   </a>
 </p>
 
+> mobile first : sesuatu yang tersembunyi akan kelihatan jika memang di cari
+
 ### teknik
 
 ##### cara menampilkan gambar dari link url share di google drive

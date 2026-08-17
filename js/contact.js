@@ -1,6 +1,6 @@
 import "../scss/contact.scss";
 
-import { generateSubContact } from "./function/contact";
+import { generateSubContact, handlePieaceAction } from "./function/contact";
 import { dataContact } from "./data/contact";
 document.addEventListener("DOMContentLoaded", async function () {
   // gak perlu di contack
@@ -14,4 +14,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   for (const v of dataContact) {
     await generateSubContact(puzzleCnt, v);
   }
+
+  // sesudah di inisialisasi
+  const pieces = document.querySelectorAll(".piece");
+  handlePieaceAction(pieces);
 });

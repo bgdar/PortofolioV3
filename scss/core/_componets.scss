@@ -52,8 +52,6 @@
     @else if $display =="absolute" {
       position: absolute;
       width: 100%;
-
-
     }
 
     ;
@@ -156,6 +154,212 @@
         }
       }
 
+    }
+  }
+}
+
+
+
+@mixin footer() {
+
+  footer {
+    width: 100%;
+    background-color: color.$deep-purple;
+    position: relative;
+    padding-top: 100px; // Memberi ruang bagi SVG melengkung di atasnya
+    box-shadow: 0 -15px 35px color.$card-shadow;
+
+    // Desain Komponen Garis Melengkung (Wave Divider)
+    .footer-wave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg); // Membalikkan kurva agar menghadap ke bawah
+
+      svg {
+        position: relative;
+        display: block;
+        width: calc(1200px + 100%);
+        height: 70px;
+      }
+
+      .shape-fill {
+        fill: color.$black-space; // Warna lengkungan mengikuti background di atas footer
+      }
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr; // Sisi kiri menu lebih lebar, sisi kanan form langganan
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: repeat(3,
+          1fr); // Membagi rata menjadi 3 kolom sejajar
+      gap: 2rem;
+
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        h5 {
+          color: color.$text-primary;
+          font-size: 1rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          letter-spacing: 0.5px;
+        }
+
+        a {
+          color: color.$lavender;
+          font-size: 0.9rem;
+          text-decoration: none;
+          transition:
+            color 0.25s ease,
+            transform 0.25s ease;
+          display: inline-block;
+          width: fit-content;
+
+          &:hover {
+            color: color.$accent-blue-soft;
+            transform: translateX(4px); // Efek geser kanan tipis saat di-hover
+          }
+        }
+      }
+    }
+
+    //Panel Aksi Kanan (Newsletter & Sosial Media)
+    // .footer-action-panel {
+    //   display: flex;
+    //   flex-direction: column;
+    //   gap: 2rem;
+    //   align-items: flex-end; // Menggeser konten ke sudut kanan sesuai contoh gambar
+
+    //   .newsletter-box {
+    //     width: 100%;
+    //     max-width: 420px;
+
+    //     label {
+    //       display: block;
+    //       color: color.$text-primary;
+    //       font-size: 0.9rem;
+    //       margin-bottom: 0.8rem;
+    //       text-align: right;
+    //       font-weight: 500;
+    //     }
+
+    //     // Input Group Sejajar
+    //     .input-group {
+    //       display: flex;
+    //       background-color: color.$black-space;
+    //       border: 1px solid color.$nebula-purple;
+    //       border-radius: 50px; // Membuat ujungnya membulat elips (pill shape)
+    //       padding: 4px;
+    //       transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    //       &:focus-within {
+    //         border-color: color.$accent-blue;
+    //         box-shadow: 0 0 10px color.$hover-glow;
+    //       }
+
+    //       input {
+    //         flex: 1;
+    //         background: transparent;
+    //         border: none;
+    //         outline: none;
+    //         padding: 0.6rem 1.2rem;
+    //         color: color.$text-primary;
+    //         font-size: 0.9rem;
+
+    //         &::placeholder {
+    //           color: color.$blue-light;
+    //         }
+    //       }
+
+    //       button {
+    //         background-color: #f1c40f; // Warna kuning amber hangat kontras profesional
+    //         color: #0a0a0a;
+    //         border: none;
+    //         outline: none;
+    //         padding: 0.6rem 1.5rem;
+    //         border-radius: 50px;
+    //         font-size: 0.9rem;
+    //         font-weight: 600;
+    //         cursor: pointer;
+    //         transition: background-color 0.25s ease, transform 0.25s ease;
+
+    //         &:hover {
+    //           background-color: #f39c12;
+    //           transform: scale(1.02);
+    //         }
+    //       }
+    //     }
+    //   }
+
+    //   // Penataan Ikon Media Sosial Remixicon
+    //   .social-icons {
+    //     display: flex;
+    //     gap: 1.2rem;
+
+    //     a {
+    //       color: color.$text-primary;
+    //       font-size: 1.4rem; // Memperbesar ukuran ikon agar terbaca jelas
+    //       text-decoration: none;
+    //       transition: color 0.25s ease, transform 0.25s ease;
+
+    //       &:hover {
+    //         color: color.$accent-blue-soft;
+    //         transform: translateY(-3px);
+    //       }
+    //     }
+    //   }
+    // }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      border-top: 1px solid color.$nebula-purple;
+      display: flex;
+      justify-content: flex-start;
+
+      p {
+        color: color.$blue-light;
+        font-size: 0.8rem;
+        margin: 0;
+      }
+    }
+
+    @media screen and (max-width: 868px) {
+      .footer-container {
+        grid-template-columns: 1fr; // Menumpuk kiri dan kanan menjadi 1 kolom tunggal
+        gap: 2.5rem;
+      }
+
+      .footer-action-panel {
+        align-items: flex-start; // Di HP, posisi form rata kiri agar natural
+
+        .newsletter-box label {
+          text-align: left;
+        }
+      }
+    }
+
+    @media screen and (max-width: 540px) {
+      .footer-links-grid {
+        grid-template-columns: repeat(2,
+            1fr); // Menjadi 2 kolom di layar sangat kecil
+      }
     }
   }
 }

@@ -130,8 +130,8 @@ export const projectGame = [
 
   {
     name: "moster plant ",
-    repo: "https://i.ibb.co.com/MyhzsgYw/monster-plant-webp-projeck.webp",
-    img: "https://ibb.co.com/KcGtX5M4",
+    repo: "https://github.com/bgdar/monster-plant",
+    img: "https://i.ibb.co.com/MyhzsgYw/monster-plant-webp-projeck.webp",
     tech: ["Godot"],
     tech_icon: ["ri-brush-line"],
     lang: "godot",
@@ -152,7 +152,7 @@ export const projectGame = [
     repo: "https://bitbucket.org/bgdar/text-base-rpg-game/src/main/",
     img: "https://i.ibb.co.com/r2xnY34H/text-base-rpg-game-webp-projeck.webp",
     tech: ["Golang"],
-    tech_icon: ["ri-instance-line"], // Ikon terminal/shell
+    tech_icon: ["ri-instance-line"], // /shell
     lang: "golang",
     des: "Sebuah game petualangan berbasis teks di mana pengguna bisa memilih aksi melalui CLI. Fitur yang bisa ditambahkan: Karakter pemain dengan atribut (health, attack, defense). Pertarungan melawan musuh. Sistem level dan pengalaman.",
   },
@@ -207,7 +207,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/m-shell",
     img: "",
     tech: ["rust"],
-    tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
+    tech_icon: ["ri-terminal-box-line"], 
     lang: "rust",
     des: "shell app like bash or zsh",
   },
@@ -216,7 +216,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/astfetch",
     img: "https://i.ibb.co.com/ksh6gy6x/astfetch-png-projeck.png",
     tech: ["golang"],
-    tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
+    tech_icon: ["ri-terminal-box-line"], 
     lang: "golang",
     des: "tools information system dengan golang murni",
   },
@@ -225,7 +225,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/cli-tools",
     img: "https://u514893.imgbb.com/",
     tech: ["golang"],
-    tech_icon: ["ri-terminal-box-line"], // Ikon terminal/shell
+    tech_icon: ["ri-terminal-box-line"],
     lang: "golang",
     des: "tools information system dengan golang murni",
   },
@@ -234,7 +234,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/Otomatisasi-Backup-",
     img: "",
     tech: ["shell", "zig", "python"],
-    tech_icon: ["ri-terminal-box-line", ""], // Ikon terminal/shell
+    tech_icon: ["ri-terminal-box-line", ""], 
     lang: "golang",
     des: "tools yang menjadwalkan bakup data sederhana ",
   },
@@ -255,17 +255,17 @@ export const projectBot = [
     repo: "",
     img: "",
     tech: ["zig"],
-    tech_icon: ["ri-flashlight-line"], // Ikon terminal/shell
+    tech_icon: ["ri-flashlight-line"], // /shell
     lang: "zig",
     des: "dengan zig pada versi 0.14 , sebuah tools yang merapikan file file ke folder dengan extensi masing masing",
   },
 
   {
     name: "rant",
-    repo: "https://github.com", // Ganti dengan URL repo telegram Anda jika ada
+    repo: "https://github.com", 
     img: "",
     tech: ["python-telegram-bot"],
-    tech_icon: ["ri-telegram-2-line"], // Ikon resmi Telegram
+    tech_icon: ["ri-telegram-2-line"], 
     lang: "python",
     des: "Bot telegram untuk deteksi kata kata kasar",
   },
@@ -274,19 +274,20 @@ export const projectBot = [
 export const ProjectEngine = [
   {
     name: "Http server",
-    repo: "https://github.com/bgdar/Http-server", // Ganti dengan URL repo telegram Anda jika ada
+    repo: "https://github.com/bgdar/Http-server", 
     img: "",
     tech: ["zig"],
-    tech_icon: ["ri-global-line"], // Ikon resmi Telegram
+    tech_icon: ["ri-global-line"], 
     lang: "zig",
     des: "Engine untuk Http ",
   },
+
   {
     name: "Qrcode",
-    repo: "https://github.com/bgdar/web-QrCode/tree/master/qrcode", // Ganti dengan URL repo telegram Anda jika ada
+    repo: "https://i.ibb.co.com/bM7SmBCx/qrcode-projeck.png", 
     img: "",
-    tech: ["rust"],
-    tech_icon: ["ri-settings-5-line"], // Ikon resmi Telegram
+    tech: ["rust","java"],
+    tech_icon: ["ri-settings-5-line"], 
     lang: "rust",
     des: "Qrcode generator ",
   },

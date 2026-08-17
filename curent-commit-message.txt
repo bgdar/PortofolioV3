@@ -1,7 +1,6 @@
 
 
-add ( commit 7 )
--  tambhana beberapa bg walpeper ( sepertinya lebih baik di local web karena langsung di loads)
-- add new page sertifikat tahap 1 ( data stil template ) 
-- delete img and cv from local to cloud ( img pindah ke plafrom  ImgBB)
+add ( commit 8 )
+- update : update sertifikat  , pemisahan handler, menggunakan data yang memisahakan antar kategory
+- update footer menjadi lebih dinamis , perlu untuk di pindahkan ke section kiri ( Desktop) kanan (Mobile)
 

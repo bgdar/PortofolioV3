@@ -23,7 +23,6 @@ async function getGitHubProfile(ctn, dataCur) {
     avatarImg.id = "gh-avatar";
     avatarImg.alt = "Avatar";
 
-    // Buat elemen kontainer informasi (div.gh-info)
     const ghInfoDiv = document.createElement("div");
     ghInfoDiv.className = "gh-info";
 
@@ -46,7 +45,6 @@ async function getGitHubProfile(ctn, dataCur) {
     iconLink.className = "ri-arrow-right-up-line";
     ghLink.appendChild(iconLink);
 
-    // 5. Masukkan data hasil fetch API ke dalam tag secara dinamis
     if (response.ok) {
       avatarImg.src = data.avatar_url;
       ghName.textContent = data.name || data.login;
@@ -136,7 +134,8 @@ export async function generateSubContact(cnt, data) {
     }
   } else {
     const manual = `
-   <div class="piece ${data.clClass}">
+   <div class="piece ${data.clClass}" data-link=${data.link} >
+   ${data.some_tag ? data.some_tag : ""}
       <h3><i class="ri-mail-send-line"></i>${data.judul}</h3>
       <p>${data.des}</p>
     </div>
@@ -147,4 +146,29 @@ export async function generateSubContact(cnt, data) {
     // Menambahkan elemen baru ke paling bawah kontainer tanpa menghapus isi lama
     cnt.insertAdjacentHTML("beforeend", manual);
   }
+}
+
+function openLinkAction(link) {
+  fetch(link, {
+    method: "GET",
+    mode: "no-cors",
+  })
+    .then(() => {
+      window.location.href = link;
+    })
+    .catch((err) => {
+      console.error("eror open windows : ", err);
+    });
+}
+
+export function handlePieaceAction(pieces) {
+  pieces.forEach((v) => {
+    const dataLink = v.getAttribute("data-link");
+
+    if (!dataLink) return;
+
+    v.addEventListener("click", () => {
+      openLinkAction(dataLink);
+    });
+  });
 }

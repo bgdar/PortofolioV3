@@ -4,74 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Galeri Sertifikat</title>
-
-    <!-- <link rel="stylesheet" href="style.css"> -->
   </head>
   <body>
     <div class="app-container">
-      <!-- LEFT SIDE: Main List & Categories -->
+      <!-- left side: main list & categories -->
       <main class="main-content">
         <header class="content-header">
           <h1>Sertifikat & Lisensi</h1>
-          <p>
-            Pilih sertifikat untuk melihat detail spesifik dan kredensial
-            lengkap.
-          </p>
+          <p>Pilih untuk melihat detail spesifik lengkap.</p>
         </header>
 
         <!-- Kategori / Container Horizontal Sertifikat -->
         <section class="certificates-wrapper">
           <!-- baris 1 -->
-          <div class="category-group">
+          <div class="category-group dicoding-group">
             <h2 class="category-title">
-              <i class="ri-code-s-slash-line"></i> Web Development
+              <i class="ri-code-s-slash-line"></i> Dicoding
             </h2>
             <div class="certificate-track">
-              <div class="cert-card active" data-id="1">
-                <div class="cert-card__badge">2026</div>
-                <h3 class="cert-card__title">Full-Stack Web Developer</h3>
-                <p class="cert-card__issuer">Dicoding Academy</p>
-              </div>
-
-              <div class="cert-card" data-id="2">
-                <div class="cert-card__badge">2025</div>
-                <h3 class="cert-card__title">React Native Specialist</h3>
-                <p class="cert-card__issuer">Coursera</p>
-              </div>
-
-              <div class="cert-card" data-id="3">
-                <div class="cert-card__badge">2025</div>
-                <h3 class="cert-card__title">UI/UX Design Masterclass</h3>
-                <p class="cert-card__issuer">Udemy</p>
-              </div>
+              <!-- di javascript isinya seperti ini  -->
+              <!-- <div class="cert-card active" data-id="1"> -->
+              <!--   <div class="cert-card__badge">2026</div> -->
+              <!--   <h3 class="cert-card__title">Full-Stack Web Developer</h3> -->
+              <!--   <p class="cert-card__issuer">Dicoding Academy</p> -->
+              <!-- </div> -->
             </div>
           </div>
 
-          <!-- ini jadi baris 2  -->
-          <!-- <div class="category-group">
+          <div class="category-group hackerrank-group">
             <h2 class="category-title">
-              <i class="ri-code-s-slash-line"></i> Web Development
+              <i class="ri-code-s-slash-line"></i> HackerRank
             </h2>
             <div class="certificate-track">
-              <div class="cert-card active" data-id="1">
-                <div class="cert-card__badge">2026</div>
-                <h3 class="cert-card__title">Full-Stack Web Developer</h3>
-                <p class="cert-card__issuer">Dicoding Academy</p>
-              </div>
-
-              <div class="cert-card" data-id="2">
-                <div class="cert-card__badge">2025</div>
-                <h3 class="cert-card__title">React Native Specialist</h3>
-                <p class="cert-card__issuer">Coursera</p>
-              </div>
-
-              <div class="cert-card" data-id="3">
-                <div class="cert-card__badge">2025</div>
-                <h3 class="cert-card__title">UI/UX Design Masterclass</h3>
-                <p class="cert-card__issuer">Udemy</p>
-              </div>
+              <!-- isi di javascript -->
             </div>
-          </div> -->
+          </div>
+
+          <div class="category-group hacktiv8-group">
+            <h2 class="category-title">
+              <i class="ri-code-s-slash-line"></i> Hacktiv8
+            </h2>
+            <div class="certificate-track">
+              <!-- isi di javascript -->
+            </div>
+          </div>
         </section>
       </main>
 
@@ -82,7 +58,8 @@
           viewBox="0 0 1000 800"
           preserveAspectRatio="none"
         >
-          <!-- Lapisan 1: Gelombang Belakang (Abu-abu Gelap Transparan) -->
+          <!-- Lapisan 1: Gelombang Belakang (Abu-abu Gelap Transparan)
+      -->
           <path
             class="wave-back"
             d="M 0 800 
@@ -107,19 +84,16 @@
           />
         </svg>
       </div>
-      <!-- RIGHT SIDE: Sidebar Detail Sertifikat -->
+
+      <!-- right side: sidebar detail sertifikat -->
       <aside class="detail-sidebar" id="detailSidebar">
         <button class="close-btn" id="closeSidebarBtn">
           <i class="ri-close-line"></i>
         </button>
 
         <div class="detail-content">
-          <div class="detail-preview">
-            <img
-              id="detailImg"
-              src="https://via.placeholder.com/600x400/1f1f1f/ffffff?text=Preview+Sertifikat"
-              alt="Preview Sertifikat"
-            />
+          <div class="detail-preview" id="detailPreview">
+            <!-- isi di javascritp , anatara eframe atau icon , atau gambar -->
           </div>
 
           <div class="detail-info">
@@ -197,8 +171,6 @@
             <i class="ri-mail-line"></i>
           </a>
         </li>
-
-        
       </ul>
     </nav>
 
