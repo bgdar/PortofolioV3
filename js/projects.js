@@ -4,9 +4,10 @@ import {
   addProject,
   addProjects,
   cardProjectFavorit,
+  cntTechRotate,
+  mainCntPerspektive3D,
 } from "./function/project.js";
 import {
-  projectFavorit,
   projectBot,
   projectGui,
   projectGame,
@@ -18,27 +19,21 @@ import {
 
 // global Variable
 const speedRotation = 5;
+let isMainCntScroll = false; // menandakan jika masih dalam kondisi scroll di <main>
+let touchStartYDp = 0;
+// const isDesktop = windowsWidth >= 768;
+let IsDesktop = window.matchMedia("(min-width: 1000px)").matches;
 
 // Catatan: Jika scroll dipasang di tingkat halaman, gunakan window bukan document.body
 window.addEventListener("scroll", () => {
   const techContainers = document.querySelectorAll(".project-card__tech");
 
-  techContainers.forEach((container) => {
-    // Menghitung derajat putaran kontinu berdasarkan jarak scroll (makin besar scroll, makin berputar)
-    // Dibagi 2 artinya setiap 1px scroll akan memutar elemen sebesar 0.5 derajat.
-    const rotationDegree = window.scrollY / speedRotation;
-
-    // Cukup update nilai rotasi global di tingkat kontainernya saja
-    container.style.setProperty("--scroll-rot", `${rotationDegree}deg`);
-  });
+  cntTechRotate(techContainers, window.scrollY, speedRotation);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.querySelector("main");
   const overlay = document.querySelector("div.overlayBgPopup");
-
-  // favorite project
-  const gridFavorite = document.querySelector("div#project-favorite");
 
   const web = main.querySelector("#web");
   const bots = main.querySelector("#bot");
@@ -57,14 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector("nav");
   const navThemeBtn = navbar.querySelector("li#theme button");
 
-  addProject(projectFavorit, gridFavorite);
-
   addProjects(projectGame, gridGame);
   addProjects(projectWebs, gridWeb);
   addProjects(projectBot, gridBot);
   addProjects(projectTerminal, gridTerminal);
   addProjects(ProjectEngine, gridEngine);
   addProjects(projectGui, gridGui);
+
+  // element dengan harapa sudah di tambah
+  const techContainers = document.querySelectorAll(".project-card__tech");
+  const subElmCardDes = main.querySelectorAll(".project-card__des");
+  const subElmCard = main.querySelectorAll(".project-card");
 
   navThemeBtn.addEventListener("click", () => {
     chageBg();
@@ -78,14 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const description = detailProject.querySelector("p#description");
   const closeBtn = detailProject.querySelector("button.close");
 
-  console.info("detailt project : ", detailProject);
-
   const cardprojects = main.querySelectorAll("div.project-card");
-
-  // terkhsusu projeck favorit
-  const projeckfavoritCnt = document.querySelector("div.project-favorite-cnt");
-  const projeckfavoritCard = projeckfavoritCnt.querySelector("div.card");
-  cardProjectFavorit(projeckfavoritCard, projectFavorit);
 
   // Event untuk membuka card (Looping hanya untuk trigger buka)
   cardprojects.forEach((card) => {
@@ -119,4 +110,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeBtn.addEventListener("click", closeCard);
   overlay.addEventListener("click", closeCard); // K
+
+  // evek overlay pada main
+  // untuk sekarang khusus Desktop , karena HP ada poblem scroll dan banyak makan performance
+  main.addEventListener("scroll", () => {
+    isMainCntScroll = main.scrollTop >= 10;
+
+    if (!isMainCntScroll) {
+      // matiin samapi keluar ke atas kembali
+      document.body.style.overflow = "hidden";
+    }
+
+    console.info("kondisimain : ", isMainCntScroll);
+    if (IsDesktop) {
+      cntTechRotate(techContainers, main.scrollTop, speedRotation);
+
+      mainCntPerspektive3D(main, subElmCard, subElmCardDes);
+    }
+  });
+});
+
+// Solusi agar bisa keluar ke atas kembali: deteksi scroll ke atas
+window.addEventListener("wheel", (e) => {
+  // Jika sedang terkunci dan pengguna scroll ke atas (deltaY negatif)
+  if (document.body.style.overflow === "hidden" && e.deltaY < 0) {
+    if (!isMainCntScroll) {
+      document.body.style.overflow = "auto";
+    }
+  }
+});
+
+// Solusi untuk pengguna HP (Touchscreen)
+window.addEventListener("touchstart", (e) => {
+  touchStartYDp = e.touches[0].clientY;
+});
+
+window.addEventListener("touchmove", (e) => {
+  let touchMoveYDp = e.touches[0].clientY;
+  // Jika swipe ke bawah (artinya mau scroll ke atas)
+  if (
+    document.body.style.overflow === "hidden" &&
+    touchMoveYDp > touchStartYDp
+  ) {
+    if (!isMainCntScroll) {
+      document.body.style.overflow = "auto";
+    }
+  }
 });

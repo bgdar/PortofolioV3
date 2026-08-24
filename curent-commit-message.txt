@@ -1,6 +1,6 @@
 
 
-add ( commit 8 )
-- update : update sertifikat  , pemisahan handler, menggunakan data yang memisahakan antar kategory
-- update footer menjadi lebih dinamis , perlu untuk di pindahkan ke section kiri ( Desktop) kanan (Mobile)
-
+add ( commit 9 ) update desain ( projek ) and test for mobile #1
+- mengembalikan desian best projek ke daftar projek projek lain saja 
+- replace: CV si pindahkan ke contack ja
+- update : pada section#left memberikan height manual sebesar 150vh untuk ukuran di bahwa 500px , agar nav bisa terlihat 

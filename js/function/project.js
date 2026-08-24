@@ -23,7 +23,7 @@ export function addProjects(projectName, projectGrid) {
       </div>
     </div>
 
-    <!--  INISIALISASI  Tambahkan --scroll-rot: 0deg; dan dll -->
+    <!--  inisialisasi  tambahkan --scroll-rot: 0deg; dan dll -->
     <div class="project-card__tech" data-des="${v.des}" img-path="${v.img}" data-total="${v.tech.length}" style="--total: ${v.tech.length}; --scroll-rot: 0deg;">
       ${v.tech
         .map(
@@ -148,3 +148,61 @@ export const cardProjectFavorit = (projeckfavoritCard, favoriteProject) => {
     image.src = getDirectDriveImg(favoriteProject.img);
   }
 };
+
+/*
+ * scrollVertical : nilai scroll pada sumbu y , bisa dari scrollTop || scrollY
+ */
+export function cntTechRotate(techContainers, scrollVertical, speedRotation) {
+  techContainers.forEach((cnt) => {
+    const rotationDegree = scrollVertical / speedRotation;
+    // Cukup update nilai rotasi global di tingkat kontainernya saja
+    cnt.style.setProperty("--scroll-rot", `${rotationDegree}deg`);
+  });
+}
+
+export function mainCntPerspektive3D(main, subElmCard, subElmCardDes) {
+  // Hitung scroll maksimal dengan benar
+  const maxScroll = main.scrollHeight - main.clientHeight;
+  if (maxScroll <= 0) return;
+
+  const currentScroll = main.scrollTop; // Gunakan scrollTop, bukan scrollY
+  const scrollRatio = Math.min(currentScroll / maxScroll, 1);
+
+  const maxRotateX = 20;
+  const minScale = 0.88;
+
+  const currentRotate = scrollRatio * maxRotateX;
+  const currentScale = 1 - scrollRatio * (1 - minScale);
+  main.style.transform = ` perspective(1000px) rotateX(${currentRotate}deg) scale(${currentScale})`;
+
+  // set shadows
+  if (subElmCardDes || subElmCard) {
+    subElmCard.forEach((v) => elementShadowPerpestive3D(v, scrollRatio, 7));
+    subElmCardDes.forEach((v) => {
+      elementShadowPerpestive3D(v, scrollRatio, 4);
+    });
+  }
+}
+
+/*
+ * maxSteps : jumlah bayangan yang di hasilkan
+ */
+export function elementShadowPerpestive3D(element, scrollRatio, maxSteps) {
+  let shadows = [];
+
+  for (let i = 1; i <= maxSteps; i++) {
+    // let currentX = (i * scrollRatio).toFixed(2);
+    let currentY = (i * scrollRatio).toFixed(2);
+    // shadows.push(`${currentX}px ${currentY}px 0px #cfcfcf`);
+    shadows.push(`0px ${currentY}px 0px #cfcfcf`);
+  }
+
+  // Lapisan terakhir Soft shadow hitam (6px 6px 10px) yang ikut membesar dinamis
+  let softX = (6 * scrollRatio).toFixed(2);
+  let softY = (6 * scrollRatio).toFixed(2);
+  let blur = (10 * scrollRatio).toFixed(2);
+  shadows.push(`${softX}px ${softY}px ${blur}px rgba(0, 0, 0, 0.4)`);
+
+  // Gabungkan semua array menjadi satu string CSS box-shadow
+  element.style.boxShadow = shadows.join(", ");
+}

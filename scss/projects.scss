@@ -47,6 +47,8 @@
     background: rgba($card-bg, 0.6); // Memberi dasar warna gelap agar teks terbaca
     overflow: hidden;
 
+    /*Hilangkan border biasa, ganti dengan border 3D menggunakan box-shadow */
+
     &:hover {
       transform: translateY(-8px);
       border-color: $accent-color;
@@ -75,18 +77,22 @@
       margin-bottom: 1.5rem;
       text-align: center;
       letter-spacing: 0.5px;
+
+
+      /* Transisi pegas (bouncy) */
+
     }
 
     &__des {
       font-size: 0.85rem; // Sedikit diperkecil agar muat teks deskripsi
-      color: #e0e0e0;
+      color: color.$text-primary;
       line-height: 1.4;
       width: 160px;
       height: 160px;
       border-radius: 50%;
       cursor: pointer;
+      border: 1px solid rgba($border-color, 0.3); // Dibuat agak transparan agar elegan
       background: rgba(0, 0, 0, 0.4);
-      border: 1px dashed rgba($accent-color, 0.4);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -95,20 +101,26 @@
       padding: 15px;
       box-sizing: border-box;
       z-index: 2;
-      transition: all 0.3s ease;
+
+      /* Final soft shadow for realism */
+
 
       &:hover {
         border-color: #fff;
         border-style: solid;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
       }
+
+
     }
 
     &__actions {
       z-index: 3;
       margin-top: 1rem;
       display: flex;
-      gap: 12px; // Ruang untuk 2 tombol (GitHub & Live Link)
+      gap: 12px;
+      /* Memastikan elemen anak bisa menonjol keluar dari bidang 3D */
+      transform-style: preserve-3d;
 
       .btn-repo,
       .btn-live {
@@ -117,20 +129,93 @@
         justify-content: center;
         width: 42px;
         height: 42px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba($border-color, 0.5);
+        background: rgba(255, 255, 255, 0.1);
+        /* Sedikit lebih tebal agar terlihat */
+        color: color.$accent-white;
         border-radius: 50%;
-        color: #fff;
-        transition: all 0.25s ease;
+
+        /*Hilangkan border biasa, ganti dengan border 3D menggunakan box-shadow */
+        border: none;
+
+        /* Bayangan berlapis: cincin putih halus + ketebalan tombol (3px) + bayangan jatuh di lantai */
+        box-shadow:
+          0 0 0 1px color.$violet-soft,
+          /* Cincin luar tipis */
+          0 3px 0 0 color.$blue-light,
+          /* Ketebalan tombol fisik (menonjol 3px) */
+          0 8px 15px rgba(0, 0, 0, 0.4);
+        /* Bayangan lembut di bawah tombol */
+
+        /* 2. Berikan jarak translasi Z agar benar-benar melayang di atas kartu */
+        transform: translateZ(15px);
+        transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Transisi pegas (bouncy) */
 
         &:hover {
           background: $accent-color;
-          border-color: $accent-color;
-          color: #000; // Kontras jika warna aksen terang
-          transform: scale(1.1);
+          color: #000;
+
+          /* Saat hover: tombol sedikit membesar dan melayang lebih tinggi */
+          transform: translateZ(25px) scale(1.05);
+
+          /* Bayangan tebal mengikuti tinggi tombol + bayangan lantai menjauh & kabur */
+          box-shadow:
+            0 0 0 1px rgba($accent-color, 0.2) 0 5px 0 0 darknav($accent-color),
+            /* Ketebalan tombol jadi 5px (gunakan warna versi gelap dari aksen) */
+            0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 3. Efek Aktif (Saat Diklik) */
+        &:active {
+          /* Saat diklik: tombol amblas ke bawah mendekati permukaan kartu */
+          transform: translateZ(5px) scale(0.98);
+
+          /* Ketebalan mengecil, bayangan lantai mendekat */
+          box-shadow:
+            0 0 0 1px $accent-color,
+            0 1px 0 0 darknav($accent-color),
+            /* Sisa ketebalan tinggal 1px */
+            0 4px 6px rgba(0, 0, 0, 0.6);
         }
       }
+
+
+
+      @media screen and (max-width: 740px) {
+        z-index: 1;
+        margin-top: 0.5rem;
+        transform: none;
+
+        .btn-repo,
+        .btn-live {
+          transform: none;
+
+          &:hover {
+            background: $accent-color;
+            color: #000;
+            transform: none;
+            box-shadow:
+              0 0 0 1px $accent-color,
+              0 5px 0 0 darknav($accent-color),
+              0 15px 25px rgba(0, 0, 0, 0.5);
+          }
+
+          &:active {
+            /* Saat diklik: tombol amblas ke bawah mendekati permukaan kartu */
+            transform: translateZ(5px) scale(0.98);
+
+            /* Ketebalan mengecil, bayangan lantai mendekat */
+            box-shadow:
+              0 0 0 1px $accent-color,
+              0 1px 0 0 darknav($accent-color),
+              /* Sisa ketebalan tinggal 1px */
+              0 4px 6px rgba(0, 0, 0, 0.6);
+          }
+        }
+      }
+
     }
+
 
     &__tech {
       position: absolute;
@@ -192,10 +277,13 @@ body {
   // agar content utama berbagi 2
   color: color.$text-primary;
 
-  // mdeia
-  @media screen and (max-width: 1000px) {
+  /* Menyalakan efek 3D */
+  height: 100vh;
+  width: 100vw;
+
+
+  @media screen and (max-width: 740px) {
     overflow: auto;
-    flex-direction: column;
   }
 
   // bg yang belakang
@@ -204,249 +292,35 @@ body {
   // background: color.$gradient-space;
   @include components.navbar("fixed");
 
-  h1 {
-    text-align: center;
-    color: color.$text-primary;
-    text-shadow: 0 0 10px color.$text-primary;
-    margin-bottom: 1rem;
-  }
 
-  div.project-favorite-cnt {
 
-    padding: 2.5rem;
-    margin: 4rem;
-    border: 1px solid #ffffff;
+  div#entry {
+
+    width: 100vw;
+    height: 100vh;
+
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 0.5rem;
 
-    @media screen and (max-width: 1000px) {
-      overflow: auto;
-      flex-direction: column;
-    }
-
-
-    div#project-favorite {
-      @include header_project(color.$violet-soft, color.$text-primary);
-      @include projects_grid(color.$card-bg, color.$lavender, color.$black-space, color.$blue-light);
-
-      min-height: 100px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .project-card {
-      width: 420px;
-      background: rgba(255, 255, 255, .05);
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 24px;
-
-      overflow: hidden;
-
-      backdrop-filter: blur(16px);
-
-      transition: .35s;
-
-      box-shadow:
-        0 15px 35px rgba(0, 0, 0, .18);
-
-      &:hover {
-
-        transform:
-          translateY(-8px);
-
-        border-color: #4d8dff;
-
-        box-shadow:
-          0 25px 45px rgba(0, 0, 0, .3),
-          0 0 30px rgba(77, 141, 255, .2);
-      }
-
-    }
-
-    .project-image {
-
-      height: 220px;
-
-      background:
-        linear-gradient(135deg,
-          #3f51b5,
-          #673ab7,
-          #1f2937);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img {
-
-        width: 100%;
-        height: 100%;
-
-        object-fit: cover;
-      }
-
-      &::before {
-
-        content: "Preview";
-
-        color: white;
-
-        font-size: 1.3rem;
-
-        font-weight: 600;
-
-        opacity: .3;
-      }
-
-    }
-
-    .project-content {
-
-      padding: 24px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 18px;
-
-    }
-
-    .project-tag {
-
-      width: max-content;
-
-      padding: 6px 14px;
-
-      border-radius: 50px;
-
-      background: #4d8dff22;
-
-      color: #72a4ff;
-
-      font-size: .8rem;
-
-      font-weight: 600;
-
-    }
-
-    .project-content h2 {
-
-      color: white;
-
-      font-size: 1.7rem;
-
-      margin: 0;
-
-    }
-
-    .project-content p {
-
-      color: #b8bcc8;
-
-      line-height: 1.8;
-
-    }
-
-    .project-language {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      color: white;
-
-      padding: 12px 18px;
-
-      border-radius: 14px;
-
-      background: rgba(255, 255, 255, .04);
-
-      span {
-
-        opacity: .6;
-      }
-
-      strong {
-
-        color: #4d8dff;
-      }
-
-    }
-
-    .project-tech {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 10px;
-
-    }
-
-    .project-tech span {
-
-      padding: 8px 14px;
-
-      border-radius: 999px;
-
-      background: rgba(255, 255, 255, .06);
-
-      border: 1px solid rgba(255, 255, 255, .08);
-
-      color: #ddd;
-
-      font-size: .82rem;
-
-      transition: .25s;
-
-      &:hover {
-
-        background: #4d8dff;
-
-        color: white;
-
-        transform: translateY(-2px);
-
-      }
-
-    }
-
-    .project-btn {
-
-      text-decoration: none;
-
+    h1 {
       text-align: center;
-
-      padding: 15px;
-
-      border-radius: 16px;
-
-      background: #4d8dff;
-
-      color: white;
-
-      font-weight: 600;
-
-      transition: .3s;
-
-      &:hover {
-
-        background: #326fe0;
-
-        letter-spacing: 1px;
-
-      }
-
+      font-size: 4rem;
+      font-weight: bold;
+      color: color.$text-primary;
+      text-shadow: 0 0 10px color.$text-primary;
+      margin-bottom: 1rem;
     }
+
+    p.quote {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+
   }
+
 
 
 
@@ -455,13 +329,40 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    /* Kombinasi translate -50% untuk menengahkan posisi fixed */
+    transform-origin: center;
+    transform: perspective(1000px) rotateX(0deg) scale(1);
+    overflow-y: scroll;
+    margin: 2rem auto; // Menengahkan secara horizontal tanpa fixed
     // batas bawah 
     margin-bottom: 5rem;
 
-    /* Batas layar (Breakpoint) */
+    // menyiapkan memorie buffer karena banyak animasi trasform 
+    will-change: transform;
+
+    // menghilangkna scrollbar
+    /* Untuk Firefox */
+    scrollbar-width: none;
+    /* Untuk Internet Explorer dan Edge lama */
+    -ms-overflow-style: none;
+
+    // mobile gak ada animasi //
     @media screen and (max-width: 740px) {
+      // mobile tidak ada 3D 
+      transform: none;
+      height: auto;
+      overflow-y: auto;
+      max-height: none;
+      will-change: auto;
       grid-template-columns: 1fr;
       /* Berubah menjadi 1 kolom saat layar <= 768px */
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
     }
 
     section.engine {

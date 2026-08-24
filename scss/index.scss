@@ -115,6 +115,17 @@ body {
       width: 100%;
     }
 
+
+    // poblem pada ukuran width yang lebih kecil jadi kita berikan ukuran default 
+    @media screen and (max-width : 500px) {
+      height: 200vh;
+      overflow-y: auto;
+
+      // footer {
+      //   display: none;
+      // }
+    }
+
     div.skill {
       padding: 0.8rem;
       margin-top: 1rem;
@@ -237,6 +248,13 @@ body {
     @media screen and (max-width: 1000px) {
       height: 20px;
       width: 100vw;
+
+      touch-action: none;
+      /* Blokir scroll/zoom bawaan browser pada tombol */
+      user-select: none;
+      /* Blokir seleksi teks saat ditekan lama */
+      -webkit-user-select: none;
+      /* Untuk browser Safari / iOS */
     }
   }
 
@@ -356,99 +374,99 @@ body {
       flex-wrap: wrap;
 
 
-      .moto {
-        background-color: color.$gray-shadow;
-        opacity: 0.82;
-        padding: 25px;
-        text-align: center;
-        border: 1px solid;
-        border-radius: 8px;
-
-        transition: all 0.25s ease;
-
-        &:hover {
-          transform: scale(1.05);
-          transition: all 0.25s ease;
-        }
-
-        p {
-          font-family:
-            "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-
-          text-shadow: 0 0.3 0.3 color.$black-space;
-        }
-      }
-
-      #cv {
-        text-align: center;
-
-        .download-btn {
-          position: relative;
-          padding: 15px 30px;
-          font-size: 16px;
-          color: #fff;
-          border: none;
-          border-radius: 50px;
-          cursor: pointer;
-          overflow: hidden;
-          backdrop-filter: blur(10px);
-          background: rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-          transition: all 0.3s ease;
-
-          display: flex;
-          align-items: center;
-          gap: 10px;
-
-          .icon {
-            font-size: 18px;
-            transition: transform 0.3s ease;
-          }
-
-          &:hover {
-            transform: scale(1.08);
-            background: rgba(255, 255, 255, 0.2);
-          }
-
-          &:hover .icon {
-            transform: translateY(4px);
-          }
-
-          &:active {
-            transform: scale(0.95);
-          }
-
-          &.loading {
-            pointer-events: none;
-            opacity: 0.7;
-          }
-
-          &.loading .text {
-            visibility: hidden;
-          }
-
-          &.loading::after {
-            content: "";
-            width: 20px;
-            height: 20px;
-            border: 3px solid #fff;
-            border-top: 3px solid transparent;
-            border-radius: 50%;
-            position: absolute;
-            animation: spin 1s linear infinite;
-          }
-
-          /* Ripple Effect */
-          span.ripple {
-            position: absolute;
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 600ms linear;
-            background: rgba(255, 255, 255, 0.5);
-          }
-        }
-      }
+      // .moto {
+      //   background-color: color.$gray-shadow;
+      //   opacity: 0.82;
+      //   padding: 25px;
+      //   text-align: center;
+      //   border: 1px solid;
+      //   border-radius: 8px;
+      //
+      //   transition: all 0.25s ease;
+      //
+      //   &:hover {
+      //     transform: scale(1.05);
+      //     transition: all 0.25s ease;
+      //   }
+      //
+      //   p {
+      //     font-family:
+      //       "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      //       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      //
+      //     text-shadow: 0 0.3 0.3 color.$black-space;
+      //   }
+      // }
+      //
+      // #cv {
+      //   text-align: center;
+      //
+      //   .download-btn {
+      //     position: relative;
+      //     padding: 15px 30px;
+      //     font-size: 16px;
+      //     color: #fff;
+      //     border: none;
+      //     border-radius: 50px;
+      //     cursor: pointer;
+      //     overflow: hidden;
+      //     backdrop-filter: blur(10px);
+      //     background: rgba(255, 255, 255, 0.1);
+      //     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      //     transition: all 0.3s ease;
+      //
+      //     display: flex;
+      //     align-items: center;
+      //     gap: 10px;
+      //
+      //     .icon {
+      //       font-size: 18px;
+      //       transition: transform 0.3s ease;
+      //     }
+      //
+      //     &:hover {
+      //       transform: scale(1.08);
+      //       background: rgba(255, 255, 255, 0.2);
+      //     }
+      //
+      //     &:hover .icon {
+      //       transform: translateY(4px);
+      //     }
+      //
+      //     &:active {
+      //       transform: scale(0.95);
+      //     }
+      //
+      //     &.loading {
+      //       pointer-events: none;
+      //       opacity: 0.7;
+      //     }
+      //
+      //     &.loading .text {
+      //       visibility: hidden;
+      //     }
+      //
+      //     &.loading::after {
+      //       content: "";
+      //       width: 20px;
+      //       height: 20px;
+      //       border: 3px solid #fff;
+      //       border-top: 3px solid transparent;
+      //       border-radius: 50%;
+      //       position: absolute;
+      //       animation: spin 1s linear infinite;
+      //     }
+      //
+      //     /* Ripple Effect */
+      //     span.ripple {
+      //       position: absolute;
+      //       border-radius: 50%;
+      //       transform: scale(0);
+      //       animation: ripple 600ms linear;
+      //       background: rgba(255, 255, 255, 0.5);
+      //     }
+      //   }
+      // }
 
       /* Animations */
       @keyframes ripple {

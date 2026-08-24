@@ -1,5 +1,6 @@
-export const projectFavorit =
-  // best projeck hanya boleh 1
+// pisahkan berdasarkan katagory
+// teh dan tech_icon harus selaras, agar icon nya terlihat
+export const projectWebs = [
   {
     name: "rant dashboard",
     repo: "https://github.com/bgdar/rant",
@@ -15,11 +16,7 @@ export const projectFavorit =
     tech_icon: [""],
     lang: "Typescript",
     des: "Aplikasi Rant yakni web dashboard utama",
-  };
-
-// pisahkan berdasarkan katagory
-// teh dan tech_icon harus selaras, agar icon nya terlihat
-export const projectWebs = [
+  },
   {
     name: "Daros",
     repo: "https://github.com/bgdar/daros",
@@ -207,7 +204,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/m-shell",
     img: "",
     tech: ["rust"],
-    tech_icon: ["ri-terminal-box-line"], 
+    tech_icon: ["ri-terminal-box-line"],
     lang: "rust",
     des: "shell app like bash or zsh",
   },
@@ -216,7 +213,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/astfetch",
     img: "https://i.ibb.co.com/ksh6gy6x/astfetch-png-projeck.png",
     tech: ["golang"],
-    tech_icon: ["ri-terminal-box-line"], 
+    tech_icon: ["ri-terminal-box-line"],
     lang: "golang",
     des: "tools information system dengan golang murni",
   },
@@ -234,7 +231,7 @@ export const projectTerminal = [
     repo: "https://github.com/bgdar/Otomatisasi-Backup-",
     img: "",
     tech: ["shell", "zig", "python"],
-    tech_icon: ["ri-terminal-box-line", ""], 
+    tech_icon: ["ri-terminal-box-line", ""],
     lang: "golang",
     des: "tools yang menjadwalkan bakup data sederhana ",
   },
@@ -262,10 +259,10 @@ export const projectBot = [
 
   {
     name: "rant",
-    repo: "https://github.com", 
+    repo: "https://github.com",
     img: "",
     tech: ["python-telegram-bot"],
-    tech_icon: ["ri-telegram-2-line"], 
+    tech_icon: ["ri-telegram-2-line"],
     lang: "python",
     des: "Bot telegram untuk deteksi kata kata kasar",
   },
@@ -274,20 +271,20 @@ export const projectBot = [
 export const ProjectEngine = [
   {
     name: "Http server",
-    repo: "https://github.com/bgdar/Http-server", 
+    repo: "https://github.com/bgdar/Http-server",
     img: "",
     tech: ["zig"],
-    tech_icon: ["ri-global-line"], 
+    tech_icon: ["ri-global-line"],
     lang: "zig",
     des: "Engine untuk Http ",
   },
 
   {
     name: "Qrcode",
-    repo: "https://i.ibb.co.com/bM7SmBCx/qrcode-projeck.png", 
+    repo: "https://i.ibb.co.com/bM7SmBCx/qrcode-projeck.png",
     img: "",
-    tech: ["rust","java"],
-    tech_icon: ["ri-settings-5-line"], 
+    tech: ["rust", "java"],
+    tech_icon: ["ri-settings-5-line"],
     lang: "rust",
     des: "Qrcode generator ",
   },

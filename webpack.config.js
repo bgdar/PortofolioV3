@@ -10,6 +10,11 @@ module.exports = {
     tools: "./js/tools.js",
     sertifikat: "./js/sertifikat.js",
   },
+
+  // devServer: {
+  //   allowedHosts: "all", // Mengizinkan semua host termasuk ngrok
+  //   // atau untuk versi lama: disableHostCheck: true,
+  // },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js", // [...] otomatis sesui entry point

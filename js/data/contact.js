@@ -28,7 +28,6 @@ export const dataContact = [
     some_tag: "",
     isManual: true,
   },
-
   {
     clClass: "instagram",
     judul: "Instagram",
@@ -37,7 +36,14 @@ export const dataContact = [
     link: "",
     isManual: false,
   },
-
+  {
+    clClass: "cv",
+    judul: "Curriculum Vitae",
+    des: "cv saya",
+    some_tag: "",
+    link: "https://drive.google.com/file/d/15RTguYFUdoTw48Te9CqljC_T95q_-8Ee/view?usp=sharing",
+    isManual: false,
+  },
   {
     clClass: "hunggiface",
     judul: "Hunggiface",

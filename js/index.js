@@ -17,6 +17,9 @@ let downHeigth = 0;
 
 let heigthDefault = 0;
 
+const memory = navigator.deviceMemory;
+console.log(`This device approximately ${memory}GiB of RAM.`);
+
 // let windowsWidth = 0;
 
 // const isDesktop = windowsWidth >= 768;
@@ -101,10 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.width = sectionRight.offsetWidth;
   canvas.height = sectionRight.offsetHeight;
 
-  // perubahan pada section kanan
+  btnCenter.addEventListener("contextmenu", (e) => {
+    e.preventDefault(); // Mencegah menu pop-up muncul saat ditekan lama
+  });
 
+  // perubahan pada section kanan
   // mulai drag
   btnCenter.addEventListener("pointerdown", (e) => {
+    // Kunci pointer ke tombol ini, meskipun jari bergeser keluar dari tombol
+    btnCenter.setPointerCapture(e.pointerId);
+
     btnIsDragging = true;
 
     startx = e.clientX;
@@ -122,51 +131,52 @@ document.addEventListener("DOMContentLoaded", () => {
   // drag move
   btnCenter.addEventListener("pointermove", (e) => {
     if (!btnIsDragging) return;
-    // menghitung jarak pergerakan mouse dari posisi awal saat pointerdown
-    // nilai positif = mouse bergerak ke kanan
-    // nilai negatif = mouse bergerak ke kiri
-    const dx = e.clientX - startx;
-    const dy = e.clientY - starty;
 
-    // menghitung ukuran baru untuk section kiri
-    // jika mouse ke kanan maka section kiri akan membesar
-    const newLeft = leftWidth + dx;
+    if (btnCenter.hasPointerCapture(e.pointerId)) {
+      // menghitung jarak pergerakan mouse dari posisi awal saat pointerdown
+      // nilai positif = mouse bergerak ke kanan
+      // nilai negatif = mouse bergerak ke kiri
+      const dx = e.clientX - startx;
+      const dy = e.clientY - starty;
 
-    // menghitung ukuran baru untuk section kanan
-    // karena kiri membesar maka kanan harus mengecil
-    const newRight = rightWidth - dx;
+      // menghitung ukuran baru untuk section kiri
+      // jika mouse ke kanan maka section kiri akan membesar
+      const newLeft = leftWidth + dx;
 
-    const newTop = topHeigth + dy;
-    const newDown = downHeigth - dy;
+      // menghitung ukuran baru untuk section kanan
+      // karena kiri membesar maka kanan harus mengecil
+      const newRight = rightWidth - dx;
 
-    // batas minimal ukuran panel agar tidak terlalu kecil
-    // ini mencegah panel hilang atau width menjadi negatif
-    const minWidth = 350;
+      const newTop = topHeigth + dy;
+      const newDown = downHeigth - dy;
 
-    const minHeigth = 350;
+      // batas minimal ukuran panel agar tidak terlalu kecil
+      // ini mencegah panel hilang atau width menjadi negatif
+      const minWidth = 350;
 
-    // validasi agar kedua panel tidak lebih kecil dari batas minimal
-    // hanya jika keduanya valid maka ukuran akan diubah
-    if (newLeft > minWidth && newRight > minWidth && IsDesktop) {
-      sectionLeft.style.width = newLeft + "px";
-      sectionRight.style.width = newRight + "px";
+      const minHeigth = 350;
 
-      //samain ukuran right section
-      contentRightTop.style.width = newRight + "px";
-    }
-    if (newTop > minHeigth && newDown > minHeigth && !IsDesktop) {
-      sectionLeft.style.height = newTop + "px";
-      sectionRight.style.height = newDown + "px";
+      // validasi agar kedua panel tidak lebih kecil dari batas minimal
+      // hanya jika keduanya valid maka ukuran akan diubah
+      if (newLeft > minWidth && newRight > minWidth && IsDesktop) {
+        sectionLeft.style.width = newLeft + "px";
+        sectionRight.style.width = newRight + "px";
+
+        //samain ukuran right section
+        contentRightTop.style.width = newRight + "px";
+      }
+      if (newTop > minHeigth && newDown > minHeigth && !IsDesktop) {
+        sectionLeft.style.height = newTop + "px";
+        sectionRight.style.height = newDown + "px";
+      }
     }
   });
 
-  btnCenter.addEventListener("pointerup", () => {
-    btnIsDragging = false;
-  });
   // saat tombol di tegah di lepas
   btnCenter.addEventListener("pointerup", (e) => {
     e.preventDefault();
     btnIsDragging = false;
+    btnCenter.releasePointerCapture(e.pointerId);
   });
 
   // gelombang assigment
