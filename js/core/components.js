@@ -11,8 +11,8 @@ export const databg = [
   "https://i.ibb.co.com/9krGgC6c/bg6.webp",
   "https://i.ibb.co.com/BHwYRcZB/bg7.webp",
   "https://i.ibb.co.com/RGYx7g7F/bg11.webp",
-  "https://i.ibb.co.com/RGsvT0Mv/bg12.webp",
   "https://i.ibb.co.com/NdpgpXCZ/bg5.webp",
+  "https://i.ibb.co.com/RGsvT0Mv/bg12.webp",
   "https://i.ibb.co.com/8gnprgh0/bg10.webp",
   "https://i.ibb.co.com/5hNtSgZB/bg3.webp",
   "https://i.ibb.co.com/8SxbTmc/bg4.webp",
@@ -48,4 +48,13 @@ export function getDirectDriveImg(url) {
   const indexlast = url.indexOf("/view");
 
   return `https://drive.google.com/thumbnail?id=${url.substring(indexFist, indexlast)}`;
+}
+
+/*
+ * function active buttom mobile saat di clik
+ */
+export function navbarBtnActive(btnMenuMobileTag, navbar) {
+  btnMenuMobileTag.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
 }

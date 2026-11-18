@@ -25,7 +25,7 @@
     p {
       font-size: 1rem;
       color: $text-muted;
-      font-family: 'Courier New', Courier, monospace; // Kesan TUI/Code
+      // font-family: 'Courier New', Courier, monospace; // Kesan TUI/Code
     }
   }
 
@@ -228,7 +228,6 @@
 
       .tech-badge {
         font-size: 0.7rem;
-        font-family: 'Courier New', monospace;
         background: #161b22; // Warna background solid gelap agar teks terbaca telak
         color: #fff;
         padding: 0.3rem 0.8rem;

@@ -1,9 +1,7 @@
 import "../scss/projects.scss";
-import { chageBg } from "./core/components.js";
+import { chageBg, navbarBtnActive } from "./core/components.js";
 import {
-  addProject,
   addProjects,
-  cardProjectFavorit,
   cntTechRotate,
   mainCntPerspektive3D,
 } from "./function/project.js";
@@ -12,7 +10,6 @@ import {
   projectGui,
   projectGame,
   projectWebs,
-  projectDraws,
   projectTerminal,
   ProjectEngine,
 } from "./data/project.js";
@@ -51,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navbar = document.querySelector("nav");
   const navThemeBtn = navbar.querySelector("li#theme button");
+  const btnMenuMobile = navbar.querySelector("button#menu-mobile");
 
   addProjects(projectGame, gridGame);
   addProjects(projectWebs, gridWeb);
@@ -64,9 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const subElmCardDes = main.querySelectorAll(".project-card__des");
   const subElmCard = main.querySelectorAll(".project-card");
 
+  // ------- NAVBAR SECTION
   navThemeBtn.addEventListener("click", () => {
     chageBg();
   });
+  navbarBtnActive(btnMenuMobile, navbar);
+  // ------- NAVBAR SECTION
 
   // section project detail
   const detailProject = document.body.querySelector("div.detail-project");

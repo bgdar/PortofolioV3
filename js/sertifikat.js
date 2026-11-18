@@ -1,10 +1,10 @@
 import "../scss/sertifikat.scss";
+import { navbarBtnActive } from "./core/components";
 import { dicodingData, hackerrankData, hacktiv8Data } from "./data/sertifikat";
 import {
   cardElement,
   handleActionActiveCard,
   handleActionDeactiveCard,
-  updateSidebarContent,
 } from "./function/sertifikat";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------- Group Sertifikat ------------
   const detailSidebar = document.getElementById("detailSidebar");
   const closeSidebarBtn = detailSidebar.querySelector("#closeSidebarBtn");
+
+  const navbar = document.querySelector("nav");
+  const navThemeBtn = navbar.querySelector("li#theme button");
+  const btnMenuMobile = navbar.querySelector("#menu-mobile");
 
   // const waveContainer = document.querySelector(".wave-container");
   // const svgElement = waveContainer.querySelector("svg"); // Target langsung ke elemen <svg>
@@ -92,4 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   handleActionDeactiveCard(hacktiv8CardsValid, detailSidebar, closeSidebarBtn);
+
+
+  // addCard(visualisasiGrid, visualisasiData);
+  //  NAVBAR SECTION
+  navThemeBtn.addEventListener("click", () => {
+    chageBg();
+  });
+
+  navbarBtnActive(btnMenuMobile, navbar);
+
 });

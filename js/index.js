@@ -1,6 +1,6 @@
 import "../scss/index.scss";
 
-import { chageBg } from "./core/components.js";
+import { chageBg, navbarBtnActive } from "./core/components.js";
 import { KarirData, daftarBulan, daftarHari } from "./data/index.js";
 import { waveDraw, cv, addTimeKarir, footer } from "./function/index.js";
 
@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navbar = document.querySelector("nav");
   const navThemeBtn = navbar.querySelector("li button");
+  const btnMenuMobile = navbar.querySelector("#menu-mobile");
 
   // img di sebelah kanan
   imgStaticRight.src = imgDar;
@@ -192,6 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
   navThemeBtn.addEventListener("click", () => {
     chageBg();
   });
+
+  navbarBtnActive(btnMenuMobile, navbar);
 
   // FOOTER section
   if (IsDesktop) {

@@ -3,9 +3,9 @@ export const bgNames = ["bg1", "bg2"];
 export const KarirData = [
   {
     date: "2026-03-22 - 2026-0-0 ",
-    judul: "Frelance di BPJPH",
+    judul: "Frelance di LP3H YSPDI ROBBANI BANDA ACEH",
     company: "BPJPH",
-    des: "tim entry data untuk sertifikasi  pelaku usaha",
+    des: "Tim entry data untuk sertifikasi  pelaku usaha",
   },
 ];
 

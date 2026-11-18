@@ -18,6 +18,22 @@ export const projectWebs = [
     des: "Aplikasi Rant yakni web dashboard utama",
   },
   {
+    name: "News TI",
+    repo: "https://ti.fst.ar-raniry.ac.id/",
+    img: "https://i.ibb.co.com/yc8ZjdxQ/image.png",
+    tech: ["Svelte", "Sveltekit", "Tailwindcss", "mysql", "bun", "cloudinary"],
+    tech_icon: [
+      "ri-code-s-slash-fill", // Svelte (ikon kode / komponen)
+      "ri-window-fill", // SvelteKit (ikon aplikasi web / framework)
+      "ri-tailwind-css-fill", // Tailwind CSS (tersedia logo resminya)
+      "ri-database-2-fill", // MySQL (ikon database relasional)
+      "ri-terminal-box-fill", // Bun (ikon runtime / CLI)
+      "ri-cloud-fill", // Cloudinary (ikon layanan cloud media)
+    ],
+    lang: "Typescript",
+    des: "Web Berita Prodi Teknologi Informasi UIN ar-raniry",
+  },
+  {
     name: "Daros",
     repo: "https://github.com/bgdar/daros",
     img: "https://i.ibb.co.com/pjzm33pk/daros-webp-projeck.webp",
@@ -61,6 +77,18 @@ export const projectWebs = [
     tech_icon: ["ri-javascript-fill"],
     lang: "Svelte",
     des: "Aplikasi yang menyimpan dan mengelola TASK user",
+  },
+
+  {
+    name: "Share Hub",
+    repo: "https://github.com/bgdar/ShareHub",
+    img: "https://i.ibb.co.com/0jzNHcBM/share-hub.png",
+
+    tech: ["Python", "Django"],
+    tech_icon: ["ri-python-fill", "ri-django-fill"],
+
+    lang: "python",
+    des: "cominity and share file",
   },
   {
     name: "Kede kupi",

@@ -1,4 +1,5 @@
 @use "color" as color;
+@use "type" as type;
 
 //  warna na di tambah manual antik
 
@@ -37,21 +38,177 @@
 }
 
 
-// display tampilanya 
+// display tampilanya  
+// absolute 
+// fixed 
+// static
 @mixin navbar($display : "absolute") {
   nav {
 
     @if $display =="fixed" {
       position: fixed;
-      width: 100vw;
+      width: 90vw;
       z-index: 99;
+      border-radius: 15px;
       left: 50%;
       transform: translateX(-50%);
+
+
+      // jika di mobile , maka saya mau tombol navbar akan di buka di sebelah kanna 
+      @media (max-width:type.$MOBILE_VIEW) {
+
+
+        // Memastikan tombol mobile tampil dan mengambang di kanan bawah
+        button#menu-mobile {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          position: fixed;
+          right: 1.5rem;
+          bottom: 1.5rem;
+          width: 50px;
+          height: 50px;
+          border-radius: 40%;
+          z-index: 100;
+          background: color.$nebula-purple;
+          border: 1px solid color.$hover-glow;
+          color: color.$text-primary;
+          cursor: pointer;
+          font-size: 1.4rem;
+          transition: transform 0.3s ease;
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        // Mengubah ul menjadi menu melayang (dropdown/pop-up)
+        ul {
+
+          position: fixed !important;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+
+          width: 200px;
+          background: rgba(color.$card-bg, 0.85);
+          /* Sedikit transparan untuk efek blur */
+          border: 1px solid color.$card-border;
+          border-radius: 16px;
+          /* Sudut lebih melengkung modern */
+          padding: 0.5rem;
+
+          right: 1.5rem;
+          bottom: -25rem;
+          /* Sembunyi jauh di bawah */
+          opacity: 0;
+          pointer-events: none;
+
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          box-shadow: 0 10px 30px color.$card-shadow;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+          li {
+            width: 100%;
+            list-style: none;
+
+            a {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              /* Teks/Ikon rata kiri */
+              gap: 1rem;
+              padding: 0.9rem 1.2rem;
+              width: 100%;
+
+              /* Reset gaya kotak dari desktop agar seragam di dalam panel */
+              background: transparent !important;
+              border: none !important;
+              border-radius: 10px;
+              color: color.$text-secondary;
+              font-size: 1rem;
+              box-shadow: none !important;
+              transform: none !important;
+              transition: all 0.2s ease;
+
+              // Efek Hover / Fokus saat ditekan di mobile
+              &:hover,
+              &:active {
+                color: color.$text-primary;
+                background: rgba(color.$nebula-purple, 0.3) !important;
+              }
+
+              // Ukuran ikon di dalam menu mobile agar lebih tegas
+              i {
+                font-size: 1.2rem;
+              }
+            }
+
+            // Berikan garis pemisah tipis antar menu kecuali menu terakhir
+            &:not(:last-child) {
+              border-bottom: 1px solid rgba(color.$card-border, 0.5);
+            }
+
+            // Sembunyikan span#info di mobile karena tooltips tidak ramah sentuhan (touchscreen)
+            span#info {
+              display: none !important;
+            }
+          }
+
+          li#theme {
+            width: 100%;
+            border: none;
+            padding: 0;
+            background: transparent;
+
+            button {
+              display: flex;
+              align-items: center;
+              width: 100%;
+              padding: 0.9rem 1.2rem;
+              background: transparent;
+              border: none;
+              color: color.$text-secondary;
+              font-size: 1rem;
+              text-align: left;
+              cursor: pointer;
+              border-radius: 10px;
+
+              &:hover {
+                background: rgba(color.$blue-light, 0.2);
+                color: color.$text-primary;
+              }
+            }
+          }
+        }
+
+        // Jika tag <nav> memiliki class .active, maka atur <ul> di dalamnya
+        &.active {
+          ul {
+            opacity: 1;
+            bottom: 4.5rem;
+            /* Muncul di atas tombol menu mobile */
+            pointer-events: auto;
+          }
+
+          button#menu-mobile i {
+            transform: rotate(90deg);
+          }
+        }
+      }
+
     }
 
     @else if $display =="absolute" {
       position: absolute;
       width: 100%;
+    }
+
+    @else if $display =="static" {
+      position: static;
+      width: 100%;
+      // Catatan: 'bottom: 0' tidak dipakai di static karena mengalir normal sesuai urutan HTML
     }
 
     ;
@@ -155,9 +312,14 @@
       }
 
     }
+
+    // tombol ini gak kelihatan
+    button#menu-mobile {
+      display: none;
+    }
+
   }
 }
-
 
 
 @mixin footer() {

@@ -1,5 +1,6 @@
 @use "core/color" as color;
 @use "core/componets" as components;
+@use "core/type" as type;
 
 @use "sass:map"; // Mengaktifkan fungsi map modern
 @import "~remixicon/fonts/remixicon.css";
@@ -117,14 +118,14 @@ body {
 
 
     // poblem pada ukuran width yang lebih kecil jadi kita berikan ukuran default 
-    @media screen and (max-width : 500px) {
-      height: 200vh;
-      overflow-y: auto;
-
-      // footer {
-      //   display: none;
-      // }
-    }
+    // @media screen and (max-width : 500px) {
+    //   height: 200vh;
+    //   overflow-y: auto;
+    //
+    //   // footer {
+    //   //   display: none;
+    //   // }
+    // }
 
     div.skill {
       padding: 0.8rem;
@@ -237,7 +238,16 @@ body {
     }
   }
 
-  @include components.navbar("absolute");
+  // @include components.navbar("absolute");
+  // TAMPILAN DEFAULT / DESKTOP (Misal: di atas 500px)
+  @media (min-width: calc(#{type.$MOBILE_VIEW} + 1px)) {
+    @include components.navbar("absolute"); // atau "fixed" / "static"
+  }
+
+  //  TAMPILAN MOBILE (Misal: 500px ke bawah)
+  @media (max-width: type.$MOBILE_VIEW) {
+    @include components.navbar("mobile-floating"); // atau "static"
+  }
 
   button#btn-center {
     cursor: pointer;
@@ -390,11 +400,7 @@ body {
       //   }
       //
       //   p {
-      //     font-family:
-      //       "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      //       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-      //
-      //     text-shadow: 0 0.3 0.3 color.$black-space;
+      //         //     text-shadow: 0 0.3 0.3 color.$black-space;
       //   }
       // }
       //
@@ -605,7 +611,6 @@ body {
         // background: color.$gradient-space;
         color: color.$text-primary;
         padding: 60px 20px;
-        font-family: "Segoe UI", Roboto, sans-serif;
         min-height: 100vh;
 
         .timeline-section {
@@ -741,7 +746,7 @@ body {
           }
         }
 
-        // 8. Tampilan Responsif (Layar HP)
+        // Tampilan Responsif (Layar HP)
         @media screen and (max-width: 768px) {
           .timeline-container {
             &::after {

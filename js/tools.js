@@ -7,7 +7,7 @@ import {
   visualisasiData,
 } from "./data/tools.js";
 import { addCard } from "./function/tools.js";
-import { chageBg } from "./core/components.js";
+import { chageBg, navbarBtnActive } from "./core/components.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const languageContainer = document.querySelector("div.container-language");
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const navbar = document.querySelector("nav");
   const navThemeBtn = navbar.querySelector("li#theme button");
+  const btnMenuMobile = navbar.querySelector("#menu-mobile");
 
   addCard(languageGrid, languageData);
   addCard(workflowGrid, workflowData);
@@ -33,4 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
     console.info("bgchage has click");
     chageBg();
   });
+
+  navbarBtnActive(btnMenuMobile, navbar);
 });
